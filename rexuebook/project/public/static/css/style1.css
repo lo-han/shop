@@ -334,6 +334,40 @@ display: block;margin: 40px auto 0;background: url(../img/nhlogo2.png) 50% no-re
 .book-list .banner-ad-img .op-tag{
     right: 4px;
 }
+.book-list .pr66{
+    padding-right: 66px;
+}
+.book-list .col-md-3.book-left .text-list li{
+    height: 49px;
+    border-bottom: 1px solid #e6e6e6;
+    
+}
+.book-list .col-md-3.book-left .text-list .name{
+    line-height: 49px;
+    display: block;
+    width: 170px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    float: left;
+
+}
+.book-list .col-md-3.book-left .text-list .avt{
+    height: 49px;
+    font: 12px/49px PingFangSC-Regular,'-apple-system',Simsun;
+    float: right;
+    display: block;
+    width: 64px;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    color: #b3b3b3;
+
+}
 
 .op-tag{
     position: absolute;
