@@ -1403,12 +1403,16 @@ ul.footer-info li.footer-item{display: inline-block;margin-left: 20px;height: 40
     background-size: 14px;}
 .heading .nav-user .dlztlater{float: left;}
 .heading .nav-user .dlztlater a{color: #fff;}
-.heading .nav-user .dlztlater .icon-user{float:left;margin-top:20px;display: block;
-    width: 30px;
-    height: 30px;
-    
-    background-size: 14px;border-radius: 100%;position: relative;} 
-.heading .nav-user .dlztlater .icon-user img{border: 1px solid none;border-radius: 100%;position: absolute;top:3px;left: 5px;width: 70%;height: 75%;}
+.heading .nav-user .dlztlater .icon-user{
+	color: #fff;
+    font-style: normal;
+    vertical-align:middle;
+    vertical-align: -webkit-baseline-middle;
+} 
+.heading .nav-user .dlztlater .icon-user img{
+	width: 21px;
+    height: 22.5px;
+}
 .heading .nav-user .dlztlater .mc{float: left;}
 .heading .nav-user .dlztlater .tc{float: left;margin-left: 15px;}
 /*新的头部 end*/
