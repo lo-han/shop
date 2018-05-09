@@ -13,9 +13,9 @@ use think\Route;
 //网站首页
 Route::get(['Home','/'],'contribute/index.index/index');
 //制作人介绍页
-Route::get(['HomeMaker','maker'],'contribute/index.index/maker');
+//Route::get(['HomeMaker','maker'],'contribute/index.index/maker');
 //作者介绍页
-Route::get(['HomeAuthor','author/[:sort]'],'contribute/index.index/author',[],['sort'=>'newest|works']);
+//Route::get(['HomeAuthor','author/[:sort]'],'contribute/index.index/author',[],['sort'=>'newest|works']);
 //关于我们
 Route::get(['HomeWe','we'],'contribute/index.index/we');
 //书本列表
