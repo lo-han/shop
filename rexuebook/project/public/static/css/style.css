@@ -1383,7 +1383,7 @@ ul.footer-info li.footer-item{display: inline-block;margin-left: 20px;height: 40
 
 
 /*新的头部 start*/
-.heading {position: relative;line-height: 70px;height: 70px;border-bottom: 1px solid none;background-color: #a50404;}
+.heading {position: relative;line-height: 70px;height: 70px;border-bottom: 1px solid none;background-color: #e83451;}
 .heading .container{position: relative;width: 1180px;margin: 0 auto;padding: 0 10px;overflow: hidden;margin-top:-8px;}
 .heading .container .H-left{float: left;}
 .heading .container .H-left .bt{overflow: hidden;position: relative;}
@@ -1393,7 +1393,7 @@ ul.footer-info li.footer-item{display: inline-block;margin-left: 20px;height: 40
 .heading .container .H-right{float: right;}
 .heading .container .H-right .lbj{list-style: none;float: left; line-height: 54px;height: 70px;background: transparent;padding: 0;margin-top: 8px;}
 .heading .container .H-right .lbj .nav-item{display: list-item; float: left;list-style: none;position: relative;cursor: pointer;margin: 0 0 0 40px;}
-.heading .container .H-right .lbj .nav-item a{text-decoration: none;color: #fff;display: block;padding: 0;opacity: 1;border-top: 5px solid #a50404;font-size: 16px;}
+.heading .container .H-right .lbj .nav-item a{text-decoration: none;color: #fff;display: block;padding: 0;opacity: 1;border-top: 5px solid #e83451;font-size: 16px;}
 .heading .container .H-right .lbj .nav-item a.active {color: #fff;border-top: 5px solid #333;}
 
 .heading .nav-user { display: list-item;float: left;list-style: none;position: relative;cursor: pointer;margin: 0 0 0 20px; margin-left: 50px;height: 70px;margin-top: 3px;}

@@ -61,7 +61,7 @@ hr {
     line-height: 70px;
     height: 70px;
     border-bottom: 1px solid #d3d3d3;
-    background-color: #a50404;
+    background-color: #e83451;
 }
 
 .heading .container {
@@ -133,7 +133,7 @@ hr {
     display: block;
     padding: 0;
     opacity: 1;
-    border-top: 5px solid #a50404;
+    border-top: 5px solid #e83451;
     font-size: 16px;
 }
 
