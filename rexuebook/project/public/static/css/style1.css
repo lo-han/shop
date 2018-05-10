@@ -88,6 +88,7 @@ hr {
     height: 42px;
     line-height: 70px;
     float: left;
+    margin-top: 3px;
 }
 
 .heading .container .H-left .bt .dbt img {
@@ -190,9 +191,8 @@ hr {
 .heading .nav-user .dlztlater .icon-user {
     color: #fff;
     font-style: normal;
-    vertical-align:middle;
+    vertical-align: middle;
     vertical-align: -webkit-baseline-middle;
-
 }
 
 .heading .nav-user .dlztlater .icon-user img {
