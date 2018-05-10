@@ -78,6 +78,17 @@ Route::group('admin',function (){
 	 */
 	Route::rule('','contribute/admin.login/index');			// http://域名/user 目录
 
+	//首页书籍推介设置
+	Route::get(['AdminSettingHome','setting/home'],'contribute/admin.setting/home');
+
+	//广告设置
+	Route::rule(['AdminSettingAdvert','setting/advert'],'contribute/admin.setting/advert');
+
+	//推介书本设置修改
+	Route::rule(['AdminSettingSaveBook','setting/saveBook'],'contribute/admin.setting/saveBook');
+
+	//推介广告设置修改
+	Route::rule(['AdminSettingSaveAdvert','setting/saveAdvert'],'contribute/admin.setting/saveAdvert');
 	
 	//登陆页面
 	Route::rule(['AdminLogin','login'],'contribute/admin.login/index');	

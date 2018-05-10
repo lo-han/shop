@@ -1,0 +1,215 @@
+{extend name="public:admin" /}
+
+
+{block name="main"}
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<div class="zxlbnr">
+			<form class="layui-form" action="{:url('AdminNewsAdd')}" method="post" >
+
+		  	  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">重磅封推</label>
+				      	<input type="text" name="post[super]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.super)"}{$data.super}{/if}">
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">红文榜</label>
+					    <input type="text" name="post[seething]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.seething)"}{$data.seething}{/if}">
+					</div>
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">大神专区</label>
+				      	<input type="text" name="post[super]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.super)"}{$data.super}{/if}">
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">人气榜</label>
+					    <input type="text" name="post[seething]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.seething)"}{$data.seething}{/if}">
+					</div>
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">长篇专区</label>
+				      	<input type="text" name="post[super]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.super)"}{$data.super}{/if}">
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">收藏榜</label>
+					    <input type="text" name="post[seething]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.seething)"}{$data.seething}{/if}">
+					</div>
+			  	</div>
+
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">短篇专区</label>
+				      	<input type="text" name="post[super]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.super)"}{$data.super}{/if}">
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">完本榜</label>
+					    <input type="text" name="post[seething]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.seething)"}{$data.seething}{/if}">
+					</div>
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">新书专区</label>
+				      	<input type="text" name="post[super]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.super)"}{$data.super}{/if}">
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">签约新书榜</label>
+					    <input type="text" name="post[seething]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.seething)"}{$data.seething}{/if}">
+					</div>
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">免费专区</label>
+				      	<input type="text" name="post[super]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.super)"}{$data.super}{/if}">
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">免费榜</label>
+					    <input type="text" name="post[seething]" lay-verify="title" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.seething)"}{$data.seething}{/if}">
+					</div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+				    <div class="layui-input-block">
+				      	<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				    </div>
+			  	</div>
+			</form>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+<script type="text/javascript" src="{:asset('/static/ckeditor/ckeditor.js')}"></script>
+
+<script type="text/javascript">
+	layui.use('upload', function(){
+		var $ = layui.jquery,
+		upload = layui.upload; 
+		//普通图片上传
+		var uploadInst = upload.render({
+		    elem: '#change_photo',
+		    url: '{:url('ImageUpload',['table' => 'news','category' => 'cover'])}',
+		    before: function(obj){
+		      //预读本地文件示例，不支持ie8
+		      obj.preview(function(index, file, result){
+		      	$('#author_icon').parent().show(); 
+		        $('#author_icon').attr('src', result); //图片链接（base64）
+		      });
+		    },
+		    done: function(res){
+		      //如果上传失败
+		      if(res.code == 0){
+		      	fileError(uploadInst);
+		        return layer.msg(res.msg);
+
+		      }
+		      $("#cover").val(res.msg);
+		      $("#demoText").html(" ");
+		      //上传成功
+		    },
+		    error: function(){
+		      //演示失败状态，并实现重传
+	  	      fileError(uploadInst);
+		    }
+		});
+	});
+
+	layui.use('form', function(){
+	  	var form = layui.form;
+
+	  	form.verify({
+			cover: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '请上传封面图片';
+				}
+			}
+			,title: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '名称不能为空';
+				}
+			}
+			,description: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '简介不能为空';
+				}
+				
+				if(value.length < 20 || value.length > 500){
+				    return '作品简介请控制在20-500字内';
+				}
+			}
+			,check: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '请选择发布状态';
+				}
+			}
+			
+		});   
+
+
+	});
+
+	function fileError(uploadInst){
+		var demoText = $('#demoText');
+      	demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      	demoText.find('.demo-reload').on('click', function(){
+        	uploadInst.upload();
+      	});
+	}
+
+</script>
+
+{/block}

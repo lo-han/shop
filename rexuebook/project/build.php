@@ -26,11 +26,11 @@ return [
             //投稿系统控制器
             'user/Login','user/Book','user/Section','user/Info',
             //后台管理控制器
-            'admin/Login','admin/Book','admin/Section','admin/Category','admin/Place','admin/User','admin/News','admin/Admin',
+            'admin/Login','admin/Book','admin/Section','admin/Category','admin/Place','admin/User','admin/News','admin/Admin','admin/Setting',
             //API控制器
             'api/Book','api/Section',
         ],
-        'model'      => ['User','Admin','Book','BookSection','Category','Place','Tag','TagRelation','TagRelation','PlaceRelation','News'],
+        'model'      => ['User','Admin','Book','BookSection','Category','Place','Tag','TagRelation','TagRelation','PlaceRelation','News','BookMark','Advert'],
         'view'       => [
             //错误页面模板
             'error/404',
@@ -41,7 +41,7 @@ return [
             //用户投稿模板
             'user/login/login','user/login/register','user/book/list','user/book/add','user/section/list','user/section/add','user/info/edit',
             //后台管理模板
-            'admin/login/index','admin/book/index','admin/book/edit','admin/section/index','admin/section/edit','admin/place/index','admin/place/add','admin/category/index','admin/category/add','admin/user/index','admin/user/edit','admin/news/index','admin/news/add','admin/admin/index','admin/admin/add',
+            'admin/login/index','admin/book/index','admin/book/edit','admin/section/index','admin/section/edit','admin/place/index','admin/place/add','admin/category/index','admin/category/add','admin/user/index','admin/user/edit','admin/news/index','admin/news/add','admin/admin/index','admin/admin/add','admin/setting/home','admin/setting/advert',
         ],
     ],
     // 其他更多的模块定义

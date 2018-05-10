@@ -51,6 +51,13 @@
 			<div class="left-nav left-nav1" id="left_nav" style="height: 100%;">
 				{if condition="session('admin.role') == 1"}
 				<ul class="layui-nav layui-nav-tree" id="xlcd" lay-filter="test" style="width:100%;">
+					<li class="layui-nav-item {if condition="routerJudge('admin/setting')"}layui-nav-itemed{/if}" style="padding-left:0px;">
+			          <a class="" href="javascript:;">设置</a>
+			          <dl class="layui-nav-child">
+			            <dd {if condition="routerJudge('admin/setting/home')"}class="layui-this"{/if} ><a href="{:url('AdminSettingHome')}">首页书籍推介</a></dd>
+			            <dd {if condition="routerJudge('admin/setting/advert')"}class="layui-this"{/if} ><a href="{:url('AdminSettingAdvert')}">广告位推介</a></dd>
+			          </dl>
+			        </li>
 			        <li class="layui-nav-item {if condition="routerJudge('admin/book') || routerJudge('admin/section') || routerJudge('admin/category')"}layui-nav-itemed{/if}" style="padding-left:0px;">
 			          <a class="" href="javascript:;">作品管理</a>
 			          <dl class="layui-nav-child">

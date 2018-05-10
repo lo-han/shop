@@ -96,7 +96,7 @@
 			  </div> 
 
 			  <!-- 提供管理员使用 -->
-			{if condition="session('admin.role') == 1 && $data.id !== 1"}
+			{if condition="session('admin.role') == 1 && ( isset($data.id) && $data.id !== 1)"}
 			<div class="layui-form-item">
 			    <label class="layui-form-label" style="padding-left:0;">类型：</label>
 			    <div class="layui-input-block">
