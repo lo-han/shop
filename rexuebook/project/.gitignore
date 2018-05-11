@@ -1,6 +1,0 @@
-.idea
-composer.lock
-*.log
-uploads/*
-!*.md
-project/application/database.php
