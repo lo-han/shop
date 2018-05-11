@@ -171,7 +171,8 @@ if (! function_exists('imagePath')) {
 
         $path = config('hostImg') . "/" . $routePath;
 
-        if($upPath == "" || !is_file($file) ){
+
+        if( ( $upPath == "" || !is_file($file) ) && in_array($catalogue['table'], ['user','admin']) ){
             return config('hostWWW') . "/static/img/defaultHd.jpg";
         }
         

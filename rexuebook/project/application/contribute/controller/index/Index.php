@@ -22,7 +22,9 @@ class Index extends Common
 	public function index(){
 
 		$mark = (new BookMark)->homeMark();
+		$advert = (new Advert)->homeMark();
 
+		$this->assign('advert',$advert);
 		$this->assign('mark',$mark);
 		return $this->fetch();
 	}

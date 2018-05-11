@@ -264,3 +264,48 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 SET FOREIGN_KEY_CHECKS=1;
+
+
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50553
+Source Host           : localhost:3306
+Source Database       : rexuebook
+
+Target Server Type    : MYSQL
+Target Server Version : 50553
+File Encoding         : 65001
+
+Date: 2018-05-11 14:16:31
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for advert
+-- ----------------------------
+DROP TABLE IF EXISTS `advert`;
+CREATE TABLE `advert` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '广告url',
+  `image` varchar(255) NOT NULL DEFAULT '' COMMENT '广告图片',
+  `site` varchar(20) NOT NULL DEFAULT '' COMMENT '广告位置',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `table_advert_site` (`site`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='广告位';
+
+-- ----------------------------
+-- Table structure for book_mark
+-- ----------------------------
+DROP TABLE IF EXISTS `book_mark`;
+CREATE TABLE `book_mark` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `book_id` varchar(50) NOT NULL DEFAULT '' COMMENT '推介的书籍ID',
+  `mark` varchar(40) NOT NULL DEFAULT '' COMMENT '区块代号',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `table_book_mark_mark` (`mark`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='书籍推介表格';
+SET FOREIGN_KEY_CHECKS=1;
+
