@@ -9,6 +9,8 @@ use \app\contribute\model\Book;
 use \app\contribute\model\News;
 use \app\contribute\model\PlaceRelation;
 use \app\contribute\model\Admin;
+use \app\contribute\model\Advert;
+use \app\contribute\model\BookMark;
 
 use \think\Request;
 use \think\Db;
@@ -19,30 +21,9 @@ class Index extends Common
 	//首页
 	public function index(){
 
-		//调用最新的资讯
-		$news = News::all(function($query){
-		    return $query->where('check', 1)->limit(5)->order('id', 'DESC');
-		});
+		$mark = (new BookMark)->homeMark();
 
-		//调用最新的作品
-		$book = Book::all(function($query){
-		    return $query->where('check', 1)->limit(12)->order('sort', 'DESC')->order('id', 'DESC');
-		});
-
-		//调用作者
-		$user = User::all(function($query){
-		    return $query->whereIn('id',[1,2,3,4,5,6,7])->limit(7);
-		});
-
-		//调用制作者
-		$admin = Admin::all(function($query){
-		    return $query->whereIn('id',[1,2,3,4,5,6,7])->where('role',2)->limit(7);
-		});
-
-		$this->assign("news",$news);
-		$this->assign("book",$book);
-		$this->assign("user",$user);
-		$this->assign("admin",$admin);
+		$this->assign('mark',$mark);
 		return $this->fetch();
 	}
 

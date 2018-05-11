@@ -2,6 +2,7 @@
 namespace app\contribute\model;
 
 use think\Model;
+use app\contribute\model\Book;
 
 class BookMark extends Model
 {
@@ -31,6 +32,12 @@ class BookMark extends Model
 		}
 
 		return $data;
+	}
+
+	//推介位的书籍获得
+	public function bookGet($limit)
+	{	
+		return Book::whereIn('id',$this->book_id)->limit($limit)->select();
 	}
 
 }

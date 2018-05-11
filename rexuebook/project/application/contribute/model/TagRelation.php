@@ -47,8 +47,8 @@ class TagRelation extends Model
 	 *			tag (class) 关联的tag对象
 	 */
 
-	public function getRelationTag($book_id){
-		$tag_id = self::where('book_id =' . $book_id)->column("tag_id");
+	public function getRelationTag($book_id,$limit = 0){
+		$tag_id = self::where('book_id =' . $book_id)->limit($limit)->column("tag_id");
 
 		if(empty($tag_id)){
 			return false;

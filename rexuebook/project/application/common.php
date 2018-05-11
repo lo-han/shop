@@ -230,6 +230,22 @@ if (! function_exists('passGen')) {
 }
 
 /**
+ *  模型加载
+ *  @param $key (string) 字符串
+ *  @param $default 默认值
+ *  @return 暂存的字符串
+ */
+
+if (! function_exists('model')) {
+
+    function model($model){
+        $model = 'app\contribute\model\\' . $model;
+        return (new $model);
+    }
+
+}
+
+/**
  *  作用于session::flush (未开发)
  *  @param $key (string) 字符串
  *  @param $default 默认值
@@ -245,6 +261,7 @@ if (! function_exists('old')) {
     }
 
 }
+
 
 
 

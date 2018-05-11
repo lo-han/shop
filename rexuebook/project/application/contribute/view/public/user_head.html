@@ -1,0 +1,47 @@
+<!--头部-->
+<div class="heading">
+	<div class="container">
+		<div class="H-left">
+			<div class="bt">
+				<a class="dbt" href="{:url('Home')}">
+					<img src="/static/img/nh1.png">
+				</a>
+				<div class="xbt">精品新媒体网文订制</div>
+			</div>
+		</div>
+		<div class="H-right">
+			<ul class="lbj">
+				<li class="nav-item">
+					<a href="{:url('Home')}" {if condition="routerJudge('index')" }class="active" {/if}>首页</a>
+				</li>
+				<li class="nav-item">
+					<a href="{:url('HomeBookList')}" {if condition="routerJudge('book')" }class="active" {/if}>作品列表</a>
+				</li>
+				<li class="nav-item">
+					<a href="{:url('HomeWe')}" {if condition="routerJudge('we')" }class="active" {/if}>关于我们</a>
+				</li>
+			</ul>
+			<div class="nav-user">
+				<div class="dlztlater">
+					{if condition="controller('Common','controller')->isUserCheck()"}
+					<a href="{:url('UserBookList')}">
+						<i class="icon-user">	
+							<img src="{:imagePath(['table'=>'user','category'=>'image'],session('user.image'))}">
+						</i>
+						<div class="mc">&nbsp;&nbsp;{:session('user.name')}</div>
+					</a>
+					<div class="tc">
+						<a href="{:url('UserLoginOut')}">退出</a>
+					</div>
+					{else /}
+					<i class="icon-user">
+						<img src="/static/img/index.png">
+						<a href="{:url('UserLogin')}"> 注册 </a> /
+						<a href="{:url('UserLogin')}"> 登陆 </a>
+					</i>
+					{/if}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

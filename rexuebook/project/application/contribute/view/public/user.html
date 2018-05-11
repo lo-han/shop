@@ -31,59 +31,9 @@
 
 	<!-- 用户头部导航 -->
 	{block name="head"}
-	<div class="heading">
-		<div class="container">
-			<div class="H-left">
-				<div class="bt">
-					<a class="dbt" href="{:url('Home')}" ><img src="/static/img/nh1.png"></a>
-					<div class="xbt">精品新媒体网文订制</div>
-				</div>
-			</div>
-			<div class="H-right">
-				<ul class="lbj">
-					<li class="nav-item"><a href="{:url('Home')}" >首页</a></li>
-					<li class="nav-item"><a href="{:url('HomeBookList')}" >作品列表</a></li>
-					<li class="nav-item"><a href="{:url('HomeWe')}" >关于我们</a></li>
-				</ul>
-				<div class="nav-user">
-					<div class="dlztlater">
-						{if condition="controller('Common','controller')->isUserCheck()"}
-						<a href="{:url('UserBookList')}">
-							<i class="icon-user"><img src="{:imagePath(['table'=>'user','category'=>'image'],session('user.image'))}"></i>
-							<div class="mc">&nbsp;&nbsp;{:session('user.name')}</div>
-						</a>
-						<div class="tc"><a href="{:url('UserLoginOut')}">退出</a></div>
-						{else /}
-						<i class="icon-user">
-							<img src="/static/img/index.png">
-							<a href="{:url('UserLogin')}"> 注册 </a> /
-							<a href="{:url('UserLogin')}"> 登陆 </a>
-						</i>
-						{/if}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-		<!-- <div class="nav-bar" id="nav-bar">
-			<div class="tp">
-				<a href="{:url('UserBookList')}">
-					<img class="nav-bar-img" src="{:asset('/static/img/nav_img.png')}" />
-				</a>
-				<div class="rg">
-					{if condition="controller('Common','controller')->isUserCheck()"}
-					<div class="tc">
-						<div class="tcqd"><p><img src="{:imagePath(['table'=>'user','category'=>'image'],session('user.image'))}"></p><span>{:session('user.name')}</span></div>
-						<a href="{:url('UserLoginOut')}" class="tcwz">退出</a>
-					</div>
-					{else /}
-					<div class="rglg">
-						<a href="{:url('UserRegister')}" target="_blank" class="registe">注册</a><span>|</span><a href="{:url('UserLogin')}" target="_blank" class="login" style="width:auto;">登陆</a>
-					</div>
-					{/if}
-				</div>
-			</div>
-		</div> -->
+		<!-- 引入用户的公共头部模板 start -->
+		{include file="public:user_head" /}
+		<!-- 引入用户的公共头部模板 end -->
 	{/block}
 
 	

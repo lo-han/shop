@@ -38,7 +38,7 @@ class Category extends Model
 	}
 
 	public static function getAll(){
-		return Category::order('sort DESC')->order('id DESC')->cache(true)->select();
+		return Category::order('sort DESC')->order('id DESC')->cache(true,60)->select();
 	}
 
 }
