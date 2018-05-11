@@ -456,8 +456,9 @@ input#username{background: #0000;}
 .xzlx .fbsqau7{background: url(../img/fabu2.png) -12px -77px;cursor: pointer;}
 .xzlx .fbsqau8{background: url(../img/fabu2.png) -105px -77px;cursor: pointer;}
 
-.right-content1 .content .right-body-margin{margin-left:10px;}   
-.right-content1 .content .input-block-left{float:left;}  
+.right-content1 .content .right-body-margin{margin-left:10px;}
+.right-content1 .content .input-block-left{float:left;}
+.right-content1 .content .advert-upload{height:22px; line-height:20px; margin-top:10px;}
 
 .lbbg1 .tgsh {color: blue;}
 .lbbg1 .tgsh1 {color: red;}

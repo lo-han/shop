@@ -7,13 +7,30 @@ class BookMark extends Model
 {
 
 
-	public function setting()
+	public function setting($data)
 	{
+		
+		foreach($data as $key=>$val){
 
+			$arr = ['mark'=>$key];
+			$save[] = array_merge($arr,$val);
 
-		$book->data($data)->save();
+		}
 
-		return true;
+		return $this->saveAll($save);
+	}
+
+	public function homeMark()
+	{
+		$mark = $this->whereExp('mark','regexp "home_*" ')->select();
+
+		$data = [];
+		foreach($mark as $key=>$val)
+		{
+			$data[$val->mark] = $val;
+		}
+
+		return $data;
 	}
 
 }

@@ -85,10 +85,10 @@ Route::group('admin',function (){
 	Route::rule(['AdminSettingAdvert','setting/advert'],'contribute/admin.setting/advert');
 
 	//推介书本设置修改
-	Route::rule(['AdminSettingSaveBook','setting/saveBook'],'contribute/admin.setting/saveBook');
+	Route::post(['AdminSettingSaveBook','setting/saveBook'],'contribute/admin.setting/saveBook');
 
 	//推介广告设置修改
-	Route::rule(['AdminSettingSaveAdvert','setting/saveAdvert'],'contribute/admin.setting/saveAdvert');
+	Route::post(['AdminSettingSaveAdvert','setting/saveAdvert'],'contribute/admin.setting/saveAdvert');
 	
 	//登陆页面
 	Route::rule(['AdminLogin','login'],'contribute/admin.login/index');	
@@ -175,10 +175,10 @@ Route::group('api',function (){
 Route::post(['ImageUploadCkeditor','image/upload/ckeditor'],'contribute/image/uploadCKEditor');
 
 //图片上传
-Route::post(['ImageUpload','image/upload/:table/:category'],'contribute/image/upload',[],['table'=>'user|admin|book|place|news','category'=>'image|cover|wechar_qrcode']);
+Route::post(['ImageUpload','image/upload/:table/:category'],'contribute/image/upload',[],['table'=>'user|admin|book|place|news|advert','category'=>'image|cover|wechar_qrcode']);
 
 //获取图片
-Route::get(['Image','image/:table/:category/:id'],'contribute/image/image',[],['table'=>'user|admin|book|place|news','category'=>'image|cover|wechar_qrcode','id'=>'[0-9]+']);
+Route::get(['Image','image/:table/:category/:id'],'contribute/image/image',[],['table'=>'user|admin|book|place|news|advert','category'=>'image|cover|wechar_qrcode','id'=>'[0-9]+']);
 
 
 

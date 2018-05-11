@@ -1,0 +1,92 @@
+{extend name="public:admin" /}
+
+
+{block name="main"}
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<div class="zxlbnr">
+			<form class="layui-form" action="{:url('AdminSettingSaveAdvert')}" method="post" >
+
+		  	  	<div class="layui-form-item right-body-margin">
+				    <label class="layui-form-label">首页广告</label>
+				    <div class="input-block-left">
+				      	<input type="text" name="post[home_super][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_super)"}{$data.home_super.url}{/if}">
+				    </div>
+
+				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
+
+				    <div class="input-block-left">
+				    	<button type="button" class="advert-upload" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super][image]" value="{if condition="isset($data.home_super)"}{$data.home_super.image}{/if}" />
+						<span class="layui-form-label" >{if condition="isset($data.home_super)"}{$data.home_super.image}{/if}</span>
+					</div>
+
+					{if condition="isset($data.home_super)"}
+			      	<input type="hidden" name="post[home_super][id]" value="{$data.home_super.id}" />
+			      	{/if}
+
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+				    <div class="layui-input-block">
+				      	<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				    </div>
+			  	</div>
+			</form>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+<script type="text/javascript" src="{:asset('/static/ckeditor/ckeditor.js')}"></script>
+
+<script type="text/javascript">
+	layui.use('upload', function(){
+		var $ = layui.jquery,
+		upload = layui.upload; 
+		//普通图片上传
+		var uploadInst = upload.render({
+		    elem: '.advert-upload',
+		    url: '{:url('ImageUpload',['table' => 'advert','category' => 'image'])}',
+		    done: function(res){
+		    	var dom = $(this.elem.prevObject["0"].activeElement);
+		      	//如果上传失败
+		      	if(res.code == 0){
+		      		fileError(uploadInst,dom.parent().next().find('.layui-form-label'));
+		        	return layer.msg(res.msg);
+		      	}
+		      
+		      	dom.parent().next().find('.layui-form-label').html(res.msg);
+		      	dom.parent().next().find('input').val(res.msg);
+		      	dom.html("上传完成");
+		    },
+		    error: function(){
+		    	var dom = $(this.elem.prevObject["0"].activeElement).parent().next().find('.layui-form-label');
+		      	//演示失败状态，并实现重传
+	  	      	fileError(uploadInst,dom);
+		    }
+		});
+	});
+
+	function fileError(uploadInst,demoText){
+      	demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      	demoText.find('.demo-reload').on('click', function(){
+        	uploadInst.upload();
+      	});
+	}
+
+</script>
+
+{/block}

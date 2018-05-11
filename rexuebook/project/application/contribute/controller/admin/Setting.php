@@ -14,34 +14,47 @@ class Setting extends Common
 
 	use AdminCheck;
 
-	public function _initialize(){
+	public function _initialize()
+	{
 		$this->check();
 	}
 
 	//首页书籍推介
-	public function home(){
+	public function home(BookMark $bookMark)
+	{
+ 		$post = $bookMark->homeMark();
 
-
+ 		$this->assign('data',$post);
 		return $this->fetch();
 	}
 
 	//广告位推介
-	public function advert()
+	public function advert(Advert $advert)
 	{
+		$post = $advert->homeMark();
 
+ 		$this->assign('data',$post);
 		return $this->fetch();
 	}
 
 	//修改设置表
-	public function saveBook(Request $Request)
+	public function saveBook(Request $Request,BookMark $bookMark)
 	{
+		$post = $Request->post();
 
+		$bookMark->setting($post['post']);
+
+		$this->redirect(url('AdminSettingHome'));	//添加成功返回列表页面
 	}
 
 	//修改设置表
-	public function saveAdvert(Request $Request)
+	public function saveAdvert(Request $Request,Advert $advert)
 	{
+		$post = $Request->post();
 
+		$advert->setting($post['post']);
+
+		$this->redirect(url('AdminSettingAdvert'));	//添加成功返回列表页面
 	}
 
 
