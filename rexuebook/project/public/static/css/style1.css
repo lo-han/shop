@@ -49,6 +49,9 @@ hr {
     float: right;
 }
 
+
+.text-overflow {overflow: hidden;white-space: nowrap;text-overflow: ellipsis;-ms-text-overflow: ellipsis;-o-text-overflow: ellipsis;-moz-binding: url(ellipsis.xml#ellipsis)}
+
 .wrapper {
     width: auto;
     display: block;
@@ -1758,11 +1761,16 @@ footer .logo-grey {
     width: 20%;
     float: left;
     box-sizing: border-box;
+
+    transition: all .3s;
+}
+.book-list .book-penl .ri-list a{
+    display: block;
+    box-sizing: border-box;
     padding-top: 30px;
     padding-right: 30.5px;
     padding-bottom: 18px;
     padding-left: 36.5px;
-    transition: all .3s;
 }
 
 .book-list .book-penl .ri-list:hover {
