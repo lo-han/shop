@@ -119,7 +119,7 @@ class Book extends Common
 		}
 
 		//获取tag 对象添加
-		if( false === $tags = $tagRelation->getRelationTag($book->id)){
+		if( false == $tags = $tagRelation->getRelationTag($book->id)){
 			$book->setAttr('tags', $tags );
 		}else{
 			$book->setAttr('tags',implode( ",",array_column( $tagRelation->getRelationTag($book->id) , "name") ));

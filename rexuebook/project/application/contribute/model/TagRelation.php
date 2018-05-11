@@ -51,7 +51,7 @@ class TagRelation extends Model
 		$tag_id = self::where('book_id =' . $book_id)->limit($limit)->column("tag_id");
 
 		if(empty($tag_id)){
-			return false;
+			return [];
 		}
 
 		return tag::all($tag_id);
