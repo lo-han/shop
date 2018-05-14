@@ -73,7 +73,7 @@ class Book extends Common
 		$user = User::get($book->user_id);	//对应书籍的用户
 
 		$moreBook = BookModel::all(function ($query) use ($book){
-			$query->where('user_id',$book->user_id)->where('id','<>',$book->id)->order('id','DESC')->limit(3);
+			$query->where('user_id',$book->user_id)->where('check',1)->where('id','<>',$book->id)->order('id','DESC')->limit(3);
 		});		//获取 用户的其他书籍
 
 		$place = $placeRelation->getRelationPlace($book->id);	//获取渠道商

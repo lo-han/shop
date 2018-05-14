@@ -67,6 +67,7 @@ class Login extends Common
 
 			$validateRule = [
 				'name' 		=> 'require|max:10|unique:user',
+				'name'  	=> ['regex'=>'/^[a-zA-Z0-9_-]{1,10}$/i'],
 				'pen_name' 	=> 'require|max:20|unique:user',
 				'password' 	=> 'require|min:6|max:50|confirm:password_affirm',
 				'password_affirm' => 'require',
@@ -76,6 +77,7 @@ class Login extends Common
 				'name.require' 	=> '用户名必须填写',
 				'name.unique' 	=> '用户名已存在',
 				'name.max' 		=> '用户名不能大于10个文字',
+				'name.regex' 	=> '用户名不能存在特殊字符中文',
 				'pen_name.require' 	=> '笔名必须填写',
 				'pen_name.max' 		=> '笔名不能大于30个文字',
 				'pen_name.unique' 	=> '笔名已存在',

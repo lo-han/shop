@@ -171,9 +171,17 @@ if (! function_exists('imagePath')) {
 
         $path = config('hostImg') . "/" . $routePath;
 
+        $isfile = true;
+        if(  $upPath == "" || !is_file($file)  ){   
+            $isfile = false;
+        }   //判断是否存在图片 图片不存 需要给某些栏目提供默认图片
 
-        if( ( $upPath == "" || !is_file($file) ) && in_array($catalogue['table'], ['user','admin']) ){
+        if($isfile === false && in_array($catalogue['table'], ['user','admin']) ){
             return config('hostWWW') . "/static/img/defaultHd.jpg";
+        }
+
+        if($isfile === false && in_array($catalogue['table'], ['book']) ){
+            return config('hostWWW') . "/static/img/defaultBookimage.png";
         }
         
         return $path;
