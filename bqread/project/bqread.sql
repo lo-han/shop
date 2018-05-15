@@ -46,7 +46,7 @@ CREATE TABLE `admin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='制作人用户表格';
 
 
-INSERT INTO `admin` VALUES ('1', 'admin', 'admin', '57fa6872ecf48cafbc34f2f7bf444301', '', '', '', '', '', '', '', '', '1', '1', '', '0', '0');
+INSERT INTO `admin` VALUES ('1', 'admin', 'admin', 'f4b3e8e28ba9d02344f4e8cab5e62f21', '', '', '', '', '', '', '', '', '1', '1', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for advert
