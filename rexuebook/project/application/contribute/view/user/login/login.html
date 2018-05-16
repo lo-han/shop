@@ -20,7 +20,7 @@
 							<form class="layui-form" action="{:url('UserLoginUp')}" method="post">
 								<div class="login-account-div">
 									<!-- <label for="login-account lgn">账户:</label> -->
-									<input type="text" id="login-account" name="name" lay-verify="name" placeholder="请输入账号" autofocus value="{if condition="isset($login.data.name)"}{$login.data.name}{/if}"/>
+									<input type="text" id="login-account" name="name" data-isverify="false" lay-verify="name" placeholder="请输入账号" autofocus value="{if condition="isset($login.data.name)"}{$login.data.name}{/if}"/>
 
 									{if condition="isset($login.error.name)"}
 									<label class="tsy">{$login.error.name}</label> 
@@ -117,15 +117,16 @@
 		  
 		  	form.verify({
 				  name: function(value, item){ //value：表单的值、item：表单的DOM对象
-
-				    if(!new RegExp("^[a-zA-Z0-9_-]{1,10}$").test(value)){
-				      return '用户名不能为空，不能有特殊字符,字符长度不能超过10个';
-				    }
-				    if(/(^\_)|(\__)|(\_+$)/.test(value)){
-				      return '用户名首尾不能出现下划线\'_\'';
-				    }
-				    if(/^\d+$/.test(value)){
-				      return '用户名不能全为数字';
+				  	if($(item).data('isverify') !== false){
+					    if(!new RegExp("^[a-zA-Z0-9_-]{1,10}$").test(value)){
+					      return '用户名不能为空，不能有特殊字符,字符长度不能超过10个';
+					    }
+					    if(/(^\_)|(\__)|(\_+$)/.test(value)){
+					      return '用户名首尾不能出现下划线\'_\'';
+					    }
+					    if(/^\d+$/.test(value)){
+					      return '用户名不能全为数字';
+					    }
 				    }
 				  }
 				  ,pen_name: function(value, item){ //value：表单的值、item：表单的DOM对象
