@@ -175,10 +175,10 @@ Route::group('api',function (){
 Route::post(['ImageUploadCkeditor','image/upload/ckeditor'],'contribute/image/uploadCKEditor');
 
 //图片上传
-Route::post(['ImageUpload','image/upload/:table/:category'],'contribute/image/upload',[],['table'=>'user|admin|book|place|news|advert','category'=>'image|cover|wechar_qrcode']);
+Route::post(['ImageUpload','image/upload/:table/:category'],'contribute/image/upload',[],['table'=>'user|admin|book|place|news|advert','category'=>'image|cover|wechar_qrcode|big_image']);
 
 //获取图片
-Route::get(['Image','image/:table/:category/:id'],'contribute/image/image',[],['table'=>'user|admin|book|place|news|advert','category'=>'image|cover|wechar_qrcode','id'=>'[0-9]+']);
+Route::get(['Image','image/:table/:category/:id'],'contribute/image/image',[],['table'=>'user|admin|book|place|news|advert','category'=>'image|cover|wechar_qrcode|big_image','id'=>'[0-9]+']);
 
 
 

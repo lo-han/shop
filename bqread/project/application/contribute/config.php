@@ -49,7 +49,7 @@ return [
 	],
 
 
-	'hostImg'	=> "http://img.rexuebook.com", //图片域名
-	'hostWWW'	=> "http://www.rexuebook.com" //主站域名
+	'hostImg'	=> "http://img.bqread.com", //图片域名
+	'hostWWW'	=> "http://www.bqread.com" //主站域名
 
 ];

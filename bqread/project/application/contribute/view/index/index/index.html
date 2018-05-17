@@ -9,42 +9,20 @@
 	<div class="home-featured">
 		<div class="swiper-container" id="home-swiper-container">
 			<div class="swiper-wrapper">
+				{foreach $advert as $key=>$car}
+				{if condition="strpos($key,'home_super_car') !== false && !empty($car->big_image)"}
 		        <div class="swiper-slide">
-		        	<a class="link" href="http://www.nhshushu.com/book/11" data-cover="static/img/s01.jpg">
-		        		<div class="cover"><img src="{:asset('/static/img/42_1500980783837.jpg')}"></div>
+		        	<a 	class="link" href="{$car->url}" 
+		        		data-cover="{:imagePath(['table'=>'advert','category'=>'big_image'],$car->big_image)}">
+		        		
+		        		<div class="cover">
+		        			<img src="{:imagePath(['table'=>'advert','category'=>'image'],$car->image)}">
+		        		</div>
 		        	</a>
 		        	<div class="mask"></div>
 		        </div>
-		        <div class="swiper-slide">
-		        	<a class="link" href="http://www.nhshushu.com/book/14" data-cover="static/img/s02.jpg">
-		        		<div class="cover"><img src="{:asset('/static/img/47_1515996954255.jpg')}"></div>
-		        	</a>
-		        	<div class="mask"></div>
-		        </div>
-		        <div class="swiper-slide">
-		        	<a class="link" href="http://www.nhshushu.com/book/20" data-cover="static/img/s03.jpg">
-		        		<div class="cover"><img src="{:asset('/static/img/48_1515480314924.jpg')}"></div>
-		        	</a>
-		        	<div class="mask"></div>
-		        </div>
-		        <div class="swiper-slide">
-		        	<a class="link" href="http://www.nhshushu.com/book/1" data-cover="static/img/s04.jpg">
-		        		<div class="cover"><img src="{:asset('/static/img/49_1505108338728.jpg')}"></div>
-		        	</a>
-		        	<div class="mask"></div>
-		        </div>
-		        <div class="swiper-slide">
-		        	<a class="link" href="http://www.nhshushu.com/book/13" data-cover="static/img/s05.jpg">
-		        		<div class="cover"><img src="{:asset('/static/img/50_1505470554957.jpg')}"></div>
-		        	</a>
-		        	<div class="mask"></div>
-		        </div>
-		        <div class="swiper-slide">
-		        	<a class="link" href="http://www.nhshushu.com/book/16" data-cover="static/img/s06.jpg">
-		        		<div class="cover"><img src="{:asset('/static/img/51_1521609680481.jpg')}"></div>
-		        	</a>
-		        	<div class="mask"></div>
-		        </div> 
+		        {/if}
+		        {/foreach}
 		    </div>
 		    <!-- 如果需要导航按钮
 		    <div class="swiper-button-prev"></div>
@@ -124,6 +102,7 @@
 			</div> -->
 	</div>
 
+	{if condition="!empty($advert.home_super.image)"}
 	<div class="banner-ad-img">
 		<div class="list-container clearfix" style="margin: 0 auto 0;">
 			<div class="ad-box">
@@ -134,6 +113,7 @@
 			</div>
 		</div>
 	</div>
+	{/if}
 	<!--大神专区-->
 	<div class="list-container clearfix">
 		<div class="TITLE">

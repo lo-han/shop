@@ -19,16 +19,294 @@
 				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
 
 				    <div class="input-block-left">
-				    	<button type="button" class="advert-upload" >选择图片</button>
+				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
 					</div>
 
 					<div class="input-block-left">
 						<input type="hidden" name="post[home_super][image]" value="{if condition="isset($data.home_super)"}{$data.home_super.image}{/if}" />
-						<span class="layui-form-label" >{if condition="isset($data.home_super)"}{$data.home_super.image}{/if}</span>
+
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super.image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super.image)}'>预览图片</a>
+							{/if}
+						</span>
 					</div>
 
 					{if condition="isset($data.home_super)"}
 			      	<input type="hidden" name="post[home_super][id]" value="{$data.home_super.id}" />
+			      	{/if}
+
+			  	</div>
+
+
+			  	<!-- 首页轮播图 start -->
+
+			  	<div class="layui-form-item right-body-margin">
+				    <label class="layui-form-label">首页轮播图</label>
+				    <div class="input-block-left">
+				      	<input type="text" name="post[home_super_car_1][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_super_car_1)"}{$data.home_super_car_1.url}{/if}">
+				    </div>
+
+				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
+
+				    <div class="input-block-left">
+				    	轮播小图：
+				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_1][image]" value="{if condition="isset($data.home_super_car_1)"}{$data.home_super_car_1.image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_1.image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_1.image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					<div class="input-block-left">
+				    	轮播大图：
+				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_1][big_image]" value="{if condition="isset($data.home_super_car_1)"}{$data.home_super_car_1.big_image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_1.big_image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_1.big_image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					{if condition="isset($data.home_super_car_1)"}
+			      	<input type="hidden" name="post[home_super_car_1][id]" value="{$data.home_super_car_1.id}" />
+			      	{/if}
+
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+			  		<label class="layui-form-label"></label>
+				    <div class="input-block-left">
+				      	<input type="text" name="post[home_super_car_2][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_super_car_2)"}{$data.home_super_car_2.url}{/if}">
+				    </div>
+
+				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
+
+				    <div class="input-block-left">
+				    	轮播小图：
+				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_2][image]" value="{if condition="isset($data.home_super_car_2)"}{$data.home_super_car_2.image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_2.image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_2.image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					<div class="input-block-left">
+				    	轮播大图：
+				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_2][big_image]" value="{if condition="isset($data.home_super_car_2)"}{$data.home_super_car_2.big_image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_2.big_image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_2.big_image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					{if condition="isset($data.home_super_car_2)"}
+			      	<input type="hidden" name="post[home_super_car_2][id]" value="{$data.home_super_car_2.id}" />
+			      	{/if}
+
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+			  		<label class="layui-form-label"></label>
+				    <div class="input-block-left">
+				      	<input type="text" name="post[home_super_car_3][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_super_car_3)"}{$data.home_super_car_3.url}{/if}">
+				    </div>
+
+				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
+
+				    <div class="input-block-left">
+				    	轮播小图：
+				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_3][image]" value="{if condition="isset($data.home_super_car_3)"}{$data.home_super_car_3.image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_3.image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_3.image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					<div class="input-block-left">
+				    	轮播大图：
+				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_3][big_image]" value="{if condition="isset($data.home_super_car_3)"}{$data.home_super_car_3.big_image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_3.big_image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_3.big_image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					{if condition="isset($data.home_super_car_3)"}
+			      	<input type="hidden" name="post[home_super_car_3][id]" value="{$data.home_super_car_3.id}" />
+			      	{/if}
+
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+			  		<label class="layui-form-label"></label>
+				    <div class="input-block-left">
+				      	<input type="text" name="post[home_super_car_4][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_super_car_4)"}{$data.home_super_car_4.url}{/if}">
+				    </div>
+
+				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
+
+				    <div class="input-block-left">
+				    	轮播小图：
+				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_4][image]" value="{if condition="isset($data.home_super_car_4)"}{$data.home_super_car_4.image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_4.image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_4.image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					<div class="input-block-left">
+				    	轮播大图：
+				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_4][big_image]" value="{if condition="isset($data.home_super_car_4)"}{$data.home_super_car_4.big_image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_4.big_image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_4.big_image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					{if condition="isset($data.home_super_car_4)"}
+			      	<input type="hidden" name="post[home_super_car_4][id]" value="{$data.home_super_car_4.id}" />
+			      	{/if}
+
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+			  		<label class="layui-form-label"></label>
+				    <div class="input-block-left">
+				      	<input type="text" name="post[home_super_car_5][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_super_car_5)"}{$data.home_super_car_5.url}{/if}">
+				    </div>
+
+				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
+
+				    <div class="input-block-left">
+				    	轮播小图：
+				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_5][image]" value="{if condition="isset($data.home_super_car_5)"}{$data.home_super_car_5.image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_5.image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_5.image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					<div class="input-block-left">
+				    	轮播大图：
+				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_5][big_image]" value="{if condition="isset($data.home_super_car_5)"}{$data.home_super_car_5.big_image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_5.big_image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_5.big_image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					{if condition="isset($data.home_super_car_5)"}
+			      	<input type="hidden" name="post[home_super_car_5][id]" value="{$data.home_super_car_5.id}" />
+			      	{/if}
+
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+			  		<label class="layui-form-label"></label>
+				    <div class="input-block-left">
+				      	<input type="text" name="post[home_super_car_6][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_super_car_6)"}{$data.home_super_car_6.url}{/if}">
+				    </div>
+
+				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
+
+				    <div class="input-block-left">
+				    	轮播小图：
+				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_6][image]" value="{if condition="isset($data.home_super_car_6)"}{$data.home_super_car_6.image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_6.image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_6.image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					<div class="input-block-left">
+				    	轮播大图：
+				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_6][big_image]" value="{if condition="isset($data.home_super_car_6)"}{$data.home_super_car_6.big_image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_6.big_image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_6.big_image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					{if condition="isset($data.home_super_car_6)"}
+			      	<input type="hidden" name="post[home_super_car_6][id]" value="{$data.home_super_car_6.id}" />
 			      	{/if}
 
 			  	</div>
@@ -46,7 +324,9 @@
 
 
 {block name="css"}
-
+<style>
+.layui-form-label a{color:#33E;text-decoration:underline;}
+</style>
 {/block}
 
 {block name="js"}
@@ -58,7 +338,7 @@
 		upload = layui.upload; 
 		//普通图片上传
 		var uploadInst = upload.render({
-		    elem: '.advert-upload',
+		    elem: '.upload-action-image',
 		    url: '{:url('ImageUpload',['table' => 'advert','category' => 'image'])}',
 		    done: function(res){
 		    	var dom = $(this.elem.prevObject["0"].activeElement);
@@ -68,7 +348,8 @@
 		        	return layer.msg(res.msg);
 		      	}
 		      
-		      	dom.parent().next().find('.layui-form-label').html(res.msg);
+		      	var preview = "<a target='_blank' href='http://img.bqread.com/advert/image/"+res.msg+"'>预览图片</a>";
+		      	dom.parent().next().find('.layui-form-label').html(preview);
 		      	dom.parent().next().find('input').val(res.msg);
 		      	dom.html("上传完成");
 		    },
@@ -78,7 +359,33 @@
 	  	      	fileError(uploadInst,dom);
 		    }
 		});
+
+		//普通图片上传
+		var uploadInstBig = upload.render({
+		    elem: '.upload-action-big-image',
+		    url: '{:url('ImageUpload',['table' => 'advert','category' => 'big_image'])}',
+		    done: function(res){
+		    	var dom = $(this.elem.prevObject["0"].activeElement);
+		      	//如果上传失败
+		      	if(res.code == 0){
+		      		fileError(uploadInstBig,dom.parent().next().find('.layui-form-label'));
+		        	return layer.msg(res.msg);
+		      	}
+		      	var preview = "<a target='_blank' href='http://img.bqread.com/advert/big_image/"+res.msg+"'>预览图片</a>";
+		      	dom.parent().next().find('.layui-form-label').html(preview);
+		      	dom.parent().next().find('input').val(res.msg);
+		      	dom.html("上传完成");
+		    },
+		    error: function(){
+		    	var dom = $(this.elem.prevObject["0"].activeElement).parent().next().find('.layui-form-label');
+		      	//演示失败状态，并实现重传
+	  	      	fileError(uploadInstBig,dom);
+		    }
+		});
+
 	});
+
+
 
 	function fileError(uploadInst,demoText){
       	demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
