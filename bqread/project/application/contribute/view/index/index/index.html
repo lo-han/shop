@@ -13,10 +13,10 @@
 				{if condition="strpos($key,'home_super_car') !== false && !empty($car->big_image)"}
 		        <div class="swiper-slide">
 		        	<a 	class="link" href="{$car->url}" 
-		        		data-cover="{:imagePath(['table'=>'advert','category'=>'big_image'],$car->big_image)}">
+		        		data-cover="{:imagePath(['table'=>'advert','category'=>'image'],$car->image)}">
 		        		
 		        		<div class="cover">
-		        			<img src="{:imagePath(['table'=>'advert','category'=>'image'],$car->image)}">
+		        			<img src="{:imagePath(['table'=>'advert','category'=>'big_image'],$car->big_image)}">
 		        		</div>
 		        	</a>
 		        	<div class="mask"></div>
