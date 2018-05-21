@@ -29,7 +29,7 @@ class Ajax extends Common
 	
 				foreach($section as $value){
 					$data[] = [
-						'url' 	=> url('HomeSectionShow',['id'=>$value->id]),
+						'url' 	=> $value->attr == 1 ? url('HomeSectionShow',['id'=>$value->id]) : url('HomeSectionPaySection'),
 						'attr' 	=> $value->attr,
 						'title' => sprintf("第%d章",$value->sort),
 					];

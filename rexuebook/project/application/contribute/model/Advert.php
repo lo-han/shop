@@ -33,4 +33,27 @@ class Advert extends Model
 		return $data;
 	}
 
+	public function getAll()
+	{
+		$site = $this->select();
+
+		$data = [];
+		foreach($site as $key=>$val)
+		{
+			$data[$val->site] = $val;
+		}
+
+		return $data;
+	}
+
+
+	//获取某项配置
+	public static function getMark($source_type)
+	{
+		$mark = self::where('site',$source_type)->find();
+		return $mark;
+	}
+
+
+
 }

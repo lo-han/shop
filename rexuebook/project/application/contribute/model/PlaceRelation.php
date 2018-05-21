@@ -39,6 +39,40 @@ class PlaceRelation extends Model
 
 	}
 
+
+	/**
+	 *	对渠道商的赋权书籍进行管理
+	 *	@param booksId (array) 一个book的ID数组
+	 *	@return 成功返回：数组结果集 (array)
+	 *			失败返回：错误字符串 (string)
+	 */
+
+	public function distributionOfBooks($booksId = [],$placeId){
+
+		//对原有的关联进行删除
+		//在进行重新构造
+		$this->destroy(['place_id' => $placeId]);
+
+		if(empty($booksId)){ //标签为空时就不用创建关联
+			return false;
+		}
+
+		$list = [];
+		foreach($booksId as $bookId){
+
+			$list[] 		= [
+				'place_id' => $placeId,
+				'book_id' => $bookId,
+			];
+
+		}
+
+		
+		return $this->saveAll($list);
+
+	}
+	
+
 	/**
 	 *	获取相关书籍的place分销商对象
 	 *	@param book_id (int) 书籍ID 

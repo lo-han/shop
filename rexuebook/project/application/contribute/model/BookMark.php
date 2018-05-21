@@ -34,6 +34,26 @@ class BookMark extends Model
 		return $data;
 	}
 
+	public function getAll()
+	{
+		$mark = $this->select();
+
+		$data = [];
+		foreach($mark as $key=>$val)
+		{
+			$data[$val->mark] = $val;
+		}
+
+		return $data;
+	}
+
+	//获取某项配置
+	public static function getMark($source_type,$column)
+	{
+		$mark = self::where('mark',$source_type)->column($column);
+		return $mark[0];
+	}
+
 	//推介位的书籍获得
 	public function bookGet($limit)
 	{	

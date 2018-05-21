@@ -39,7 +39,18 @@ class Place extends Model
 
 	//获取所有分销商
 	public static function getAll(){
-		return self::order('id DESC')->cache(true)->select();
+		return self::order('id DESC')->select();
 	}
+
+
+	/**
+	 *	模型多项关联 PlaceRelation 表
+	 */
+	public function placeRelation()
+    {
+        return $this->hasMany('PlaceRelation','place_id');
+    }
+
+
 
 }

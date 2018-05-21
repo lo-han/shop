@@ -22,7 +22,7 @@ class Setting extends Common
 	//首页书籍推介
 	public function home(BookMark $bookMark)
 	{
- 		$post = $bookMark->homeMark();
+ 		$post = $bookMark->getAll();
 
  		$this->assign('data',$post);
 		return $this->fetch();
@@ -31,7 +31,7 @@ class Setting extends Common
 	//广告位推介
 	public function advert(Advert $advert)
 	{
-		$post = $advert->homeMark();
+		$post = $advert->getAll();
 
  		$this->assign('data',$post);
 		return $this->fetch();
