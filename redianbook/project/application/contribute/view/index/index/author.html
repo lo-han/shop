@@ -1,0 +1,55 @@
+{extend name="public:index" /}
+
+{block name="main"}
+<div class="ssgn">
+	<div class="golbnr">
+		<a href="{:url("HomeAuthor")}">全部 /</a>
+		<a href="{:url("HomeAuthor",['sort'=>'works'])}">作品数 /</a>
+		<a href="{:url("HomeAuthor",['sort'=>'newest'])}">最新</a>
+	</div>
+	<!--内容-->
+	<div class="cont">
+		<ul class="author-list">
+			{volist name="user" id="data"}
+			<li class="author-list-item">
+				<div class="item-inner">
+					<a class="list-avatar"><img src="{:imagePath(['table'=>'user','category'=>'image'],$data->image)}"></a>
+					<h4 class="list-title"><a>{$data->pen_name}</a><span>(作品数:{$data->bookCount}部)</span></h4>
+					<div class="author-list-desc">{empty name="data->description"}此作者很懒并没有留下任何介绍{else /}{$data->description}{/empty}</div>
+					<div class="author-list-works">
+						<div class="listnr">
+							{volist name="data->book" id="vo" offset="0" length='2'}
+							<span><a href="{:url("HomeBookShow",['id'=>$vo->id])}">《{$vo->title}》</a></span>
+							{/volist}
+						</div>
+						<div class="listnr">
+							{volist name="data->book" id="vo" offset="2" length='2'}
+							<span><a href="{:url("HomeBookShow",['id'=>$vo->id])}">《{$vo->title}》</a></span>
+							{/volist}
+						</div>
+						<div class="listnr">
+							{volist name="data->book" id="vo" offset="4" length='2'}
+							<span><a href="{:url("HomeBookShow",['id'=>$vo->id])}">《{$vo->title}》</a></span>
+							{/volist}
+						</div>
+					</div>
+				</div>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+	<div class="zpfy">
+		<nav aria-label="Page navigation">
+			{$user->render()}
+		</nav>
+	</div>
+</div>
+{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+
+{/block}
