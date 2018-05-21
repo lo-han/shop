@@ -5,6 +5,7 @@ use \app\contribute\controller\Common;
 use \app\contribute\controller\AdminCheck;
 
 use \app\contribute\model\Place as placeModel;
+use \app\contribute\model\PlaceRelation;
 
 use \think\Request;
 use \api\Key;
@@ -25,7 +26,7 @@ class Place extends Common
 		return $this->fetch();
 	}
 
-	public function add(Request $Request,placeModel $place){
+	public function add(Request $Request,placeModel $place,PlaceRelation $placeRelation){
 	
 		if($Request->ispost()){
 			$placeData = $place->upOrCreate($Request);
@@ -35,6 +36,12 @@ class Place extends Common
 				'apikey' => Key::apiKey($placeData['id'])->get('md5') 
 			]);	//对渠道进行apikey的添加
 			
+			//更新渠道商的书籍关联
+			$placeRelation->distributionOfBooks(
+				array_filter(explode(',',$Request->post('book_ids'))),
+				$placeData['id']
+			);
+
 			$this->redirect(url('AdminPlace'));	//添加或是修改完成跳转
 		}
 

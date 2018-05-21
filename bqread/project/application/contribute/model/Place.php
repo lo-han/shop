@@ -42,4 +42,12 @@ class Place extends Model
 		return self::order('id DESC')->cache(true)->select();
 	}
 
+	/**
+	 *	模型多项关联 PlaceRelation 表
+	 */
+	public function placeRelation()
+    {
+        return $this->hasMany('PlaceRelation','place_id');
+    }
+
 }

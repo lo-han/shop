@@ -310,6 +310,39 @@
 			      	{/if}
 
 			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+			  		<label class="layui-form-label">付费二维码</label>
+
+					<div class="input-block-left">
+				    	<button type="button" class="advert-upload upload-action-qrcode-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">&nbsp; —— &nbsp;</div>
+					<div class="input-block-left">
+				      	<input type="text" name="post[section_pay_qrcode][description]" placeholder="不存在章节提示描述" autocomplete="off" 
+				     	style="width:325px;display:inline;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.section_pay_qrcode)"}{$data.section_pay_qrcode.description}{/if}">
+				    </div>
+					
+					<div id="qrcode" style="clear:both;">
+						<label class="layui-form-label"></label>
+
+						<input type="hidden" name="post[section_pay_qrcode][image]" value="{if condition="isset($data.section_pay_qrcode)"}{$data.section_pay_qrcode.image}{/if}" />
+
+						<div class="section_pay_qrcode">
+							{if condition="!empty($data.section_pay_qrcode.image)"}
+							<img width="100px" height="100px" src="{:imagePath(['table'=>'advert','category'=>'image'],$data.section_pay_qrcode.image)}"/>
+							{/if}
+						</div>
+					</div>
+
+					{if condition="isset($data.section_pay_qrcode)"}
+			      	<input type="hidden" name="post[section_pay_qrcode][id]" value="{$data.section_pay_qrcode.id}" />
+			      	{/if}
+
+			  	</div>
 			  	
 			  	<div class="layui-form-item">
 				    <div class="layui-input-block">
@@ -382,6 +415,33 @@
 	  	      	fileError(uploadInstBig,dom);
 		    }
 		});
+
+		//收费章节二维码上传
+		var uploadInstQrcode = upload.render({
+		    elem: '.upload-action-qrcode-image',
+		    url: '{:url('ImageUpload',['table' => 'advert','category' => 'image'])}',
+		    done: function(res){
+		    	var dom = $(this.elem.prevObject["0"].activeElement);
+		      	//如果上传失败
+		      	if(res.code == 0){
+		      		fileError(uploadInstQrcode,dom.parent().nextAll('#qrcode').find('.section_pay_qrcode'));
+		        	return layer.msg(res.msg);
+		      	}
+
+		      	var preview = '<img width="100px" height="100px" src="{:config("hostImg")}/advert/image/'+res.msg+'"/>';
+		      	
+		      	dom.parent().nextAll('#qrcode').find('.section_pay_qrcode').html(preview);
+		      	dom.parent().nextAll('#qrcode').find('input').val(res.msg);
+		      	dom.html("上传完成");
+		    },
+		    error: function(){
+		    	var dom = $(this.elem.prevObject["0"].activeElement).parent().next().find('.layui-form-label');
+		      	//演示失败状态，并实现重传
+	  	      	fileError(uploadInstQrcode,dom);
+		    }
+		});
+
+		
 
 	});
 

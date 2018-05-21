@@ -12,6 +12,7 @@
 				<tr>
 					<th width="5%">ID</th>
 					<th>apiKey</th>
+					<th>渠道分配书籍ID</th>
 					<th>站点名称</th>
 					<th width="10%">LOGO图标</th>
 					<th>操作</th>
@@ -21,6 +22,7 @@
 				<tr {eq name="mod" value="0"}class="first"{/eq}>
 					<td>{$data->id}</td>
 					<td>{$data->apikey}</td>
+					<td>{:implode(',',array_column($data->placeRelation,'book_id'))}</td>
 					<td>{$data->name}</td>
 					<td>
 						<div class="lgtb">

@@ -25,6 +25,12 @@
 				    </div>
 			  	</div>
 			  	<div class="layui-form-item">
+				    <label class="layui-form-label">拥有书籍</label>
+				    <div class="layui-input-block">
+				    	<textarea name="book_ids" class="layui-textarea" >{if condition="isset($data.placeRelation)"}{:implode(',',array_column($data->placeRelation,'book_id'))}{/if}</textarea>
+				    </div>
+			  	</div>
+			  	<div class="layui-form-item">
 				    <label class="layui-form-label">渠道LOGO</label>
 				    <div class="layui-upload">
 						<div class="layui-upload-list" {if condition="!isset($data.id)"}style="display:none;"{/if}>
