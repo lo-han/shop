@@ -21,7 +21,7 @@ class Index extends Common
 	//首页
 	public function index(){
 
-		//调用最新的资讯
+		/*//调用最新的资讯
 		$news = News::all(function($query){
 		    return $query->where('check', 1)->limit(5)->order('id', 'DESC');
 		});
@@ -42,13 +42,9 @@ class Index extends Common
 		});
 
 		//轮播图
-		$advert = (new Advert)->homeMark();
+		$advert = (new Advert)->homeMark();*/
 
-		$this->assign("advert",$advert);
-		$this->assign("news",$news);
-		$this->assign("book",$book);
-		$this->assign("user",$user);
-		$this->assign("admin",$admin);
+		
 		return $this->fetch();
 	}
 
