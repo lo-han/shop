@@ -7,38 +7,6 @@
 		<div class="zxlbnr">
 			<form class="layui-form" action="{:url('AdminSettingSaveAdvert')}" method="post" >
 
-		  	  	<!-- <div class="layui-form-item right-body-margin">
-				    <label class="layui-form-label">首页广告</label>
-				    <div class="input-block-left">
-				      	<input type="text" name="post[home_super][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
-				     	style="width:250px;"
-				      	class="layui-input" 
-				      	value="{if condition="isset($data.home_super)"}{$data.home_super.url}{/if}">
-				    </div>
-
-				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
-
-				    <div class="input-block-left">
-				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
-					</div>
-
-					<div class="input-block-left">
-						<input type="hidden" name="post[home_super][image]" value="{if condition="isset($data.home_super)"}{$data.home_super.image}{/if}" />
-
-						<span class="layui-form-label" style="display: inline-table;" >
-							{if condition="!empty($data.home_super.image)"}
-							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super.image)}'>预览图片</a>
-							{/if}
-						</span>
-					</div>
-
-					{if condition="isset($data.home_super)"}
-			      	<input type="hidden" name="post[home_super][id]" value="{$data.home_super.id}" />
-			      	{/if}
-
-			  	</div> -->
-
-
 			  	<!-- 首页轮播图 start -->
 
 			  	<div class="layui-form-item right-body-margin">
@@ -52,7 +20,7 @@
 
 				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
 
-				    <div class="input-block-left">
+				    <!-- <div class="input-block-left">
 				    	轮播小图：
 				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
 					</div>
@@ -64,7 +32,7 @@
 							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_1.image)}'>预览图片</a>
 							{/if}
 						</span>
-					</div>
+					</div> -->
 
 					<div class="input-block-left">
 				    	轮播大图：
@@ -97,7 +65,7 @@
 
 				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
 
-				    <div class="input-block-left">
+				    <!-- <div class="input-block-left">
 				    	轮播小图：
 				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
 					</div>
@@ -109,7 +77,7 @@
 							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_2.image)}'>预览图片</a>
 							{/if}
 						</span>
-					</div>
+					</div> -->
 
 					<div class="input-block-left">
 				    	轮播大图：
@@ -142,7 +110,7 @@
 
 				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
 
-				    <div class="input-block-left">
+				    <!-- <div class="input-block-left">
 				    	轮播小图：
 				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
 					</div>
@@ -154,7 +122,7 @@
 							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_3.image)}'>预览图片</a>
 							{/if}
 						</span>
-					</div>
+					</div> -->
 
 					<div class="input-block-left">
 				    	轮播大图：
@@ -187,7 +155,7 @@
 
 				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
 
-				    <div class="input-block-left">
+	<!-- 			    <div class="input-block-left">
 				    	轮播小图：
 				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
 					</div>
@@ -199,7 +167,7 @@
 							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_4.image)}'>预览图片</a>
 							{/if}
 						</span>
-					</div>
+					</div> -->
 
 					<div class="input-block-left">
 				    	轮播大图：
@@ -217,96 +185,6 @@
 
 					{if condition="isset($data.home_super_car_4)"}
 			      	<input type="hidden" name="post[home_super_car_4][id]" value="{$data.home_super_car_4.id}" />
-			      	{/if}
-
-			  	</div>
-
-			  	<div class="layui-form-item right-body-margin">
-			  		<label class="layui-form-label"></label>
-				    <div class="input-block-left">
-				      	<input type="text" name="post[home_super_car_5][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
-				     	style="width:250px;"
-				      	class="layui-input" 
-				      	value="{if condition="isset($data.home_super_car_5)"}{$data.home_super_car_5.url}{/if}">
-				    </div>
-
-				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
-
-				    <div class="input-block-left">
-				    	轮播小图：
-				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
-					</div>
-
-					<div class="input-block-left">
-						<input type="hidden" name="post[home_super_car_5][image]" value="{if condition="isset($data.home_super_car_5)"}{$data.home_super_car_5.image}{/if}" />
-						<span class="layui-form-label" style="display: inline-table;" >
-							{if condition="!empty($data.home_super_car_5.image)"}
-							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_5.image)}'>预览图片</a>
-							{/if}
-						</span>
-					</div>
-
-					<div class="input-block-left">
-				    	轮播大图：
-				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
-					</div>
-
-					<div class="input-block-left">
-						<input type="hidden" name="post[home_super_car_5][big_image]" value="{if condition="isset($data.home_super_car_5)"}{$data.home_super_car_5.big_image}{/if}" />
-						<span class="layui-form-label" style="display: inline-table;" >
-							{if condition="!empty($data.home_super_car_5.big_image)"}
-							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_5.big_image)}'>预览图片</a>
-							{/if}
-						</span>
-					</div>
-
-					{if condition="isset($data.home_super_car_5)"}
-			      	<input type="hidden" name="post[home_super_car_5][id]" value="{$data.home_super_car_5.id}" />
-			      	{/if}
-
-			  	</div>
-
-			  	<div class="layui-form-item right-body-margin">
-			  		<label class="layui-form-label"></label>
-				    <div class="input-block-left">
-				      	<input type="text" name="post[home_super_car_6][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
-				     	style="width:250px;"
-				      	class="layui-input" 
-				      	value="{if condition="isset($data.home_super_car_6)"}{$data.home_super_car_6.url}{/if}">
-				    </div>
-
-				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
-
-				    <div class="input-block-left">
-				    	轮播小图：
-				    	<button type="button" class="advert-upload upload-action-image" >选择图片</button>
-					</div>
-
-					<div class="input-block-left">
-						<input type="hidden" name="post[home_super_car_6][image]" value="{if condition="isset($data.home_super_car_6)"}{$data.home_super_car_6.image}{/if}" />
-						<span class="layui-form-label" style="display: inline-table;" >
-							{if condition="!empty($data.home_super_car_6.image)"}
-							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'image'],$data.home_super_car_6.image)}'>预览图片</a>
-							{/if}
-						</span>
-					</div>
-
-					<div class="input-block-left">
-				    	轮播大图：
-				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
-					</div>
-
-					<div class="input-block-left">
-						<input type="hidden" name="post[home_super_car_6][big_image]" value="{if condition="isset($data.home_super_car_6)"}{$data.home_super_car_6.big_image}{/if}" />
-						<span class="layui-form-label" style="display: inline-table;" >
-							{if condition="!empty($data.home_super_car_6.big_image)"}
-							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_6.big_image)}'>预览图片</a>
-							{/if}
-						</span>
-					</div>
-
-					{if condition="isset($data.home_super_car_6)"}
-			      	<input type="hidden" name="post[home_super_car_6][id]" value="{$data.home_super_car_6.id}" />
 			      	{/if}
 
 			  	</div>

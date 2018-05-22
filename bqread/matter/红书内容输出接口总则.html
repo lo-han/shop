@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="generator" content="ReText 5.3.1">
+</head>
+<body>
+<h1>红书接口总则</h1>
+<h3>1、基本URI：</h3>
+<pre><code>以标准的http形式提供接口：http://(URI)
+</code></pre>
+<h3>2、鉴权方式：</h3>
+<pre><code>（1）使用ApiKey鉴权：我们抓取数据时会携带ApiKey
+</code></pre>
+<p>示例：</p>
+<pre><code>    url：http://(URI)?apikey={0}
+
+    假设Apikey为：73537ccb4f2ec80470b047a654551f7e   
+
+    http://(URI)?apikey=73537ccb4f2ec80470b047a654551f7e
+</code></pre>
+
+<h2>3、参数说明：</h2>
+<ol>
+<li>apikey：鉴权密钥，鉴权时使用.</li>
+<li>bookid：用于获于单本书籍的信息时使用.</li>
+<li>chapterid：用于获于单本书籍的某章节信息.</li>
+</ol>
+<blockquote>
+<p>注意：参数名称并不限制，我们按照顺序对占位符{0}进行操作,</p>
+<p>占位符apikey={0}&amp;bookid={1}&amp;chapterid={2}代表apikey，bookid和chapterid.</p>
+</blockquote>
+<h3>4、 HTTP响应规范</h3>
+<ul>
+<li>
+<p>所有接口响应内容都为UTF-8编码</p>
+</li>
+<li>
+<p>HTTP响应头信息中的Content-Type被设为： application/json; charset=UTF-8</p>
+</li>
+<li>
+<p>字符串中的换行符必须用"\n"</p>
+</li>
+<li>
+<p>返回数据格式：</p>
+</li>
+</ul>
+<pre><code>{
+    &quot;code&quot;:&quot;200&quot;,
+    &quot;data&quot;:[
+        {},
+        {},
+        {}
+    ],
+    &quot;msg&quot;:&quot;Success&quot;
+ }
+
+</code></pre>
+
+<h3>5、HTTP返回错误说明：</h3>
+<blockquote>
+<p>返回码业务说明
+<em> 200   业务成功
+</em> 403   资源禁止访问
+<em> 500   内部错误
+</em> 404   资源不存在</p>
+</blockquote>
+<h2>二、接口列表说明</h2>
+<p>REST方式：Get</p>
+<h3>1.获取所有授权作品ID</h3>
+<p>URL格式:</p>
+<pre><code>    Apikey鉴权：http://www.tcss88.com/?s=JsonApi&amp;a=index&amp;api=get.spbooks&amp;apikey={0}&amp;spid={1}
+</code></pre>
+
+<p>返回字段说明：</p>
+<pre><code>    bookid  # 书籍id
+</code></pre>
+
+<p>返回示例：</p>
+<pre><code>        {
+            &quot;code&quot;: 200,
+            &quot;data&quot;:[
+                     {
+                       &quot;bookid&quot;: 4004
+                     }, 
+                     {
+                       &quot;bookid&quot;: 4032
+                     }, 
+                     {
+                       &quot;bookid&quot;: 6050
+                     }, 
+                     {
+                       &quot;bookid&quot;: 7004
+                     }
+                   ],
+            &quot;msg&quot;:&quot;Success&quot;
+        }
+
+
+</code></pre>
+
+<h3>2.获取书籍属性列表</h3>
+<p>URL格式:</p>
+<pre><code>        Apikey鉴权：http://www.tcss88.com/?s=JsonApi&amp;a=index&amp;api=get.book.info&amp;apikey={0}&amp;spid={1}&amp;bookid={2}
+
+</code></pre>
+
+<p>返回字段说明：</p>
+<pre><code>        bookstatus      # 连载状态（0：连载，1：完本）
+        description     # 简介
+        keyword         # 关键字, 用&amp;符号分隔
+        title           # 书名
+        createtime      # 入库时间（2016-11-04 15:04:00）
+        author          # 作者
+        free            # 是否免费（0：免费, 1：收费）
+        bookid          # 书籍id 
+        cover_url       # 封面地址
+        category        # 书籍分类id
+        lastupdatetime  # 最后更新时间
+        word_count      # 总字数
+</code></pre>
+
+<p>返回示例：</p>
+<pre><code>    {
+        &quot;code&quot;:200,
+        &quot;data&quot;:{
+                       bookstatus: 1,
+                       description: &quot;月圆之夜，华山之巅，一剑西来……老子穿越了！贱男来到南宋，翩翩公子没资格做，混入丐帮做起了小喽啰，奇遇、艳福、神功，他无力承受。&quot;,
+                       keyword: &quot;总裁,穿越,霸道&quot;,
+                       title: &quot;混在南宋的日子&quot;,                 
+                       creattime: &quot;2016-05-04 15:04:00&quot;,
+                       author: &quot;断欲&quot;,
+                       free: 1,         
+                       bookid: 2006,
+                       cover_url: &quot;http://xxx.jpg&quot;,                
+                       category: 55,
+                       lastupdatetime: &quot;2016-11-04 15:04:00&quot;,
+                       word_count: 112323,
+               },
+        &quot;msg&quot;:&quot;Success&quot;
+     }
+
+</code></pre>
+
+<h3>3. 获取书籍章节列表</h3>
+<p>URL格式:   </p>
+<pre><code>    Apikey鉴权：http://www.tcss88.com/?s=JsonApi&amp;a=index&amp;api=get.book.chapter&amp;apikey={0}&amp;spid={1}&amp;bookid={2}
+
+</code></pre>
+
+<p>返回字段说明：</p>
+<pre><code>    chapterid       # 章节id（唯一）
+    chaptername     #章节名称
+    volumeid        # 卷id
+    volumename      # 卷名
+    free            # 是否免费（0：免费, 1：收费）
+    chaptersize     # 字数（个）
+    createtime      # 入库时间
+    lastupdatetime  # 最后更新时间
+
+</code></pre>
+
+<p>返回示例：</p>
+<pre><code>{
+    &quot;code&quot;:200,
+    &quot;data&quot;:[
+        {
+            &quot;volumeid&quot;:1,
+            &quot;volumename&quot;:&quot;第一卷&quot;,
+            &quot;chapters&quot;:[
+                   {
+                        &quot;chapterid&quot;: 196709,
+                        &quot;chaptername&quot;:&quot;章节名称1&quot;,
+                        &quot;free&quot;:0,
+                        &quot;chaptersize&quot; : 3200 ,
+                        &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                        &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                   },
+                   {
+                        &quot;chapterid&quot;: 196710,
+                        &quot;chaptername&quot;:&quot;章节名称2&quot;,
+                        &quot;free&quot;:0,
+                        &quot;chaptersize&quot; : 3200 ,
+                        &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                        &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                   },
+                   {
+                        &quot;chapterid&quot;: 196713,
+                        &quot;chaptername&quot;:&quot;章节名称3&quot;,
+                        &quot;free&quot;:0,
+                        &quot;chaptersize&quot; : 3200 ,
+                        &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                        &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                   },
+                   {
+                        &quot;chapterid&quot;: 196721,
+                        &quot;chaptername&quot;:&quot;章节名称4&quot;,
+                        &quot;free&quot;:1,
+                        &quot;chaptersize&quot; : 3200 ,
+                        &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                        &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                   },
+                   {
+                        &quot;chapterid&quot;: 196730,
+                        &quot;chaptername&quot;:&quot;章节名称5&quot;,
+                        &quot;free&quot;:1,
+                        &quot;chaptersize&quot; : 3200 ,
+                        &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                        &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                   }
+            ]
+        },
+        {
+             &quot;volumeid&quot;:2,
+             &quot;volumename&quot;:&quot;第二卷&quot;,
+             &quot;chapters&quot;:[
+                    {
+                         &quot;chapterid&quot;: 196731,
+                         &quot;chaptername&quot;:&quot;章节名称6&quot;,
+                         &quot;free&quot;:1,
+                         &quot;chaptersize&quot; : 3200 ,
+                         &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                         &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                    },
+                    {
+                         &quot;chapterid&quot;: 196732,
+                         &quot;chaptername&quot;:&quot;章节名称7&quot;,
+                         &quot;free&quot;:1,
+                         &quot;chaptersize&quot; : 3200 ,
+                         &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                         &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                    },
+                    {
+                         &quot;chapterid&quot;: 196733,
+                         &quot;chaptername&quot;:&quot;章节名称8&quot;,
+                         &quot;free&quot;:1,
+                         &quot;chaptersize&quot; : 3200 ,
+                         &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                         &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                    },
+                    {
+                         &quot;chapterid&quot;: 196734,
+                         &quot;chaptername&quot;:&quot;章节名称9&quot;,
+                         &quot;free&quot;:1,
+                         &quot;chaptersize&quot; : 3200 ,
+                         &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                         &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                    },
+                    {
+                         &quot;chapterid&quot;: 196735,
+                         &quot;chaptername&quot;:&quot;章节名称10&quot;,
+                         &quot;free&quot;:1,
+                         &quot;chaptersize&quot; : 3200 ,
+                         &quot;createtime&quot;: &quot;2016-11-04 15:04:00&quot;,
+                         &quot;lastupdatetime&quot; : &quot;2016-11-04 15:04:00&quot;
+                    }
+             ]
+        }         
+    ],
+    &quot;msg&quot;:&quot;Success&quot;
+ }
+
+</code></pre>
+
+<h3>4.获取章节内容</h3>
+<p>URL格式:</p>
+<pre><code>    Apikey鉴权：http://www.tcss88.com/?s=JsonApi&amp;a=index&amp;api=get.book.content&amp;apikey={0}&amp;spid={1}&amp;bookid={2}&amp;chapterid={3}
+</code></pre>
+
+<p>返回字段说明：</p>
+<pre><code>    bookid          # 书籍id
+    chapterid       # 章节id 
+    chaptercontent  # 章节内容
+
+</code></pre>
+
+<p>返回示例：</p>
+<pre><code>    {
+        &quot;code&quot;:200,
+        &quot;data&quot;:{           
+                bookid: 2006,  
+                chapterid: 196709,
+                chaptercontent: &quot; 月圆之夜，华山之巅，一剑西来，天外飞仙。 浩瀚宇宙无限苍穹一道闪亮的流星当空划过。。。&quot; 
+               },
+        &quot;msg&quot;:&quot;Success&quot;
+     }
+
+</code></pre>
+
+</body>
+</html>

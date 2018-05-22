@@ -45,6 +45,8 @@ CREATE TABLE `admin` (
   KEY `table_admin_index_status` (`status`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='制作人用户表格';
 
+INSERT INTO `admin` VALUES ('1', 'admin', 'admin', '14e1b600b1fd579f47433b88e8d85291', '', '', '', '', '', '', '', '', '1', '1', '', '0', '0');
+
 -- ----------------------------
 -- Table structure for advert
 -- ----------------------------
