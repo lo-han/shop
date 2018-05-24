@@ -26,7 +26,7 @@ return [
             //投稿系统控制器
             'user/Login','user/Book','user/Section','user/Info',
             //后台管理控制器
-            'admin/Login','admin/Book','admin/Section','admin/Category','admin/Place','admin/User','admin/News','admin/Admin','admin/Setting',
+            'admin/Login','admin/Book','admin/Section','admin/Category','admin/Place','admin/User','admin/News','admin/Admin','admin/Setting','admin/GetBook',
             //API控制器
             'api/Book','api/Section',
         ],
