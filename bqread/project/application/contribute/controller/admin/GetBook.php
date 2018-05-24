@@ -150,6 +150,14 @@ class GetBook extends Common
 			array_walk($hongshuhui_chapter,function (&$item,$key) use($realBookId){
 				$item['lead_id'] = $item['id'];
 				$item['book_id'] = $realBookId;
+
+				$content = [];
+				foreach(explode("\n",$item['content']) as $val)
+				{
+					$content[] = '<p>'.$val.'</p>';
+				}
+				$item['content'] = implode('',$content);
+
 				unset($item['id']);
 				unset($item['chapterid']);
 			});
