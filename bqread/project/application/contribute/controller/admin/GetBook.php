@@ -92,10 +92,13 @@ class GetBook extends Common
 	    //var_dump($api->chapter($bookid,$chapter['chapters'][0]['chapterid']));
 
 	    $bookData = $api->info()['data'];
+
+	    $this->isChapter();
+	    $this->isBook();
+
 	    foreach($bookData as $key=>$book){
 	    	
 	    	$bookInfo 		= $api->book($book['bookid']);
-
 
 	    	$this->bookBase($bookInfo['data']);
 	    	$chapterInfo 	= $this->chapterInfo($api,$bookInfo['data']['bookid']);
@@ -212,22 +215,7 @@ class GetBook extends Common
 	}
 
 	protected function bookBase($book)
-	{
-
-		$is_table = in_array(
-			'hongshuhui_book',
-			array_column(
-				Db::query('show tables'),
-				'Tables_in_bqread'
-			)
-		);
-		if($is_table == false)
-		{
-			Db::query(
-				$this->bookTableCreate
-			);
-		}
-		
+	{	
 		$isBook = Db::table($this->bookTableName)->where('id',$book['bookid'])->find();
 
 		if(!isset($isBook))
@@ -253,21 +241,6 @@ class GetBook extends Common
 
 	protected function chapterBase($chapter,$bookid,$penName,$sort)
 	{
-
-		$is_table = in_array(
-			'hongshuhui_chapter',
-			array_column(
-				Db::query('show tables'),
-				'Tables_in_bqread'
-			)
-		);
-		if($is_table == false)
-		{
-			Db::query(
-				$this->chapterTableCreate
-			);
-		}
-
 		Db::table($this->chapterTableName)->insert([
 			'chapterid' 	=> $chapter['chapterid'],
 			'book_id' 		=> $chapter['bookid'],
@@ -282,6 +255,40 @@ class GetBook extends Common
 			'create_time' 	=> $chapter['createtime'],
 		]);
 
+	}
+
+	protected function isChapter()
+	{
+		$is_table = in_array(
+			'hongshuhui_chapter',
+			array_column(
+				Db::query('show tables'),
+				'Tables_in_bqread'
+			)
+		);
+		if($is_table == false)
+		{
+			Db::query(
+				$this->chapterTableCreate
+			);
+		}
+	}
+
+	protected function isBook()
+	{
+		$is_table = in_array(
+			'hongshuhui_book',
+			array_column(
+				Db::query('show tables'),
+				'Tables_in_bqread'
+			)
+		);
+		if($is_table == false)
+		{
+			Db::query(
+				$this->bookTableCreate
+			);
+		}
 	}
 
 	protected function randUser($penName)
