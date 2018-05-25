@@ -102,6 +102,20 @@
 			  	<div class="layui-form-item right-body-margin">
 				    
 				    <div class="input-block-left">
+				    	<label class="layui-form-label">合作伙伴</label>
+				      	<input type="text" name="post[home_partner][source_id]" placeholder="请输入渠道ID" autocomplete="off" 
+				     	style="width:600px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_partner)"}{$data.home_partner.source_id}{/if}">
+				      	{if condition="isset($data.home_partner)"}
+				      	<input type="hidden" name="post[home_partner][id]" value="{$data.home_partner.id}" />
+				      	{/if}
+				    </div>
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
 				    	<label class="layui-form-label">联系方式</label>
 				      	<input type="text" name="post[home_producer][source_id]" placeholder="请输入制作者ID" autocomplete="off" 
 				     	style="width:250px;"
@@ -113,19 +127,6 @@
 				    </div>
 			  	</div>
 
-			  	<div class="layui-form-item right-body-margin">
-				    
-				    <div class="input-block-left">
-				    	<label class="layui-form-label">合作伙伴</label>
-				      	<input type="text" name="post[home_partner][source_id]" placeholder="请输入渠道ID" autocomplete="off" 
-				     	style="width:250px;"
-				      	class="layui-input" 
-				      	value="{if condition="isset($data.home_partner)"}{$data.home_partner.source_id}{/if}">
-				      	{if condition="isset($data.home_partner)"}
-				      	<input type="hidden" name="post[home_partner][id]" value="{$data.home_partner.id}" />
-				      	{/if}
-				    </div>
-			  	</div>
 			  	
 			  	<div class="layui-form-item">
 				    <div class="layui-input-block">
