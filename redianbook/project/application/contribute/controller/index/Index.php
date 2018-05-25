@@ -21,30 +21,11 @@ class Index extends Common
 	//首页
 	public function index(){
 
-		/*//调用最新的资讯
-		$news = News::all(function($query){
-		    return $query->where('check', 1)->limit(5)->order('id', 'DESC');
-		});
+		$advert = (new Advert)->homeMark();
+		$mark = (new Mark)->homeMark();
 
-		//调用最新的作品
-		$book = Book::all(function($query){
-		    return $query->where('check', 1)->limit(12)->order('sort', 'DESC')->order('id', 'DESC');
-		});
-
-		//调用作者
-		$user = User::all(function($query){
-		    return $query->whereIn('id',Mark::getMark('home_author','source_id'))->limit(7);
-		});
-
-		//调用制作者
-		$admin = Admin::all(function($query){
-		    return $query->whereIn('id',Mark::getMark('home_producer','source_id'))->where('role',2)->limit(7);
-		});
-
-		//轮播图
-		$advert = (new Advert)->homeMark();*/
-
-		
+		$this->assign('advert',$advert);
+		$this->assign('mark',$mark);
 		return $this->fetch();
 	}
 

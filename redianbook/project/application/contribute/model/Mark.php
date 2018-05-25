@@ -3,6 +3,8 @@ namespace app\contribute\model;
 
 use think\Model;
 use app\contribute\model\Book;
+use app\contribute\model\Place;
+use app\contribute\model\Admin;
 
 class Mark extends Model
 {
@@ -57,7 +59,19 @@ class Mark extends Model
 	//推介位的书籍获得
 	public function bookGet($limit)
 	{	
-		return Book::whereIn('id',$this->book_id)->limit($limit)->select();
+		return Book::whereIn('id',$this->source_id)->limit($limit)->select();
+	}
+
+	//制作人获取
+	public function makerGet($limit)
+	{	
+		return Admin::whereIn('id',$this->source_id)->where('role',2)->where('status',1)->limit($limit)->select();
+	}
+
+	//渠道商获取
+	public function placeGet($limit)
+	{	
+		return Place::whereIn('id',$this->source_id)->limit($limit)->select();
 	}
 
 
