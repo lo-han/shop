@@ -23,7 +23,7 @@ class Section extends Common
 			return $this->returnCode();
 		}
 		
-		if($section->attr === 2 && !( session('admin') || session('user.id') == $section->user_id ) ){	
+		if($section->attr == 2 && !( session('admin') || session('user.id') == $section->user_id ) ){	
 			$this->redirect(url('HomeSectionPaySection'));
 			//return $this->returnCode();
 		}	//对来访者进行访问 收费章节限制

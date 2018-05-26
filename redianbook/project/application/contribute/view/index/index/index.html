@@ -29,6 +29,7 @@
   </div>
   <!--banner end-->
 
+
   <div class="pt-3 clearfix">
     <div class="w-76-5" style="    width: 854px;">
       <div class="boxbk hotbook">
@@ -37,6 +38,7 @@
             <i class="icon icon-hotbook"></i>红文精选</h3>
         </div>
         <div class="box-content h-48">
+
           {foreach $mark.home_book_red->bookGet('0,1') as $book}
           <a class="pic-large" href="{:url('HomeBookShow',['id'=>$book->id])}">
             <img class="pic" src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
@@ -79,6 +81,7 @@
         </div>
         <div class="box-content h-48">
           <ul class="list-pictxt rank list-s p-2  f-mini">
+
             {foreach $mark.home_book_list_boom->bookGet(5) as $key=>$book}
             {if condition="$key == 0"}
             <li class="first">
@@ -117,6 +120,8 @@
     </div>
     <!--w-23 end-->
   </div>
+
+
   <!--pt-3 end-->
   <div class="pt-3 clearfix">
     <div class="w-76-5" style="    width: 854px;">
