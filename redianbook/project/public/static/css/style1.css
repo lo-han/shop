@@ -280,7 +280,7 @@ display: block;margin: 40px auto 0;background: url(../img/nhlogo2.png) 50% no-re
 .ts{color: #ccc;font-size: 14px;}
 /*内容详情页*/
 .Dtcon{width: 1200px;margin:0 auto;height: auto;position: relative;}
-.Dtcon .cons{width: 80%;margin:0 auto;margin-top: 50px;position: relative;box-shadow: 0 0 15px 0 #CCC;padding: 20px 0 0;}
+.Dtcon .cons{width: 80%;margin:0 auto;margin-top: 50px;position: relative;box-shadow: 0 0 15px 0 #CCC;padding: 20px 0 0;padding-bottom: 45px}
 .Dtcon .cons .dh{line-height: 25px;padding-left: 20px;}
 .Dtcon .cons .dh a{font-size: 14px;text-decoration: none;}
 .Dtcon .cons .dh a:hover{color: #e84c64;}
@@ -290,7 +290,7 @@ display: block;margin: 40px auto 0;background: url(../img/nhlogo2.png) 50% no-re
 .Dtcon .cons .chapter .info{font-size: 12px;color: #666666;text-align: center;padding: 0 30px;}
 .Dtcon .cons .chapter .divide{margin: 0 5px; color: #afafaf;}
 .Dtcon .cons .chapter .page-body{min-height: 800px; overflow: hidden;}
-.Dtcon .cons .chapter .page-content{padding: 20px 15px 0; margin: 20px 8% 30px;}
+.Dtcon .cons .chapter .page-content{padding: 20px 15px 0; margin: 20px 8% 30px;user-select: none;}
 .Dtcon .cons .chapter .page-content p{line-height: 28px; padding-bottom: 24px;font-size: 16px;color: #333; word-break: break-all; word-wrap: break-word;}
 .Dtcon .cons .chapter .article-page2{text-align: center;overflow: hidden; margin: 10px auto 50px;}
 .Dtcon .cons .chapter .article-page2 a{display: inline-block; height: 37px; padding: 6px 0;font-size: 16px; font-family: Microsoft YaHei;background: url(../img/readbar.png) no-repeat;text-decoration: none;}
