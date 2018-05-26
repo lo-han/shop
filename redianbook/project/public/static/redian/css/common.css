@@ -436,7 +436,7 @@ a.txt-white {
 /*list*/
 .list-pictxt li {
   position: relative;
-  padding: 20px 0 20px;
+  padding: 20px 0 34px;
   color: #747f8d;
   border-bottom: 1px solid #eee /*#E0E0E0*/;
 }
