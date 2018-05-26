@@ -279,8 +279,8 @@ display: block;margin: 40px auto 0;background: url(../img/nhlogo2.png) 50% no-re
 .layui-layer .layui-layer-title{border-bottom:none;background-color: #fff;}
 .ts{color: #ccc;font-size: 14px;}
 /*内容详情页*/
-.Dtcon{width: 1200px;margin:0 auto;height: auto;position: relative;}
-.Dtcon .cons{width: 80%;margin:0 auto;margin-top: 50px;position: relative;box-shadow: 0 0 15px 0 #CCC;padding: 20px 0 0;padding-bottom: 45px}
+.Dtcon{width: 1200px;margin:0 auto;height: auto;position: relative;padding-bottom:45px}
+.Dtcon .cons{width: 80%;margin:0 auto;margin-top: 50px;position: relative;box-shadow: 0 0 15px 0 #CCC;padding: 20px 0 0; }
 .Dtcon .cons .dh{line-height: 25px;padding-left: 20px;}
 .Dtcon .cons .dh a{font-size: 14px;text-decoration: none;}
 .Dtcon .cons .dh a:hover{color: #e84c64;}
