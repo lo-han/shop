@@ -56,7 +56,7 @@
                 <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
               </a>
               <h4>
-                <a class="text-nowrap" href="book/590.html" title="{$book->title}">{$book->title}</a>
+                <a class="text-nowrap" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
               </h4>
               <span>{$book->user->pen_name}</span>
               <p class="txt-hide"> {$book->description}</p>
@@ -146,7 +146,7 @@
                 <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
               </a>
               <h4>
-                <a class="text-nowrap" href="book/590.html" title="{$book->title}">{$book->title}</a>
+                <a class="text-nowrap" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
               </h4>
               <span>{$book->user->pen_name}</span>
               <p class="txt-hide"> {$book->description}</p>
@@ -237,7 +237,7 @@
                 <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
               </a>
               <h4>
-                <a class="text-nowrap" href="book/590.html" title="{$book->title}">{$book->title}</a>
+                <a class="text-nowrap" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
               </h4>
               <span>{$book->user->pen_name}</span>
               <p class="txt-hide"> {$book->description}</p>

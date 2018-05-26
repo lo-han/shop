@@ -59,19 +59,68 @@ class Mark extends Model
 	//推介位的书籍获得
 	public function bookGet($limit)
 	{	
-		return Book::whereIn('id',$this->source_id)->limit($limit)->select();
+		$limit 	= explode(",",$limit);
+		$sort 	= explode(",",$this->source_id);
+
+		if(count($limit) == 2){
+			$sort = array_slice($sort,$limit[0],$limit[1]);
+		}
+
+		$data = Book::whereIn('id', implode(",",$sort) )->select();
+
+		return $this->markSort($data,$sort);
 	}
 
 	//制作人获取
 	public function makerGet($limit)
 	{	
-		return Admin::whereIn('id',$this->source_id)->where('role',2)->where('status',1)->limit($limit)->select();
+		$limit 	= explode(",",$limit);
+		$sort 	= explode(",",$this->source_id);
+
+		if(count($limit) == 2){
+			$sort = array_slice($sort,$limit[0],$limit[1]);
+		}
+
+		$data = Admin::whereIn('id', implode(",",$sort) )->where('role',2)->where('status',1)->select();
+
+		return $this->markSort($data,$sort);
 	}
 
 	//渠道商获取
 	public function placeGet($limit)
 	{	
-		return Place::whereIn('id',$this->source_id)->limit($limit)->select();
+
+		$limit 	= explode(",",$limit);
+		$sort 	= explode(",",$this->source_id);
+
+		if(count($limit) == 2){
+			$sort = array_slice($sort,$limit[0],$limit[1]);
+		}
+
+		$data = Place::whereIn('id', implode(",",$sort) )->select();
+
+		return $this->markSort($data,$sort);
+	}
+
+	//wherein 排序
+	protected function markSort($data,$sort)
+	{
+		$ret = [];
+		foreach($data as $val)
+		{
+			foreach($sort as $k=>$s)
+			{
+				
+				if( $val->id == $s )
+				{	
+					$ret[$k] = $val;
+				}
+
+			}
+			
+		}
+
+		return $ret;
 	}
 
 
