@@ -65,7 +65,8 @@ class Mark extends Model
 		if(count($limit) == 2){
 			$sort = array_slice($sort,$limit[0],$limit[1]);
 		}
-		$data = Book::whereIn('id',$this->source_id)->limit(implode(",",$limit))->select();
+
+		$data = Book::whereIn('id', implode(",",$sort) )->select();
 
 		return $this->markSort($data,$sort);
 	}
@@ -80,7 +81,7 @@ class Mark extends Model
 			$sort = array_slice($sort,$limit[0],$limit[1]);
 		}
 
-		$data = Admin::whereIn('id',$this->source_id)->where('role',2)->where('status',1)->limit(implode(",",$limit))->select();
+		$data = Admin::whereIn('id', implode(",",$sort) )->where('role',2)->where('status',1)->select();
 
 		return $this->markSort($data,$sort);
 	}
@@ -96,7 +97,7 @@ class Mark extends Model
 			$sort = array_slice($sort,$limit[0],$limit[1]);
 		}
 
-		$data = Place::whereIn('id',$this->source_id)->limit(implode(",",$limit))->select();
+		$data = Place::whereIn('id', implode(",",$sort) )->select();
 
 		return $this->markSort($data,$sort);
 	}
@@ -104,7 +105,7 @@ class Mark extends Model
 	//wherein 排序
 	protected function markSort($data,$sort)
 	{
-
+		$ret = [];
 		foreach($data as $val)
 		{
 			foreach($sort as $k=>$s)
