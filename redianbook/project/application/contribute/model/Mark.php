@@ -64,6 +64,8 @@ class Mark extends Model
 
 		if(count($limit) == 2){
 			$sort = array_slice($sort,$limit[0],$limit[1]);
+		}else{
+			$sort = array_slice($sort,0,$limit[0]);
 		}
 
 		$data = Book::whereIn('id', implode(",",$sort) )->select();
@@ -79,6 +81,8 @@ class Mark extends Model
 
 		if(count($limit) == 2){
 			$sort = array_slice($sort,$limit[0],$limit[1]);
+		}else{
+			$sort = array_slice($sort,0,$limit[0]);
 		}
 
 		$data = Admin::whereIn('id', implode(",",$sort) )->where('role',2)->where('status',1)->select();
@@ -95,6 +99,8 @@ class Mark extends Model
 
 		if(count($limit) == 2){
 			$sort = array_slice($sort,$limit[0],$limit[1]);
+		}else{
+			$sort = array_slice($sort,0,$limit[0]);
 		}
 
 		$data = Place::whereIn('id', implode(",",$sort) )->select();
