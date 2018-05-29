@@ -238,7 +238,7 @@ display: block;margin: 40px auto 0;background: url(../img/nhlogo2.png) 50% no-re
 .zzr #swiper1 .swiper-slide .zzrlb .lbnr .zpnr{margin-top: 4px;overflow: hidden;}
 .zzr #swiper1 .swiper-slide .zzrlb .lbnr .zpnr a{display: block;height: 25px;line-height: 25px;text-decoration: none;float: left;margin-left: -5px;}
 .zzr #swiper1 .swiper-slide .zzrlb .lbnr .zpnr a:hover{color: #e83451;}
-.zzr #swiper1 .swiper-control-container{position: absolute;width: 430px;height: 30px;left: 50%;margin-left: -215px;bottom: 0px;}
+.zzr #swiper1 .swiper-control-container{position: absolute;width: 430px;height: 30px;left: 50%;margin-left: -215px;bottom: 0px;display:none;}
 .zzr #swiper1 .swiper-control-container .swiper-button-prev{top: 3px;left: 5px;
     background-image: none;}
 .zzr #swiper1 .swiper-control-container .swiper-button-next{top: 3px; right: 5px;
