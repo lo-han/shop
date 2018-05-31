@@ -1631,6 +1631,54 @@ class Request
         }
     }
 
+    public function attrSave($key,$content){      
+        if( isset($this->request[$key]) )
+        {
+            $this->request[$key] = $content;    
+        }
+        else
+        {
+            $this->attrAdd($key,$content);
+        }
+
+        if( isset($this->post[$key]) )
+        {
+            $this->post[$key] = $content;
+        }
+        else
+        {
+            $this->attrAdd($key,$content);
+        }
+
+        if( isset($this->get[$key]) )
+        {
+            $this->get[$key] = $content;
+        }
+        else
+        {
+            $this->attrAdd($key,$content);
+        }
+        
+    }
+
+    public function attrAdd($key,$content){      
+        if( !isset($this->request[$key]) )
+        {
+            $this->request[$key] = $content;    
+        }
+
+        if( !isset($this->post[$key]) )
+        {
+            $this->post[$key] = $content;
+        }
+
+        if( !isset($this->get[$key]) )
+        {
+            $this->get[$key] = $content;
+        }
+    }
+
+
     public function __set($name, $value)
     {
         $this->bind[$name] = $value;
