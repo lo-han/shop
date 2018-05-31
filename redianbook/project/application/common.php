@@ -149,7 +149,9 @@ if (! function_exists('charNumber')) {
 
     function charNumber(string $char){
     
-        return mb_strlen( str_replace("&nbsp;", " ", strip_tags( $char ) ) );
+        return mb_strlen( 
+            str_replace(["&nbsp;"," ","\n","\r"], "", strip_tags( $char ) )
+        );
 
     }
 
