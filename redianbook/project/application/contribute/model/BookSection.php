@@ -59,9 +59,19 @@ class BookSection extends Model
 	}
 
 
-	public function deletes($ids)
+	public function deletes($ids,$book_id)
 	{
+		$char = 0;
+		$all = $this->all($ids);
+
+		foreach($all as $val)
+		{
+			$char += charNumber($val->content);
+		}
+
 		$this->destroy($ids);
+
+		db('Book')->where(['id' => $book_id])->setDec('char_number',$char); //找到相应的书籍进行字数统计
 	}
 
 

@@ -53,6 +53,7 @@
 					<td>{:config("check")[$section->check]}</td>
 					<td>{:date('Y-m-d H:i:s',$section->update_time)}</td>
 					<td>
+						<a href="{:url('AdminSectionDelete',['book_id' => $section->book_id ,'id' => $section->id ])}">删除</a>
 						<a href="{:url('AdminSectionEdit',['book_id' => $section->book_id ,'id' => $section->id ])}">修改</a>
 					</td>
 				</tr>

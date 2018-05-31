@@ -119,6 +119,16 @@ class Section extends Common
 		$this->assign('formUrl',url('AdminSectionEdit',['book_id' => $book_id,'id' => $id]));
 		return $this->fetch();
 	}
+
+	public function delete(Request $Request,BookSection $section)
+	{
+		$id = $Request->route('id');
+		$book_id = $Request->route('book_id');
+		
+		$section->deletes($id,$book_id);
+
+		$this->redirect( $Request->server('HTTP_REFERER',url('AdminBook')) );
+	}
 	
 
 }
