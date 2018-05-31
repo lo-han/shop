@@ -36,7 +36,10 @@ class Section extends Common
 			//确认渠道拥有书本权限
 			$this->bookAuth($section->book_id);
 		}
-
+		
+		$section->content = str_replace('</p>', "\n</p>", $section->content);	//格式完善 每一段添加\n
+		$section->content = strip_tags($section->content);	//清除html标签
+		
 		$section->setAttr('attr',config('bookSection.attr')[$section->attr]);
 
 		return $this->returnXml(['code'=>200,'msg'=>json_decode(json_encode($section),true)],200);
