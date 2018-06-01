@@ -26,7 +26,7 @@
 			    </div>
 			</div>
 			{if condition="isset($book_id)"}
-			<div class="tjfl"><a href="{:url('AdminSectionClearBook',['book_id' => $book_id])}">清空章节</a></div>
+			<div class="tjfl"><a class="delete-prompt" data-href="{:url('AdminSectionClearBook',['book_id' => $book_id])}" href="#">清空章节</a></div>
 			{/if}
 		  </div>
 		</form>
