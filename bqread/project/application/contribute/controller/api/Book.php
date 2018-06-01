@@ -29,8 +29,9 @@ class Book extends Common
 
 		$book = $book::get(function ($query) use ($Request){
 			$query->alias('b')
-			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,c.title as ctitle')
+			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,c.title as ctitle,u.pen_name as author')
 			->join('category c','b.category_id = c.id','LEFT')
+			->join('user u','b.user_id = u.id','LEFT')
 			->where(['b.id'=>$Request->get('bookid'),'check'=>1]);	
 		});
 
