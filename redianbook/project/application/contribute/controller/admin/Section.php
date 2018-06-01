@@ -129,6 +129,18 @@ class Section extends Common
 
 		$this->redirect( $Request->server('HTTP_REFERER',url('AdminBook')) );
 	}
+
+	public function clearBook(Request $Request,BookSection $section)
+	{
+		$book_id = $Request->route('book_id');
+		
+		$sectionAll = $section->all(['book_id'=>$book_id]);
+
+		$ids = implode(",",array_column($sectionAll, 'id'));
+		$section->deletes($ids,$book_id);
+
+		$this->redirect( $Request->server('HTTP_REFERER',url('AdminBook')) );
+	}
 	
 
 }

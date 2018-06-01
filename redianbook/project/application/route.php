@@ -116,6 +116,9 @@ Route::group('admin',function (){
 	//章节删除
 	Route::rule(['AdminSectionDelete','section/delete/:book_id/:id'],'contribute/admin.section/delete','post|get',[],['book_id'=>'[0-9]+','id'=>'[0-9]+']);
 
+	//全部章节删除
+	Route::rule(['AdminSectionClearBook','section/clear/:book_id'],'contribute/admin.section/clearBook','post|get',[],['book_id'=>'[0-9]+']);
+
 	//分类列表
 	Route::get(['AdminCategory','category'],'contribute/admin.category/index');
 
