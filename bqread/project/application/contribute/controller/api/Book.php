@@ -41,7 +41,7 @@ class Book extends Common
 		}
 
 		//获取此书所有的章节ID
-		$sectionid = BookSection::where(['book_id'=>$book->id,'check'=>1])->column('id');
+		$sectionid = BookSection::where(['book_id'=>$book->id,'check'=>1])->order("sort ASC")->column('id');
 
 		$book->setAttr('cover',imagePath(['table'=>'book','category'=>'cover'],$book->cover));
 		$book->setAttr('copyright',config('book.copyright')[$book->copyright]);
