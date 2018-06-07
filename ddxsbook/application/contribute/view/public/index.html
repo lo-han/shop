@@ -23,41 +23,6 @@
 		<div class="wrapper">
 
 			{block name="head"}
-			<!--头部-->
-			<!-- <div class="heading">
-				<div class="container">
-					<div class="H-left">
-						<div class="bt">
-							<a class="dbt" href="{:url('Home')}" ><img src="/static/img/nh1.png"></a>
-							<div class="xbt">精品新媒体网文订制工作室</div>
-						</div>
-					</div>
-					<div class="H-right">
-						<ul class="lbj">
-							<li class="nav-item"><a href="{:url('Home')}" {if condition="routerJudge('index')"}class="active"{/if} >首页</a></li>
-							<li class="nav-item"><a href="{:url('HomeBookList')}" {if condition="routerJudge('book')"}class="active"{/if} >作品列表</a></li>
-							<li class="nav-item"><a href="{:url('HomeAuthor')}" {if condition="routerJudge('author')"}class="active"{/if} >作者阵容</a></li>
-							<li class="nav-item"><a href="{:url('HomeMaker')}" {if condition="routerJudge('maker')"}class="active"{/if} >制作人阵容</a></li>
-							<li class="nav-item"><a href="{:url('HomeWe')}" {if condition="routerJudge('we')"}class="active"{/if} >关于我们</a></li>
-						</ul>
-						<div class="nav-user">
-							<div class="dlztlater">
-								{if condition="controller('Common','controller')->isUserCheck()"}
-								<a href="{:url('UserBookList')}">
-									<i class="icon-user">	
-										<img src="{:imagePath(['table'=>'user','category'=>'image'],session('user.image'))}">
-									</i>
-									<div class="mc">&nbsp;&nbsp;{:session('user.name')}</div>
-								</a>
-								<div class="tc"><a href="{:url('UserLoginOut')}">退出</a></div>
-								{else /}
-								<i class="icon-user"><a href="{:url('UserLogin')}"><img src="/static/img/index.png"></a></i>
-								{/if}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
 			<div class="header">
 				<div class="top">
 					<div class="container clearfix">
@@ -66,27 +31,25 @@
 						</div>
 						<ul class="nav float-left">
 							<li>
-								<a href="#">首页</a>
+								<a href="{:url('Home')}" {if condition="routerJudge('index')"}class="active"{/if} >首页</a>
 							</li>
 							<li>
-								<a href="#">排行榜</a>
+								<a href="{:url('HomeBookList')}" {if condition="routerJudge('book')"}class="active"{/if} >书库</a>
 							</li>
 							<li>
-								<a href="#">书库</a>
+								<a href="{:url('HomeAuthor')}" {if condition="routerJudge('author')"}class="active"{/if} >作者阵容</a>
 							</li>
 							<li>
-								<a href="#">充值</a>
-							</li>
-							<li>
-								<a href="#">手机版</a>
+								<a href="{:url('HomePageWe')}" {if condition="routerJudge('page')"}class="active"{/if} >关于我们</a>
 							</li>
 						</ul>
 						<div class="search float-right">
-							<input type="search" placeholder="请输入您想找的信息">
-							<div class="float-right btn">
-								<a href="#">搜索</a>
-							</div>
-	
+							<form method="get" action="{:url('HomeBookList')}">
+								<input type="search" name="title" placeholder="请输入您想找的信息">
+								<div class="float-right btn">
+									<input type="submit" value="">搜索</a>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -136,28 +99,6 @@
 			{block name="main"}{/block} 
 
 			{block name="footer"}
-			<!--底部-->
-			<!-- <footer>
-				<div class="container">
-					<ul class="footer-link">
-						<li class="footer-item"><a>首页</a></li>
-						<li class="footer-item"><a>作品列表</a></li>
-						<li class="footer-item"><a>作者阵容</a></li>
-						<li class="footer-item"><a>关于我们</a></li>
-						<li class="footer-item"><a>加盟我们</a></li>
-						<li class="footer-item"><a>我要投稿</a></li>
-						<li class="footer-item"><a>Language&nbsp;简体中文</a></li>
-					</ul>
-					<ul class="footer-info">
-						<li class="footer-item">上饶市据点科技有限公司</li>
-						<li class="footer-item">ICP备案号：赣ICP备17002727号</li>
-						<li class="footer-item mobi-fix">Copyright © 2016 nhshushu.com All Rights Reserved</li>
-					</ul>
-					<div class="footer-brand">
-						<div class="logo-grey"></div>
-					</div>
-				</div>
-			</footer> -->
 			<div class="footer ">
 				<div class="container clearfix ">
 					<div class="float-left ">
