@@ -1770,6 +1770,9 @@ a:hover {
 .index-page .p1-p-2 .title {
   font-size: 16px;
 }
+.index-page .p1-p-2 .title a{
+  color: #814d03;
+}
 
 .index-page .p1-p-3 {
   position: relative;
