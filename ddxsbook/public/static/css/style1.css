@@ -1507,7 +1507,11 @@ a:hover {
 
 .header .search input[type="submit"]{
   border: none;
-  line-height: 21px
+  line-height: 29px;
+  background: none;
+  cursor: pointer;
+  display: block;
+  color: #fff;
 }
 
 .header .search .btn {
