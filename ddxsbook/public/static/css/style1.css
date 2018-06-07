@@ -1498,12 +1498,18 @@ a:hover {
   border-radius: 20px;
   padding-left: 42px;
 }
-.header .search input {
+.header .search input[type="search"] {
   height: 40px;
   line-height: 40px;
   border: none;
   outline: none;
 }
+
+.header .search input[type="submit"]{
+  border: none;
+  line-height: 21px
+}
+
 .header .search .btn {
   background: #d62901;
   color: #fff;
