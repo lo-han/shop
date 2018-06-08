@@ -8,6 +8,7 @@ use \app\contribute\model\BookSection;
 use \app\contribute\model\Book;
 
 use \think\Request;
+use \think\Response;
 
 class Section extends Common
 {
@@ -140,6 +141,40 @@ class Section extends Common
 		$section->deletes($ids,$book_id);
 
 		$this->redirect( $Request->server('HTTP_REFERER',url('AdminBook')) );
+	}
+
+
+	public function exportBook(Request $Request,BookSection $section,Book $book)
+	{
+		$book_id = $Request->route('book_id');
+		$book = $book->get($book_id);
+
+		$sectionAll = $section->all(['book_id'=>$book_id]);
+
+		$content = "#title# " . $book->title . "\r\n";
+
+		foreach($sectionAll as $val)
+		{
+			$val->content = str_replace("\r", "", $val->content);	//格式完善 每一段添加\n
+			$val->content = str_replace("&nbsp;", "", $val->content);	//格式完善 每一段添加\n
+			$val->content = str_replace('</p>', "\n</p>", $val->content);	//格式完善 每一段添加\n
+			$val->content = strip_tags($val->content);	//清除html标签
+
+			$content .= "###" . $val->title . "\r\n";
+			$content .= $val->content . "\r\n";
+		}
+		/**
+		 *	响应内容
+		 */
+		$response = Response::create(
+			$content
+		);
+
+		//设置response 头部
+		$response->header('Content-type','application/octet-stream')->header('Content-Disposition','attachment;   filename=' . $book->title . '.txt');
+
+		return $response->send();
+
 	}
 	
 
