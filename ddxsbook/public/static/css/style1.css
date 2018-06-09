@@ -812,14 +812,13 @@ footer .logo-grey {
   font-weight: normal;
 }
 .comic-detail-page-desc .comic-desc {
-  width: 760px;
   white-space: normal;
   word-break: break-all;
   position: relative;
   left: 40px;
-  top: -8px;
   overflow: hidden;
   display: block;
+  text-align: left;
 }
 .zjlb {
   width: auto;
@@ -863,7 +862,7 @@ footer .logo-grey {
   height: auto;
 }
 .lbnr .gd {
-  width: 98%;
+  width: 83%;
   height: 25px;
   line-height: 25px;
   display: block;
@@ -886,7 +885,6 @@ footer .logo-grey {
 }
 
 .zjlb .sqqd {
-  width: 608px;
   white-space: normal;
   word-break: break-all;
   position: relative;
@@ -894,8 +892,8 @@ footer .logo-grey {
   display: block;
   font-size: 14px;
   line-height: 30px;
-  height: 30px;
   text-indent: 5px;
+  margin-bottom: 100px;
 }
 .zjlb .qqnr {
   width: 100%;
