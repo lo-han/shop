@@ -543,6 +543,7 @@ footer .logo-grey {
   color: #d62901;
   text-decoration: underline;
 }
+
 .ssgn .layui-form-label {
   padding: 9px 0px;
   width: auto;
@@ -840,7 +841,7 @@ footer .logo-grey {
 }
 .zjlb .nr {
   float: left;
-  width: 120px;
+  width: 100px;
   height: 40px;
   border: 1px solid #d1d2d3;
   border-radius: 100px;
@@ -885,7 +886,7 @@ footer .logo-grey {
 }
 
 .zjlb .sqqd {
-  width: 760px;
+  width: 608px;
   white-space: normal;
   word-break: break-all;
   position: relative;
@@ -1976,4 +1977,19 @@ a:hover {
 }
 .index-page .container {
   min-height: 400px;
+}
+.wrapper a{
+  color: #000;
+}
+
+.wrapper a:hover {
+  color: #e83451;
+}
+
+.header a{
+  color: #fff;
+}
+
+.header a:hover {
+  color: #e83451;
 }
