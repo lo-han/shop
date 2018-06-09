@@ -4,7 +4,7 @@
 a,img{border:0;}
 em{font-style:normal;}
 
-a,a:visited{color:#5e5e5e;text-decoration:none;}
+/* a,a:visited{color:#5e5e5e;text-decoration:none;} */
 a:hover{text-decoration:none;}
 .clear{display:block;overflow:hidden;clear:both;height:0;line-height:0;font-size:0;}
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
