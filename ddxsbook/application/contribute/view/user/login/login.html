@@ -5,48 +5,7 @@
 <!--登录-->
 <div class="login">
 	<div class="register-space"></div>
-	<!-- <div class="login-form">
-		<div class="login-form-header">
-			登录管理中心
-		</div>
-		<form class="layui-form" action="{:url('UserLogin')}" method="post">
-			<div class="login-account-div">
-				<label for="name">账户:</label>
-				&nbsp;&nbsp;<input type="text" id="name" name="name" lay-verify="name" placeholder="请输入账号" autofocus value="{if condition="isset($data.name)"}{$data.name}{/if}"/>
-				{if condition="isset($error.name)"}
-				<label for="name" class="tsy">{$error.name}</label>
-				{/if}
-				{if condition="isset($error.login)"}
-				<label for="name" class="tsy">{$error.login}</label>
-				{/if}
-			</div>
-			<div class="login-password-div">
-				<label for="password">密码:</label>
-				&nbsp;&nbsp;<input type="password" name="password" lay-verify="password" id="password" placeholder="请输入密码"/>
-				{if condition="isset($error.password)"}
-				<label for="password" class="tsy">{$error.password}</label>
-				{/if}
-			</div>
-			<div class="login-code-div">
-				<label for="login-code" class="yzcode">验证码:</label>
-				&nbsp;&nbsp;<input type="text" id="login-code" placeholder="请输入验证码"/>
-				<input type = "button" id="code" onclick="createCode()" />
-				<div class="imgDiv">
-					<input type="text" id="login-code" name="captcha" lay-verify="captcha" placeholder="请输入验证码" style="float:left;"/>
-					<a class="yzm" type="button" id="yzbtn"><img id="yzbth-img" src="{:captcha_src()}"></a>
-				</div>
-				{if condition="isset($error.captcha)"}
-				<label for="login-code" class="tsy">{$error.captcha}</label>
-				{/if}
-			</div>
-			<div class="login-submit-div">
-				<button type="button" id="login-submit" class="layui-btn" lay-submit  lay-filter="formDemo">登录</button>
-				<div class="book-marked" ><a class="words" href="{:url('UserRegister')}">没有账号？点击这里注册</a></div>
-				<button type="button" id="go_register" onclick="toRegister()">去注册</button>
-			</div>					
-		</form>		
-		<p>温馨提示：忘记密码请联系13888886666</p>		
-	</div> -->
+	
 	<div class="logtoreg">
 		<div class="signIn_box">
 
@@ -76,12 +35,7 @@
 									<label class="tsy">{$login.error.password}</label> 
 									{/if}
 								</div>
-								<!-- <div class="login-code-div">
-									<input type="text" id="login-code" placeholder="请输入验证码" style="float:left;"/>
-									<a class="yzm" type="button" id="yzbtn" >
-										<img id="yzbth-img" src="{:captcha_src()}">
-									</a>
-								</div> -->
+								
 								<div class="login-submit-div">
 									<button class="layui-btn" lay-submit lay-filter="*">登录</button>
 								</div>	
