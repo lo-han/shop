@@ -27,7 +27,9 @@
                                 <div class="carousel-inner" role="listbox">
                                     {foreach $data as $key=>$book}
                                     <div class="carousel-item {if condition="$key == 0 "}active{/if}">
+                                        <div class="img-box">
                                         <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" alt="First slide" width="100%" height="100%" >
+                                        </div>
                                         <div class="carousel-caption">
                                             <h3>{$book->title}</h3>
                                             <p>{$book->description}</p>

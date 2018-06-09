@@ -1,14 +1,14 @@
 {extend name="public:index" /}
 
 {block name="main"}
-<div class="ssgn">
-	<div class="golbnr">
+<div class="ssgn ssgn-a">
+	<div class="container clearfix">
 		<a href="{:url("HomeAuthor")}">全部 /</a>
 		<a href="{:url("HomeAuthor",['sort'=>'works'])}">作品数 /</a>
 		<a href="{:url("HomeAuthor",['sort'=>'newest'])}">最新</a>
 	</div>
 	<!--内容-->
-	<div class="cont">
+	<div class="container clearfix">
 		<ul class="author-list">
 			{volist name="user" id="data"}
 			<li class="author-list-item">
