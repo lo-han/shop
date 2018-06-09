@@ -57,16 +57,32 @@
 					<div class="container clearfix">
 						
 						<div class="float-right">
-							<div class="login" style="display: none">
-								<a href="#" class="new">
-									创建作品
+							{if condition="controller('Common','controller')->isUserCheck()"}
+							<div class="login2 clearfix">
+							
+								<div class="user-penl">
+									<a href="{:url('UserBookList')}">
+										<img src="{:imagePath(['table'=>'user','category'=>'image'],session('user.image'))}" alt="">
+									</a>
+									<p class="username "><a href="{:url('UserBookList')}">{:session('user.pen_name')}<a></p>
+									<ul class="clearfix">
+										<li>
+											<a href="{:url('UserLoginOut')}">退出</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							{else /}
+							<div class="login" >
+								<a href="{:url('UserLogin')}" class="new">
+									登陆
 								</a>
-								<span>请选择登录方式</span>
+								<!--<span>请选择登录方式</span>
 								<ul class="login-list clearfix">
-									<li class="wechat">
-										<a href="#"></a>
-									</li>
-									<li class="qq">
+									<a href="{:url('UserLogin')}">
+										<li class="web"></li>
+									</a>
+									 <li class="qq">
 										<a href="#"></a>
 									</li>
 									<li class="weibo">
@@ -75,20 +91,10 @@
 									<li class="baidu">
 										<a href="#"></a>
 									</li>
-								</ul>
+								</ul> -->
 							</div>
-							<div class="login2 clearfix">
 							
-								<div class="user-penl">
-									<img src="" alt="">
-									<p class="username ">小哥哥</p>
-									<ul class="clearfix">
-										<li>
-											<a href="#">退出</a>
-										</li>
-									</ul>
-								</div>
-							</div>
+							{/if}
 						</div>
 					</div>
 	

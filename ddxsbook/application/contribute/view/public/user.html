@@ -4,7 +4,8 @@
 	<meta charset="utf-8" />
 	<title>{block name="title"}投稿系统{/block}</title>
 
-	<!-- CSS 样式 -->
+	
+	<link rel="stylesheet" href="{:asset('/static/css/style1.css')}">
 	<link rel="stylesheet" href="{:asset('/static/css/style.css')}" />
 	<link rel="stylesheet" href="{:asset('/static/css/normalize.css')}" />
 	<link rel="stylesheet" href="{:asset('/static/css/dropdown.css')}" />
@@ -27,11 +28,11 @@
 	{block name="css"}{/block}
 </head>
 
-<body class="create-body">
+<body class="user-body">
 
 	<!-- 用户头部导航 -->
 	{block name="head"}
-	<div class="heading">
+	<!-- <div class="heading">
 		<div class="container">
 			<div class="H-left">
 				<div class="bt">
@@ -62,26 +63,84 @@
 				</div>
 			</div>
 		</div>
-	</div>
-		<!-- <div class="nav-bar" id="nav-bar">
-			<div class="tp">
-				<a href="{:url('UserBookList')}">
-					<img class="nav-bar-img" src="{:asset('/static/img/nav_img.png')}" />
-				</a>
-				<div class="rg">
+	</div> -->
+	<div class="header">
+		<div class="top">
+			<div class="container clearfix">
+				<div class="logo-box float-left">
+					<img src="{:asset('/static/img/logo.png')}" alt="">
+				</div>
+				<ul class="nav float-left">
+					<li>
+						<a href="{:url('Home')}" {if condition="routerJudge('index')"}class="active"{/if} >首页</a>
+					</li>
+					<li>
+						<a href="{:url('HomeBookList')}" {if condition="routerJudge('book')"}class="active"{/if} >书库</a>
+					</li>
+					<li>
+						<a href="{:url('HomeAuthor')}" {if condition="routerJudge('author')"}class="active"{/if} >作者阵容</a>
+					</li>
+					<li>
+						<a href="{:url('HomeWe')}" {if condition="routerJudge('we')"}class="active"{/if} >关于我们</a>
+					</li>
+				</ul>
+				<div class="search float-right">
+					<form method="get" action="{:url('HomeBookList')}">
+						<input type="search" name="title" placeholder="请输入您想找的信息">
+						<div class="float-right btn">
+							<input type="submit" value="搜索">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="bottom clearfix">
+			<div class="container clearfix">
+				
+				<div class="float-right">
 					{if condition="controller('Common','controller')->isUserCheck()"}
-					<div class="tc">
-						<div class="tcqd"><p><img src="{:imagePath(['table'=>'user','category'=>'image'],session('user.image'))}"></p><span>{:session('user.name')}</span></div>
-						<a href="{:url('UserLoginOut')}" class="tcwz">退出</a>
+					<div class="login2 clearfix">
+					
+						<div class="user-penl">
+							<a href="{:url('UserBookList')}">
+								<img src="{:imagePath(['table'=>'user','category'=>'image'],session('user.image'))}" alt="">
+							</a>
+							<p class="username "><a href="{:url('UserBookList')}">{:session('user.pen_name')}<a></p>
+							<ul class="clearfix">
+								<li>
+									<a href="{:url('UserLoginOut')}">退出</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 					{else /}
-					<div class="rglg">
-						<a href="{:url('UserRegister')}" target="_blank" class="registe">注册</a><span>|</span><a href="{:url('UserLogin')}" target="_blank" class="login" style="width:auto;">登陆</a>
+					<div class="login" >
+						<a href="{:url('UserLogin')}" class="new">
+							登陆
+						</a>
+						<!--<span>请选择登录方式</span>
+						<ul class="login-list clearfix">
+							<a href="{:url('UserLogin')}">
+								<li class="web"></li>
+							</a>
+							 <li class="qq">
+								<a href="#"></a>
+							</li>
+							<li class="weibo">
+								<a href="#"></a>
+							</li>
+							<li class="baidu">
+								<a href="#"></a>
+							</li>
+						</ul> -->
 					</div>
+					
 					{/if}
 				</div>
 			</div>
-		</div> -->
+
+		</div>
+	</div>
 	{/block}
 
 	
