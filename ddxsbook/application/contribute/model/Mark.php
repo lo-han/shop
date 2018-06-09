@@ -57,7 +57,40 @@ class Mark extends Model
 	//推介位的书籍获得
 	public function bookGet($limit)
 	{	
-		return Book::whereIn('id',$this->source_id)->limit($limit)->select();
+		$limit 	= explode(",",$limit);
+		$sort 	= explode(",",$this->source_id);
+
+		if(count($limit) == 2){
+			$sort = array_slice($sort,$limit[0],$limit[1]);
+		}else{
+			$sort = array_slice($sort,0,$limit[0]);
+		}
+
+		$data = Book::whereIn('id', implode(",",$sort) )->select();
+
+		return $this->markSort($data,$sort);
+	}
+
+
+	//wherein 排序
+	protected function markSort($data,$sort)
+	{
+		$ret = [];
+		foreach($data as $val)
+		{
+			foreach($sort as $k=>$s)
+			{
+				
+				if( $val->id == $s )
+				{	
+					$ret[$k] = $val;
+				}
+
+			}
+			
+		}
+		ksort($ret);
+		return $ret;
 	}
 
 

@@ -57,7 +57,7 @@ CREATE TABLE `advert` (
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   `image` varchar(255) NOT NULL DEFAULT '' COMMENT '广告图片',
   `big_image` varchar(255) NOT NULL DEFAULT '' COMMENT '作用于大图',
-  `site` varchar(20) NOT NULL DEFAULT '' COMMENT '广告位置',
+  `site` varchar(60) NOT NULL DEFAULT '' COMMENT '广告位置',
   PRIMARY KEY (`id`),
   UNIQUE KEY `table_advert_site` (`site`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告位';

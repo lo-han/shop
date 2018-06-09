@@ -15,42 +15,25 @@
                 <div class="row">
                     <div class="col-md-5 ">
                         <div class="carousel slide slide-box" data-ride="carousel">
+                            {php}$data = $mark['home_carousel']->bookGet(3);{/php}
                             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
-                                        <img src="{:asset('/static/img/test1.png')}" alt="Third slide" width="100%" height="100%" style="display: block">
+                                    {foreach $data as $key=>$book}
+                                    <li data-target="#carousel-example-generic" data-slide-to="{$key}" {if condition="$key == 0 "} class="active"{/if} >
+                                        <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" alt="Third slide" width="100%" height="100%" style="display: block">
                                     </li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="1">
-                                        <img src="{:asset('/static/img/test1.png')}" alt="Third slide" width="100%" height="100%" style="display: block">
-                                    </li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="2">
-                                        <img src="{:asset('/static/img/test1.png')}" alt="Third slide" width="100%" height="100%" style="display: block">
-                                    </li>
+                                    {/foreach}
                                 </ol>
                                 <div class="carousel-inner" role="listbox">
-                                    <div class="carousel-item active">
-                                        <img src="{:asset('/static/img/test1.png')}" alt="First slide">
+                                    {foreach $data as $key=>$book}
+                                    <div class="carousel-item {if condition="$key == 0 "}active{/if}">
+                                        <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" alt="First slide" width="100%" height="100%" >
                                         <div class="carousel-caption">
-                                            <h3>风流小春医</h3>
-                                            <p>被丈夫折磨了三十年的柳瑶珍死后重生了。回到了和渣男结婚的当天，她一脚把渣男踹下炕。她要离婚，要把上辈子所有的遗憾都弥补回来。她</p>
+                                            <h3>{$book->title}</h3>
+                                            <p>{$book->description}</p>
                                         </div>
                                     </div>
-                                    <div class="carousel-item">
-                                        <img src="{:asset('/static/img/test1.png')}" alt="Second slide">
-                                        <div class="carousel-caption">
-                                            <h3>风流小春医</h3>
-                                            <p>被丈夫折磨了三十年的柳瑶珍死后重生了。回到了和渣男结婚的当天，她一脚把渣男踹下炕。她要离婚，要把上辈子所有的遗憾都弥补回来。她</p>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="img-box">
-                                            <img src="{:asset('/static/img/test1.png')}" alt="Third slide">
-                                        </div>
-                                        <div class="carousel-caption">
-                                            <h3>风流小春医</h3>
-                                            <p>被丈夫折磨了三十年的柳瑶珍死后重生了。回到了和渣男结婚的当天，她一脚把渣男踹下炕。她要离婚，要把上辈子所有的遗憾都弥补回来。她</p>
-                                        </div>
-                                    </div>
+                                    {/foreach}
                                 </div>
 
                                 <!-- <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -65,107 +48,107 @@
                     <div class="col-md-7 ">
                         <div class="p1-p-2">
                             <div class="tb">
-                                <p class="title">铁拳无双</p>
+                                {foreach $mark.home_top->bookGet('0,1') as $book}
+                                <p class="title"><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></p>
+                                {/foreach}
                                 <ul>
                                     <li>
-                                        <span style="color: #f9ad40">[热度]</span>
+                                        <span style="color: #f9ad40">[精选]</span>
+                                        {foreach $mark.home_top->bookGet('1,4') as $key=>$book}
+                                        {if condition="$key == 3"}
                                         <span>
-                                            <a href="#">绝美娇妻之问道</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">绝命阴妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">一夜冥妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">谋杀法则</a>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
                                         </span>
+                                        {else /}
+                                        <span>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
+                                        </span>|
+                                        {/if}
+                                        {/foreach}
                                     </li>
                                     <li>
-                                        <span style="color: #f9ad40">[热度]</span>
+                                        <span style="color: #f9ad40">[热门]</span>
+                                        {foreach $mark.home_top->bookGet('5,4') as $key=>$book}
+                                        {if condition="$key == 3"}
                                         <span>
-                                            <a href="#">绝美娇妻之问道</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">绝命阴妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">一夜冥妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">谋杀法则</a>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
                                         </span>
+                                        {else /}
+                                        <span>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
+                                        </span>|
+                                        {/if}
+                                        {/foreach}
                                     </li>
                                 </ul>
                             </div>
                             <div class="tb">
-                                <p class="title">铁拳无双</p>
+                                {foreach $mark.home_middle->bookGet('0,1') as $book}
+                                <p class="title"><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></p>
+                                {/foreach}
                                 <ul>
                                     <li>
-                                        <span style="color: #f9ad40">[热度]</span>
+                                        <span style="color: #f9ad40">[爽文]</span>
+                                        {foreach $mark.home_middle->bookGet('1,4') as $key=>$book}
+                                        {if condition="$key == 3"}
                                         <span>
-                                            <a href="#">绝美娇妻之问道</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">绝命阴妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">一夜冥妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">谋杀法则</a>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
                                         </span>
+                                        {else /}
+                                        <span>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
+                                        </span>|
+                                        {/if}
+                                        {/foreach}
                                     </li>
                                     <li>
-                                        <span style="color: #f9ad40">[热度]</span>
+                                        <span style="color: #f9ad40">[精品]</span>
+                                        {foreach $mark.home_middle->bookGet('5,4') as $key=>$book}
+                                        {if condition="$key == 3"}
                                         <span>
-                                            <a href="#">绝美娇妻之问道</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">绝命阴妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">一夜冥妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">谋杀法则</a>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
                                         </span>
+                                        {else /}
+                                        <span>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
+                                        </span>|
+                                        {/if}
+                                        {/foreach}
                                     </li>
                                 </ul>
                             </div>
                             <div class="tb">
-                                <p class="title">铁拳无双</p>
+                                {foreach $mark.home_below->bookGet('0,1') as $book}
+                                <p class="title"><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></p>
+                                {/foreach}
                                 <ul>
                                     <li>
-                                        <span style="color: #f9ad40">[热度]</span>
+                                        <span style="color: #f9ad40">[大神]</span>
+                                        {foreach $mark.home_below->bookGet('1,4') as $key=>$book}
+                                        {if condition="$key == 3"}
                                         <span>
-                                            <a href="#">绝美娇妻之问道</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">绝命阴妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">一夜冥妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">谋杀法则</a>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
                                         </span>
+                                        {else /}
+                                        <span>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
+                                        </span>|
+                                        {/if}
+                                        {/foreach}
                                     </li>
                                     <li>
-                                        <span style="color: #f9ad40">[热度]</span>
+                                        <span style="color: #f9ad40">[新书]</span>
+                                        {foreach $mark.home_below->bookGet('5,4') as $key=>$book}
+                                        {if condition="$key == 3"}
                                         <span>
-                                            <a href="#">绝美娇妻之问道</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">绝命阴妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">一夜冥妻</a>
-                                        </span>|
-                                        <span>
-                                            <a href="#">谋杀法则</a>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
                                         </span>
+                                        {else /}
+                                        <span>
+                                            <a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a>
+                                        </span>|
+                                        {/if}
+                                        {/foreach}
                                     </li>
                                 </ul>
                             </div>
@@ -174,8 +157,9 @@
                             <div class="p1-p-3-1">
                                 <img src="{:asset('/static/img/gonggao.png')}" alt=""> 公告栏
                             </div>
-                            <p class="title">重生之媳妇的逆袭</p>
-                            <p class="desc">为了还赌债，父母把我嫁给四十岁离两次婚 的老瘸子！</p>
+
+                            <p class="title">{$news[0]->title}</p>
+                            <p class="desc">{$news[0]->description}</p>
                         </div>
                     </div>
                 </div>
@@ -187,56 +171,29 @@
                         强推榜
                     </div>
                     <ul class="top-list">
+                        {foreach $mark.home_strong_push->bookGet(10) as $key=>$book}
+                        {if condition="$key == 0"}
                         <li class="first clearfix">
                             <span class="num">
-                                1
+                                {$key+1}
                             </span>
                             <div class="img-box">
-                                <img src="{:asset('/static/img/test1.png')} " alt="" width="100%" height="100%">
+                                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)} " alt="" width="100%" height="100%">
                             </div>
                             <div class="desc">
-                                <p class="name text-overflow">超级大主播</p>
-                                <p class="text-overflow">作者：张三</p>
+                                <p class="name text-overflow"><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></p>
+                                <p class="text-overflow">作者：{$book->user->pen_name}</p>
                             </div>
                         </li>
+                        {else /}
                         <li>
                             <span class="num">
-                                2
+                                {$key+1}
                             </span>
-                            <p class="name text-overflow">超级大主播</p>
+                            <p class="name text-overflow"><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></p>
                         </li>
-                        <li>
-                            <span class="num">3</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">4</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">5</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">6</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">7</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">8</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">9</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">10</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
+                        {/if}
+                        {/foreach}
                     </ul>
                 </div>
             </div>
@@ -245,153 +202,21 @@
     </div>
     <div class="container P2">
         <div class="row">
+            {foreach $mark.home_middle_lump->bookGet(12) as $key=>$book}
             <div class="col-md-2">
-                <a href="#">
+                <a href="{:url('HomeBookShow',['id'=>$book->id])}">
                     <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
+                        <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" alt="" width="100%" height="100%">
 
                     </div>
                     <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
+                        <h3 class="text-overflow ">{$book->title}</h3>
+                        <p class="text-overflow ">作者：{$book->user->pen_name}</p>
                     </div>
                 </a>
 
             </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="#">
-                    <div class="img-box">
-                        <img src="{:asset('/static/img/test1.png')}" alt="" width="100%" height="100%">
-
-                    </div>
-                    <div class="desc">
-                        <h3 class="text-overflow ">终极枪兵</h3>
-                        <p class="text-overflow ">作者：春暖花开</p>
-                    </div>
-                </a>
-            </div>
+            {/foreach}
         </div>
     </div>
     <div class=" container P3">
@@ -401,78 +226,38 @@
                     <div class="d-title">
                         潜力阁
                     </div>
-                    <div class="col-md-6 clearfix">
-                        <img src="{:asset('/static/img/test1.png')}" alt="">
-                        <div class="desc float-right">
-                            <h3 class="text-overflow">扛着锄头泡着妹</h3>
-                            <p>叶风有一把神奇的锄头，闲来没事挖挖人，也会帮助美女做一些力所能及的事情。再多的钱财我不爱.. </p>
-                            <p class="text-overflow">作者：春暖花开</p>
-                        </div>
-                    </div>
+                    {foreach $mark.home_potential->bookGet("0,4") as $key=>$book}
                     <div class="col-md-6">
-                        <img src="{:asset('/static/img/test1.png')}" alt="">
-                        <div class="desc float-right">
-                            <h3 class="text-overflow">扛着锄头泡着妹</h3>
-                            <p>叶风有一把神奇的锄头，闲来没事挖挖人，也会帮助美女做一些力所能及的事情。再多的钱财我不爱.. </p>
-                            <p class="text-overflow">作者：春暖花开</p>
-                        </div>
+                        <a href="{:url('HomeBookShow',['id'=>$book->id])}">
+                            <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" alt="">
+                            <div class="desc float-right">
+                                <h3 class="text-overflow">{$book->title}</h3>
+                                <p>{$book->description}</p>
+                                <p class="text-overflow">作者：{$book->user->pen_name}</p>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-md-6">
-                        <img src="{:asset('/static/img/test1.png')}" alt="">
-                        <div class="desc float-right">
-                            <h3 class="text-overflow">扛着锄头泡着妹</h3>
-                            <p>叶风有一把神奇的锄头，闲来没事挖挖人，也会帮助美女做一些力所能及的事情。再多的钱财我不爱.. </p>
-                            <p class="text-overflow">作者：春暖花开</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <img src="{:asset('/static/img/test1.png')}" alt="">
-                        <div class="desc float-right">
-                            <h3 class="text-overflow">扛着锄头泡着妹</h3>
-                            <p>叶风有一把神奇的锄头，闲来没事挖挖人，也会帮助美女做一些力所能及的事情。再多的钱财我不爱.. </p>
-                            <p class="text-overflow">作者：春暖花开</p>
-                        </div>
-                    </div>
+                    {/foreach}
                     <ul class="book-list">
                         <li>
+                            {foreach $mark.home_potential->bookGet("4,3") as $key=>$book}
                             <div>
-                                <a href="#">
-                                    <span style="color: #f9ad40">【抗战烽火】</span>
-                                    <span style="color: #814d03">我的美女战友</span>
+                                <a href="{:url('HomeBookShow',['id'=>$book->id])}">
+                                    <span style="color: #f9ad40">【{$book->category->title}】</span>
+                                    <span style="color: #814d03">{$book->title}</span>
                                 </a>
                             </div>
-                            <div>
-                                <a href="#">
-                                    <span style="color: #f9ad40">【抗战烽火】</span>
-                                    <span style="color: #814d03">我的美女战友</span>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <span style="color: #f9ad40">【抗战烽火】</span>
-                                    <span style="color: #814d03">我的美女战友</span>
-                                </a>
-                            </div>
+                            {/foreach}
                         </li>
                         <li>
+                            {foreach $mark.home_potential->bookGet("7,3") as $key=>$book}
                             <div>
-                                <a href="#">
-                                    <span style="color: #f9ad40">【抗战烽火】</span>
-                                    <span style="color: #814d03">我的美女战友</span>
+                                <a href="{:url('HomeBookShow',['id'=>$book->id])}">
+                                    <span style="color: #f9ad40">【{$book->category->title}】</span>
+                                    <span style="color: #814d03">{$book->title}</span>
                                 </a>
                             </div>
-                            <div>
-                                <a href="#">
-                                    <span style="color: #f9ad40">【抗战烽火】</span>
-                                    <span style="color: #814d03">我的美女战友</span>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#">
-                                    <span style="color: #f9ad40">【抗战烽火】</span>
-                                    <span style="color: #814d03">我的美女战友</span>
-                                </a>
-                            </div>
+                            {/foreach}
                         </li>
                     </ul>
                 </div>
@@ -484,49 +269,29 @@
                         人气榜
                     </div>
                     <ul class="top-list">
+                        {foreach $mark.home_popularity->bookGet(8) as $key=>$book}
+                        {if condition="$key == 0"}
                         <li class="first clearfix">
                             <span class="num">
-                                1
+                                {$key+1}
                             </span>
                             <div class="img-box">
-                                <img src="{:asset('/static/img/test1.png')} " alt="" width="100%" height="100%">
+                                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" alt="" width="100%" height="100%">
                             </div>
                             <div class="desc">
-                                <p class="name text-overflow">超级大主播</p>
-                                <p class="text-overflow">作者：张三</p>
+                                <p class="name text-overflow"><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></p>
+                                <p class="text-overflow">作者：{$book->user->pen_name}</p>
                             </div>
                         </li>
+                        {else /}
                         <li>
                             <span class="num">
-                                2
+                                {$key+1}
                             </span>
-                            <p class="name text-overflow">超级大主播</p>
+                            <p class="name text-overflow"><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></p>
                         </li>
-                        <li>
-                            <span class="num">3</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">4</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">5</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">6</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">7</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">8</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                      
+                        {/if}
+                        {/foreach}
                     </ul>
                 </div>
             </div>
@@ -551,164 +316,21 @@
                            </tr>
                        </thead>
                     <tbody>
+                        {foreach $mark.home_newest->bookGet(8) as $key=>$book}
                         <tr>
-                            <td>【社会】</td>
+                            <td>【{$book->category->title}】</td>
                             <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
+                                <img src="{:asset('/static/img/vip.png')}" alt="" >
                             </td>
                             <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
+                                <span><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></span>
+                                <span class="s"><a href="{:url('HomeSectionShow',['id'=>bookSectionNewest($book->id)->id])}">{:bookSectionNewest($book->id)->title}</a></span>
                             </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
+                            <td>{$book->user->pen_name}</td>
+                            <td>{:date("Y-m-d H:i",bookSectionNewest($book->id)->update_time)}</td>
                         </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                        <tr>
-                            <td>【社会】</td>
-                            <td>
-                                <img src="{:asset('/static/img/vip.png')}" alt="">
-                            </td>
-                            <td>
-                                <span>女神的吃货跟班</span>
-                                <span class="s">第100章始料未及的真相</span>
-                            </td>
-                            <td>候神小哥</td>
-                            <td>2018-05-17 11:23</td>
-                        </tr>
-                       
-                       
+                        {/foreach}
+                        
                     </tbody>
                    </table>
                 </div>
@@ -720,56 +342,29 @@
                         完本精品
                     </div>
                     <ul class="top-list">
+                         {foreach $mark.home_end->bookGet(10) as $key=>$book}
+                        {if condition="$key == 0"}
                         <li class="first clearfix">
                             <span class="num">
-                                1
+                                {$key+1}
                             </span>
                             <div class="img-box">
-                                <img src="{:asset('/static/img/test1.png')} " alt="" width="100%" height="100%">
+                                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" alt="" width="100%" height="100%">
                             </div>
                             <div class="desc">
-                                <p class="name text-overflow">超级大主播</p>
-                                <p class="text-overflow">作者：张三</p>
+                                <p class="name text-overflow"><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></p>
+                                <p class="text-overflow">作者：{$book->user->pen_name}</p>
                             </div>
                         </li>
+                        {else /}
                         <li>
                             <span class="num">
-                                2
+                                {$key+1}
                             </span>
-                            <p class="name text-overflow">超级大主播</p>
+                            <p class="name text-overflow"><a href="{:url('HomeBookShow',['id'=>$book->id])}">{$book->title}</a></p>
                         </li>
-                        <li>
-                            <span class="num">3</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">4</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">5</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">6</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">7</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">8</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">9</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
-                        <li>
-                            <span class="num">10</span>
-                            <p class="name text-overflow">超级大主播</p>
-                        </li>
+                        {/if}
+                        {/foreach}
                     </ul>
                 </div>
             </div>

@@ -55,6 +55,17 @@ class News extends Model
 	
 
 	/**
+	 *	通过搜索获取资讯
+	 *	@param where (array) 搜索条件
+	 *	@param limit (int)   搜索条数
+	 *	@return  think\paginator\driver\Bootstrap 分页模型
+	 */
+
+	public function showNews($where = [],$limit){
+		return $this->where('check',1)->where($where)->order('id DESC')->paginate($limit,false, ['query' => request()->param()]);
+	}
+
+	/**
 	 *	模型单项关联 Admin 表
 	 */
 	public function admin()

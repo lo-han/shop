@@ -21,6 +21,13 @@ class Index extends Common
 	//首页
 	public function index(){
 
+		$advert = (new Advert)->homeMark();
+		$mark = (new Mark)->homeMark();
+		$news = (new News)->showNews('',1);
+
+		$this->assign('news',$news->items());
+		$this->assign('advert',$advert);
+		$this->assign('mark',$mark);
 		
 		return $this->fetch();
 	}

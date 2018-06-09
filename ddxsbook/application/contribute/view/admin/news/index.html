@@ -31,7 +31,7 @@
 						</div>
 					</td>
 					<td>{:config('check.' . $data->check)}</td>
-					<td>{:date("Y-m-d H:i".$data->create_time)}</td>
+					<td>{:date("Y-m-d H:i",$data->create_time)}</td>
 					<td>
 						<a href="{:url('AdminNewsEdit',['id'=>$data->id])}">修改</a>
 					</td>

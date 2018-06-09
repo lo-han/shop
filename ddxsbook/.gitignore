@@ -2,3 +2,4 @@
 composer.lock
 *.log
  ddxsbook/application/database.php
+ ddxsbook/uploads
