@@ -22,7 +22,7 @@ return [
             //公共控制器
             'Index','Common','Ajax','UserCheck','AdminCheck','Image','ApiCheck',
             //用户前端展示页面
-            'index/Index','index/Book','index/Section',
+            'index/Index','index/Book','index/Section','index/News',
             //投稿系统控制器
             'user/Login','user/Book','user/Section','user/Info',
             //后台管理控制器
@@ -35,7 +35,7 @@ return [
             //错误页面模板
             'error/404',
             //展示页面模板
-            'index/index/index','index/index/maker','index/index/author','index/index/we','index/book/list','index/book/show','index/section/show',
+            'index/index/index','index/index/maker','index/index/author','index/index/we','index/book/list','index/book/show','index/section/show','index/news/show',
             //公共的继承模板
             'public/user','public/index','public/admin',
             //用户投稿模板

@@ -32,17 +32,17 @@
 					<div id="qrcode" style="clear:both;">
 						<label class="layui-form-label"></label>
 
-						<input type="hidden" name="post[section_official_qrcode][image]" value="{if condition="isset($data.section_official_qrcode)"}{$data.section_official_qrcode.image}{/if}" />
+						<input type="hidden" name="post[official_qrcode][image]" value="{if condition="isset($data.official_qrcode)"}{$data.official_qrcode.image}{/if}" />
 
 						<div class="section_pay_qrcode">
-							{if condition="!empty($data.section_official_qrcode.image)"}
-							<img width="100px" height="100px" src="{:imagePath(['table'=>'advert','category'=>'image'],$data.section_official_qrcode.image)}"/>
+							{if condition="!empty($data.official_qrcode.image)"}
+							<img width="100px" height="100px" src="{:imagePath(['table'=>'advert','category'=>'image'],$data.official_qrcode.image)}"/>
 							{/if}
 						</div>
 					</div>
 
-					{if condition="isset($data.section_official_qrcode)"}
-			      	<input type="hidden" name="post[section_official_qrcode][id]" value="{$data.section_official_qrcode.id}" />
+					{if condition="isset($data.official_qrcode)"}
+			      	<input type="hidden" name="post[official_qrcode][id]" value="{$data.official_qrcode.id}" />
 			      	{/if}
 
 			  	</div>

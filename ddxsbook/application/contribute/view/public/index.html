@@ -120,15 +120,14 @@
 						</ul>
 					</div>
 					<div class="float-right text-center ">
-						<img class="code-img mb-10 " src="{:asset('/static/img/code.png')} " alt=" ">
+						<img class="code-img mb-10 " src="{:imagePath(['table'=>'advert','category'=>'image'],model('Advert')->getMark('official_qrcode')->image)}" alt="未投放" width="100%" height="100%">
 						<p>关注顶点文学官方微信</p>
-						<a href="# ">
+						<a href="http://wpa.qq.com/msgrd?v=3&uin={:model('Advert')->getMark('home_qq')->url}&site=qq&menu=yes">
 							<img src="{:asset('/static/img/qq.jpg')}" alt=" ">
-	
 						</a>
-						<a style="margin-left: 18px " href="# ">
+						<!-- <a style="margin-left: 18px " href="# ">
 							<img src="{:asset('/static/img/wechat.jpg')}" alt=" ">
-						</a>
+						</a> -->
 					</div>
 				</div>
 			</div>

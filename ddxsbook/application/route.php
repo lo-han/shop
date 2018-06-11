@@ -26,6 +26,8 @@ Route::get(['HomeBookShow','book/:id'],'contribute/index.book/show');
 Route::get(['HomeSectionShow','section/:id'],'contribute/index.section/show');
 //需要付费的章节
 Route::get(['HomeSectionPaySection','section/pay'],'contribute/index.section/pay_section');
+//书本展示
+Route::get(['HomeNewsShow','news/:id'],'contribute/index.news/show');
 
 //用户投稿组
 Route::group('user',function (){
