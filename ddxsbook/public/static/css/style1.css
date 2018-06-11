@@ -1996,3 +1996,21 @@ a:hover {
 .header a:hover {
   color: #e83451;
 }
+
+.news-penl{
+  margin: 20px 0 ;
+  padding: 18px;
+  box-shadow: 0 0 10px 0 #ccc;
+  min-height: 600px;
+}
+.news-penl  h2{
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.news-penl p{
+  text-align: right;
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 28px;
+}
