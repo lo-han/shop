@@ -1640,6 +1640,11 @@ a:hover {
   padding: 0;
 }
 
+.footer .code-img{
+  width: 128px;
+  height: 128px;
+}
+
 /*top-box*/
 .top-box .title {
   position: relative;
