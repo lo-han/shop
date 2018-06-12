@@ -161,9 +161,10 @@
                             <div class="p1-p-3-1">
                                 <img src="{:asset('/static/img/gonggao.png')}" alt=""> 公告栏
                             </div>
-
+                            {if condition="isset($news[0])"}
                             <p class="title"><a href="{:url('HomeNewsShow',['id'=>$news[0]->id])}">{$news[0]->title}</a></p>
                             <p class="desc">{$news[0]->description}</p>
+                            {/if}
                         </div>
                     </div>
                 </div>
