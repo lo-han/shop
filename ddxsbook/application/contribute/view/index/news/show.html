@@ -3,13 +3,13 @@
 {block name="main"}
 <div class="container">
     <div class="news-penl">
-        <h2>标题</h2>
+        <h2>{$news->title}</h2>
         <p class="desc">
-            <span>时间：2018-2-2</span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>作者：吴彦祖</span>
+            <span>时间：{:date("Y-m-d",$news->create_time)}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>作者：{$news->admin->name}</span>
         </p>
         <div class="center">
-            内容
+            {$news->content}
         </div>
     </div>
 </div>

@@ -11,9 +11,12 @@ use \think\Db;
 class News extends Common
 {
 
-	public function show()
+	public function show(Request $Request,NewsModel $news)
 	{
+		$id = $Request->route('id');
+		$news = $news->get($id);
 
+		$this->assign('news',$news);
 		return $this->fetch();
 	}
 
