@@ -14,7 +14,7 @@ class News extends Common
 	public function show(Request $Request,NewsModel $news)
 	{
 		$id = $Request->route('id');
-		$news = $news->get($id);
+		$news = $news->where('check',1)->find($id);
 
 		$this->assign('news',$news);
 		return $this->fetch();

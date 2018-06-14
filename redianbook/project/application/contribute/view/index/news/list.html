@@ -3,89 +3,22 @@
 {block name="main"}
 <div class="container clearfix">
     <ul class="news-list">
+        {volist name="news" id="data"}
         <li>
-            <a class="title" href="#">新闻标题</a>
+            <a class="title" href="{:url('HomeNewsShow',['id'=>$data->id])}">{$data->title}</a>
             <div class="conter">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae culpa corporis tenetur, quisquam, quos explicabo mollitia
-                nisi sunt iste maiores, voluptatum vero rerum. Vero ipsam, ducimus nobis a enim nisi.
+                {$data->description}
             </div>
             <p class="more">
-                <a href="#">查看更多</a>
+                <a href="{:url('HomeNewsShow',['id'=>$data->id])}">查看</a>
             </p>
         </li>
-        <li>
-            <a class="title" href="#">新闻标题</a>
-            <div class="conter">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae culpa corporis tenetur, quisquam, quos explicabo mollitia
-                nisi sunt iste maiores, voluptatum vero rerum. Vero ipsam, ducimus nobis a enim nisi.
-            </div>
-            <p class="more">
-                <a href="#">查看更多</a>
-            </p>
-        </li>
-        <li>
-            <a class="title" href="#">新闻标题</a>
-            <div class="conter">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae culpa corporis tenetur, quisquam, quos explicabo mollitia
-                nisi sunt iste maiores, voluptatum vero rerum. Vero ipsam, ducimus nobis a enim nisi.
-            </div>
-            <p class="more">
-                <a href="#">查看更多</a>
-            </p>
-        </li>
-        <li>
-            <a class="title" href="#">新闻标题</a>
-            <div class="conter">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae culpa corporis tenetur, quisquam, quos explicabo mollitia
-                nisi sunt iste maiores, voluptatum vero rerum. Vero ipsam, ducimus nobis a enim nisi.
-            </div>
-            <p class="more">
-                <a href="#">查看更多</a>
-            </p>
-        </li>
-        <li>
-            <a class="title" href="#">新闻标题</a>
-            <div class="conter">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae culpa corporis tenetur, quisquam, quos explicabo mollitia
-                nisi sunt iste maiores, voluptatum vero rerum. Vero ipsam, ducimus nobis a enim nisi.
-            </div>
-            <p class="more">
-                <a href="#">查看更多</a>
-            </p>
-        </li>
-        <li>
-            <a class="title" href="#">新闻标题</a>
-            <div class="conter">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae culpa corporis tenetur, quisquam, quos explicabo mollitia
-                nisi sunt iste maiores, voluptatum vero rerum. Vero ipsam, ducimus nobis a enim nisi.
-            </div>
-            <p class="more">
-                <a href="#">查看更多</a>
-            </p>
-        </li>
-        <li>
-            <a class="title" href="#">新闻标题</a>
-            <div class="conter">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae culpa corporis tenetur, quisquam, quos explicabo mollitia
-                nisi sunt iste maiores, voluptatum vero rerum. Vero ipsam, ducimus nobis a enim nisi.
-            </div>
-            <p class="more">
-                <a href="#">查看更多</a>
-            </p>
-        </li>
-        <li>
-            <a class="title" href="#">新闻标题</a>
-            <div class="conter">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae culpa corporis tenetur, quisquam, quos explicabo mollitia
-                nisi sunt iste maiores, voluptatum vero rerum. Vero ipsam, ducimus nobis a enim nisi.
-            </div>
-            <p class="more">
-                <a href="#">查看更多</a>
-            </p>
-        </li>
+        {/volist}
     </ul>
+
     <div class="zpfy">
 		<nav aria-label="Page navigation">
+            {$news->render()}
 		</nav>
 	</div>
 </div>

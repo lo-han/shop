@@ -1,18 +1,18 @@
 {extend name="public:index" /}
 
-{block name="title"}热点文学-{$book->title}{/block}
+{block name="title"}热点文学-{$news->title}{/block}
 
 
 {block name="main"}
 <div class="container">
     <div class="news-penl">
-        <h2>123123123</h2>
+        <h2>{$news->title}</h2>
         <p class="desc">
-            <span>时间：213123</span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>作者：123123</span>
+            <span>时间：{:date('Y-m-d H:i',$news->update_time)}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>作者：{$news->admin->name}</span>
         </p>
         <div class="center">
-            3213123123
+            {$news->content}
         </div>
     </div>
 </div>

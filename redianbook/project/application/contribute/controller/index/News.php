@@ -13,16 +13,20 @@ class News extends Common
 {
 
 
-	public function list()
+	public function list(ModelNews $news)
 	{
+		$news = $news->newsGet(['check'=>1],8);
 
-
+		$this->assign('news',$news);
 		return $this->fetch();
 	}
 
-	public function show()
+	public function show(Request $Request,ModelNews $news)
 	{
+		$id = $Request->route('id');
+		$news = $news->where('check',1)->find($id);
 
+		$this->assign('news',$news);
 		return $this->fetch();
 	}
 }
