@@ -149,10 +149,10 @@ class Section extends Common
 		$book_id = $Request->route('book_id');
 		$book = $book->get($book_id);
 
-		$sectionAll = $section->all(['book_id'=>$book_id]);
+		$sectionAll = $section->where(['book_id'=>$book_id])->order('sort','DESC')->select();
 
 		$content = "#title# " . $book->title . "\r\n";
-
+		
 		foreach($sectionAll as $val)
 		{
 			$val->content = str_replace("\r", "", $val->content);	//格式完善 每一段添加\n
