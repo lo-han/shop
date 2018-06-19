@@ -149,7 +149,7 @@ class Section extends Common
 		$book_id = $Request->route('book_id');
 		$book = $book->get($book_id);
 
-		$sectionAll = $section->where(['book_id'=>$book_id])->order('sort','DESC')->select();
+		$sectionAll = $section->where(['book_id'=>$book_id])->order('sort','ASC')->select();
 
 		$content = "#title# " . $book->title . "\r\n";
 		
