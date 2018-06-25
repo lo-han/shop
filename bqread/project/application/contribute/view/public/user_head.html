@@ -21,8 +21,10 @@
 					<a href="{:url('HomeWe')}" {if condition="routerJudge('we')" }class="active" {/if}>关于我们</a>
 				</li>
 				<li class="nav-item">
-					<input type="text" placeholder="输入您想查找的信息" style="height: 34px;padding: 5px;box-sizing: border-box;margin-top: 14px;border-radius: 21px;border: 1px solid #ccc;padding-right: 42px">
-					<a href="#" style="display: inline-block;color: #e83451;margin-left: -40px;font-size: 14px;padding-right: 42px;">搜索</a>
+					<form action="{:url('HomeBookList')}" method="GET">
+						<input type="text" name="title" placeholder="输入您想查找的信息" style="height: 34px;padding: 5px;box-sizing: border-box;margin-top: 14px;border-radius: 21px;border: 1px solid #ccc;padding-right: 42px">
+						<button type="submit" style="display: inline-block;color: #e83451;margin-left: -40px;font-size: 14px;padding-right: 42px;">搜索</button>
+					</form>
 				</li>
 			</ul>
 			<div class="nav-user">
