@@ -29,10 +29,10 @@ class Section extends Common
 		}	//对来访者进行访问 收费章节限制
 		
 		$next = BookSection::get(function ($query) use ($id,$section){
-			$query->where([ 'id'=>['>',$id],'book_id'=>$section->book_id,'attr'=>1 ])->order('id','ASC');
+			$query->where([ 'id'=>['>',$id],'book_id'=>$section->book_id,'check'=>1 ])->order('id','ASC');
 		});	//下一页
 		$prev = BookSection::get(function ($query) use ($id,$section){
-			$query->where([ 'id'=>['<',$id],'book_id'=>$section->book_id,'attr'=>1 ])->order('id','DESC');
+			$query->where([ 'id'=>['<',$id],'book_id'=>$section->book_id,'check'=>1 ])->order('id','DESC');
 		});	//上一页
 
 		$this->assign('next',$next);
