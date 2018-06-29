@@ -81,6 +81,11 @@ class User extends Common
 					'update_time' 	=> time(),
 				];
 
+				if($password = passGen($Request->post('password','')))
+				{
+					$data['password']	= $password;
+				}
+				
 				if($Request->has('admin_id')){
 					$data['admin_id'] = $Request->post('admin_id');
 				}
