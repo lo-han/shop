@@ -71,5 +71,11 @@ class Index extends Common
 		return $this->fetch();
 	}
 
+	//关于我们
+	public function welfare(){
+
+		return $this->fetch();
+	}
+
 
 }

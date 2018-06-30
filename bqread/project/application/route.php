@@ -19,7 +19,7 @@ Route::get(['Home','/'],'contribute/index.index/index');
 //关于我们
 Route::get(['HomeWe','page/we'],'contribute/index.index/we');
 //作者福利
-Route::get(['HomeWelfare','page/welfare'],'contribute/index.index/we');
+Route::get(['HomeWelfare','page/welfare'],'contribute/index.index/welfare');
 //书本列表
 Route::get(['HomeBookList','book/list'],'contribute/index.book/list');
 //书本展示
