@@ -72,7 +72,7 @@ class Index extends Common
 	}
 
 	//关于我们
-	public function welfare(){
+	public function boon(){
 
 		return $this->fetch();
 	}

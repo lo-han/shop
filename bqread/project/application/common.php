@@ -112,7 +112,7 @@ if (! function_exists('routerJudge')) {
         if($route == "/"){  //对根目录进行特殊判断
             $route = "index";    //重新构造根目录标示符
         }
-
+        
         if(strpos($route,$name) === false){
             return false;
         }else{
