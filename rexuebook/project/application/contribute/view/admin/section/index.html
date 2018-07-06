@@ -24,7 +24,13 @@
 			      <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
 			      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
 			    </div>
-			  </div>
+			</div>
+			{if condition="isset($book_id) && session('admin.role') == 1"}
+			<div class="tjfl"><a class="delete-prompt" data-href="{:url('AdminSectionClearBook',['book_id' => $book_id])}" href="#">清空章节</a></div>
+			<div class="tjfl" style="margin-right:10px;">
+				<a href="{:url('AdminSectionExportBook',['book_id' => $book_id])}" target="_blank">章节导出</a>
+			</div>
+			{/if}
 		  </div>
 		</form>
 		<!--当前作品数-->

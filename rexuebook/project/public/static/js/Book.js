@@ -72,4 +72,12 @@ $(function (){
           Rgh.style.width='97.8%';
         }
     });
+
+    //删除提示
+    $(".delete-prompt").click(function (){
+      if (confirm("你确定删除吗？")) { 
+          window.location.href = $(this).data("href");
+        } 
+    });
+
 });
