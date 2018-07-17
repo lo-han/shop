@@ -134,6 +134,8 @@
 					<td>{$book->user->pen_name}</td>
 					<td>{if condition="$book->admin_id"}{$book->admin->name}{/if}</td>
 					<td>
+						<a href="{:url('AdminBookLead',['id' => $book->id])}">导入</a>
+						&nbsp;&nbsp;
 						<a href="{:url('AdminSection',['book_id' => $book->id])}">章节列表</a>
 						&nbsp;&nbsp;
 						<a href="{:url('AdminBookEdit',['id' => $book->id])}" >修改</a>

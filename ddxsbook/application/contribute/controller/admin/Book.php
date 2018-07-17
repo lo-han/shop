@@ -5,6 +5,7 @@ use \app\contribute\controller\Common;
 use \app\contribute\controller\AdminCheck;
 
 use \app\contribute\model\Book as BookModel;
+use \app\contribute\model\BookSection;
 use \app\contribute\model\Category;
 use \app\contribute\model\User;
 use \app\contribute\model\Admin;
@@ -192,6 +193,75 @@ class Book extends Common
 		$this->assign('places',$place);
 
 		return $this->fetch();
+	}
+
+	//书籍章节导入
+	public function lead(Request $Request,BookSection $section)
+	{
+
+
+		if($Request->ispost())
+		{
+			$book_id 	= $Request->route('id');	//书本ID
+			$user_id 	= BookModel::get($book_id)->user_id;	//用户ID
+			
+			$attrStart 	= $Request->post('attrStart');
+			$details = array_filter(explode("###",$Request->post('section')));
+			$Request->request();
+			$i=1;
+			foreach($details as $key=>$val)
+			{
+
+				$ct = [];
+				
+				foreach(explode("\n",$val) as $k=>$v )
+				{
+					if( $k == 0)
+					{
+						$title = $v;
+					}
+					else
+					{
+						$ct[] = '<p>' . $v . '</p>';
+					}
+				}
+				
+				$content = implode("",$ct);
+
+				$Request->attrSave('title',$title);
+				$Request->attrSave('content',$content);
+				
+				if($i > $attrStart){
+					$Request->attrSave('attr',2);
+				}else{
+					$Request->attrSave('attr',1);
+				}
+
+				/*if($i == 2){
+					$Request->attrSave('section',"1");
+					var_dump($Request->request(),$book_id , $user_id );exit;
+				}*/
+
+				$i++;
+				
+				if( !$sectionData = (new BookSection)->upOrCreate($Request, $book_id , $user_id ) )
+				{
+					$error['error'] .= '<p>失败章节：' . $title . '</p>';
+					break;
+				}
+	
+			}
+
+			if( !isset($error) )
+			{
+				$this->redirect($Request->post('referer'));	//书本添加成功返回列表页面
+			}
+			$this->assign('error',$error);
+		}
+
+		$this->assign('formUrl',url('AdminBookLead',['id'=>$Request->route('id')]));
+		return $this->fetch();
+
 	}
 
 }

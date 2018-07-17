@@ -22,11 +22,11 @@ class Response
     // 原始数据
     protected $data;
 
-    // 当前的contentType 关闭
-    //protected $contentType = 'text/html'; //不使用默认的文本类型
+    // 当前的contentType
+    protected $contentType = 'text/html';
 
-    // 字符集 关闭
-    //protected $charset = 'utf-8'; //不使用默认编码集
+    // 字符集
+    protected $charset = 'utf-8';
 
     //状态
     protected $code = 200;
@@ -52,7 +52,7 @@ class Response
         if (!empty($options)) {
             $this->options = array_merge($this->options, $options);
         }
-        //$this->contentType($this->contentType, $this->charset);   //不使用默认的文本类型
+        $this->contentType($this->contentType, $this->charset);
         $this->header = array_merge($this->header, $header);
         $this->code   = $code;
     }
@@ -69,9 +69,7 @@ class Response
      */
     public static function create($data = '', $type = '', $code = 200, array $header = [], $options = [])
     {
-        $type = empty($type) ? 'null' : strtolower($type);
-
-        $class = false !== strpos($type, '\\') ? $type : '\\think\\response\\' . ucfirst($type);
+        $class = false !== strpos($type, '\\') ? $type : '\\think\\response\\' . ucfirst(strtolower($type));
         if (class_exists($class)) {
             $response = new $class($data, $code, $header, $options);
         } else {

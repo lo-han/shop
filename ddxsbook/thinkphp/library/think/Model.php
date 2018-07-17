@@ -117,6 +117,12 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
     protected static $initialized = [];
 
     /**
+     * 是否从主库读取（主从分布式有效）
+     * @var array
+     */
+    protected static $readMaster;
+
+    /**
      * 构造方法
      * @access public
      * @param array|object $data 数据
@@ -172,6 +178,20 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
     }
 
     /**
+     * 是否从主库读取数据（主从分布有效）
+     * @access public
+     * @param  bool     $all 是否所有模型生效
+     * @return $this
+     */
+    public function readMaster($all = false)
+    {
+        $model = $all ? '*' : $this->class;
+
+        static::$readMaster[$model] = true;
+        return $this;
+    }
+
+    /**
      * 创建模型的查询对象
      * @access protected
      * @return Query
@@ -193,6 +213,10 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
         // 设置当前模型 确保查询返回模型对象
         $queryClass = $this->query ?: $con->getConfig('query');
         $query      = new $queryClass($con, $this);
+
+        if (isset(static::$readMaster['*']) || isset(static::$readMaster[$this->class])) {
+            $query->master(true);
+        }
 
         // 设置当前数据表和模型名
         if (!empty($this->table)) {
@@ -570,45 +594,35 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
             $value    = null;
         }
 
-        /**
-         *  捕获异常 属性不存在返回null 不会报错
-         *  @author 杨凯
-         */
-        
-        try {
-
-            // 检测属性获取器
-            $method = 'get' . Loader::parseName($name, 1) . 'Attr';
-            if (method_exists($this, $method)) {
-                $value = $this->$method($value, $this->data, $this->relation);
-            } elseif (isset($this->type[$name])) {
-                // 类型转换
-                $value = $this->readTransform($value, $this->type[$name]);
-            } elseif (in_array($name, [$this->createTime, $this->updateTime])) {
-                if (is_string($this->autoWriteTimestamp) && in_array(strtolower($this->autoWriteTimestamp), [
-                    'datetime',
-                    'date',
-                    'timestamp',
-                ])
-                ) {
-                    $value = $this->formatDateTime(strtotime($value), $this->dateFormat);
-                } else {
-                    $value = $this->formatDateTime($value, $this->dateFormat);
-                }
-            } elseif ($notFound) {
-                $relation = Loader::parseName($name, 1, false);
-                if (method_exists($this, $relation)) {
-                    $modelRelation = $this->$relation();
-                    // 不存在该字段 获取关联数据
-                    $value = $this->getRelationData($modelRelation);
-                    // 保存关联对象值
-                    $this->relation[$name] = $value;
-                } else {
-                    throw new InvalidArgumentException('property not exists:' . $this->class . '->' . $name);
-                }
+        // 检测属性获取器
+        $method = 'get' . Loader::parseName($name, 1) . 'Attr';
+        if (method_exists($this, $method)) {
+            $value = $this->$method($value, $this->data, $this->relation);
+        } elseif (isset($this->type[$name])) {
+            // 类型转换
+            $value = $this->readTransform($value, $this->type[$name]);
+        } elseif (in_array($name, [$this->createTime, $this->updateTime])) {
+            if (is_string($this->autoWriteTimestamp) && in_array(strtolower($this->autoWriteTimestamp), [
+                'datetime',
+                'date',
+                'timestamp',
+            ])
+            ) {
+                $value = $this->formatDateTime(strtotime($value), $this->dateFormat);
+            } else {
+                $value = $this->formatDateTime($value, $this->dateFormat);
             }
-        }catch (InvalidArgumentException $e) {
-            return null;
+        } elseif ($notFound) {
+            $relation = Loader::parseName($name, 1, false);
+            if (method_exists($this, $relation)) {
+                $modelRelation = $this->$relation();
+                // 不存在该字段 获取关联数据
+                $value = $this->getRelationData($modelRelation);
+                // 保存关联对象值
+                $this->relation[$name] = $value;
+            } else {
+                throw new InvalidArgumentException('property not exists:' . $this->class . '->' . $name);
+            }
         }
         return $value;
     }
@@ -689,7 +703,11 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
                 $value = empty($value) ? new \stdClass() : json_decode($value);
                 break;
             case 'serialize':
-                $value = unserialize($value);
+                try {
+                    $value = unserialize($value);
+                } catch (\Exception $e) {
+                    $value = null;
+                }
                 break;
             default:
                 if (false !== strpos($type, '\\')) {
