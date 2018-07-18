@@ -37,7 +37,7 @@ class User extends Model
 				'update_time' 	=> time(),
 			]);
 		}
-
+		
 		$data = [
 			'admin_id'	=> $admin_id,
 			'name' 		=> $request->post('name'),

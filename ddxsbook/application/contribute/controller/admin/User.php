@@ -21,10 +21,14 @@ class User extends Common
 
 	protected $validateRule = [
 		'description' 	=> 'length:20,100',
+		'pen_name' 		=> 'require|max:20|unique:user',
 	];
 
 	protected $message = [
 		'description.length' 	=> '简介必须在20-100字内',
+		'pen_name.require' 		=> '笔名必须填写',
+		'pen_name.max' 			=> '笔名不能大于20个文字',
+		'pen_name.unique' 		=> '笔名已存在',
 	];
 
 
@@ -68,7 +72,7 @@ class User extends Common
 	//用户修改
 	public function edit(Request $Request,userModel $user){
 		$admin 	= Admin::getAll();
-
+		
 		if($Request->ispost()){
 
 			//验证修改信息
@@ -78,6 +82,7 @@ class User extends Common
 				$data = [
 					'image' 		=> $Request->post('image',''),
 					'description' 	=> $Request->post('description',''),
+					'pen_name' 		=> $Request->post('pen_name',''),
 					'update_time' 	=> time(),
 				];
 

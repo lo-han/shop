@@ -26,14 +26,16 @@
 			      <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
 			    </div>
 			    <label class="tsyy">密码不能为空！！</label>
-			  </div>
+			  </div>-->
 			  <div class="layui-form-item">
 			    <label class="layui-form-label">笔名：</label>
 			    <div class="layui-input-block">
-			      <input type="text" name="pen_name" lay-verify="required" placeholder="请输入书名" autocomplete="off" class="layui-input">
+			      <input type="text" name="pen_name" lay-verify="pen_name" placeholder="请输入书名" autocomplete="off" class="layui-input" value="{if condition="!empty($data.pen_name)"}{$data.pen_name}{/if}">
 			    </div>
-			    <label class="tsyy">笔名不能为空！！</label>
-			  </div>-->
+			    {if condition="isset($error.pen_name)"}
+			    <label class="tsyy" >{$error.pen_name}</label>
+			    {/if}
+			  </div>
 			  <div class="info_content_01_right">
 			  	<label class="layui-form-label ">作者头像：</label>
 				<div class="layui-upload">
@@ -147,9 +149,14 @@
 		  var form = layui.form;
 
 		  form.verify({
-				description: function(value, item){ //value：表单的值、item：表单的DOM对象
+		  		description: function(value, item){ //value：表单的值、item：表单的DOM对象
 					if( value.length != 0 && (value.length < 20 || value.length > 100) ){
 					    return '简介必须在20-100字内';
+					}
+				},
+				pen_name: function(value, item){ //value：表单的值、item：表单的DOM对象
+					if(value == ''){
+					    return '笔名不能为空';
 					}
 				}
 			});  

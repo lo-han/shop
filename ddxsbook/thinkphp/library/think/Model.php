@@ -594,35 +594,44 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
             $value    = null;
         }
 
-        // 检测属性获取器
-        $method = 'get' . Loader::parseName($name, 1) . 'Attr';
-        if (method_exists($this, $method)) {
-            $value = $this->$method($value, $this->data, $this->relation);
-        } elseif (isset($this->type[$name])) {
-            // 类型转换
-            $value = $this->readTransform($value, $this->type[$name]);
-        } elseif (in_array($name, [$this->createTime, $this->updateTime])) {
-            if (is_string($this->autoWriteTimestamp) && in_array(strtolower($this->autoWriteTimestamp), [
-                'datetime',
-                'date',
-                'timestamp',
-            ])
-            ) {
-                $value = $this->formatDateTime(strtotime($value), $this->dateFormat);
-            } else {
-                $value = $this->formatDateTime($value, $this->dateFormat);
+        /**
+         *  捕获异常 属性不存在返回null 不会报错
+         *  @author 杨凯
+         */
+        
+        try {
+            // 检测属性获取器
+            $method = 'get' . Loader::parseName($name, 1) . 'Attr';
+            if (method_exists($this, $method)) {
+                $value = $this->$method($value, $this->data, $this->relation);
+            } elseif (isset($this->type[$name])) {
+                // 类型转换
+                $value = $this->readTransform($value, $this->type[$name]);
+            } elseif (in_array($name, [$this->createTime, $this->updateTime])) {
+                if (is_string($this->autoWriteTimestamp) && in_array(strtolower($this->autoWriteTimestamp), [
+                    'datetime',
+                    'date',
+                    'timestamp',
+                ])
+                ) {
+                    $value = $this->formatDateTime(strtotime($value), $this->dateFormat);
+                } else {
+                    $value = $this->formatDateTime($value, $this->dateFormat);
+                }
+            } elseif ($notFound) {
+                $relation = Loader::parseName($name, 1, false);
+                if (method_exists($this, $relation)) {
+                    $modelRelation = $this->$relation();
+                    // 不存在该字段 获取关联数据
+                    $value = $this->getRelationData($modelRelation);
+                    // 保存关联对象值
+                    $this->relation[$name] = $value;
+                } else {
+                    throw new InvalidArgumentException('property not exists:' . $this->class . '->' . $name);
+                }
             }
-        } elseif ($notFound) {
-            $relation = Loader::parseName($name, 1, false);
-            if (method_exists($this, $relation)) {
-                $modelRelation = $this->$relation();
-                // 不存在该字段 获取关联数据
-                $value = $this->getRelationData($modelRelation);
-                // 保存关联对象值
-                $this->relation[$name] = $value;
-            } else {
-                throw new InvalidArgumentException('property not exists:' . $this->class . '->' . $name);
-            }
+        }catch (InvalidArgumentException $e) {
+            return null;
         }
         return $value;
     }
