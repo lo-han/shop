@@ -1,0 +1,164 @@
+{extend name="public:admin" /}
+
+
+{block name="main"}
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<div class="zxlbnr">
+			<form class="layui-form" action="{:url('AdminNewsAdd')}" method="post" >
+
+				{if condition="isset($data.id)"}
+				<input type="hidden" name="id" value="{$data.id}" />
+				{/if}
+				<input type="hidden" name="cover" id="cover" lay-verify="cover" value="{if condition="isset($data.cover)"}{$data.cover}{/if}" />
+
+		  	  	<div class="layui-form-item">
+				    <label class="layui-form-label">标题</label>
+				    <div class="layui-input-block">
+				      <input type="text" name="title" lay-verify="title" placeholder="请输入标题" autocomplete="off" class="layui-input" value="{if condition="isset($data.title)"}{$data.title}{/if}">
+				    </div>
+				    {if condition="isset($error.title)"}
+				    <label class="tsyy">{$error.title}</label>
+			    	{/if}
+			  	</div>
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">封面</label>
+				    <div class="layui-upload">
+						<div class="layui-upload-list" {if condition="!isset($data.cover)"}style="display:none;"{/if}>
+						    <img class="layui-upload-img" id="author_icon" src="{if condition="isset($data.cover)"}{:imagePath(['table'=>'news','category'=>'cover'],$data.cover)}{/if}" style="height:108px">
+					    </div>
+						<p id="demoText"></p>
+					  	<button type="button" class="layui-btn" id="change_photo">选择图片</button>						  
+					</div>
+					{if condition="isset($error.cover)"}
+				    <label class="tsyy">{$error.cover}</label>
+			    	{/if}
+			  	</div>
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">简介</label>
+				    <div class="layui-input-block zxlbjs">
+				      <textarea name="description" required lay-verify="description" placeholder="请输入内容,字数20-500" class="layui-textarea">{if condition="isset($data.description)"}{$data.description}{/if}</textarea>
+				    </div>
+				    {if condition="isset($error.description)"}
+				    <label class="tsyy">{$error.description}</label>
+			    	{/if}
+			  	</div>
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">内容</label>
+				    <div class="layui-input-block zxlbjs">
+				    	<textarea rows="10" cols="30" class="ckeditor" name="content" id="editor1">{if condition="isset($data.content)"}{$data.content}{/if}</textarea>
+				    </div>
+				    {if condition="isset($error.content)"}
+				    <label class="tsyy">{$error.content}</label>
+			    	{/if}
+			  	</div>
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">发布状态</label>
+				    <input type="hidden" id="fbstatus" name="check" lay-verify="check" value="{if condition="isset($data.check)"}{$data.check}{/if}" />
+				    <div class="layui-input-block shzt">
+				     	<div id="fbstatus-pare" class="layui-input-block xzlx" style="margin-left: 0px;margin-top: 5px;">
+					    	<a data-is="yes" data-val="1" class="annu7 {if condition="isset($data.check) && $data.check == 1"}fbsqau7{/if}"></a>
+					    	<a data-is="no"  data-val="0" class="annu8 {if condition="isset($data.check) && $data.check == 0"}fbsqau8{/if}"></a>
+				    	</div>
+				    </div>
+				    {if condition="isset($error.check)"}
+				    <label class="tsyy">{$error.check}</label>
+			    	{/if}
+				</div>
+			  	<div class="layui-form-item">
+				    <div class="layui-input-block">
+				      	<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				    </div>
+			  	</div>
+			</form>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+<script type="text/javascript" src="{:asset('/static/ckeditor/ckeditor.js')}"></script>
+
+<script type="text/javascript">
+	layui.use('upload', function(){
+		var $ = layui.jquery,
+		upload = layui.upload; 
+		//普通图片上传
+		var uploadInst = upload.render({
+		    elem: '#change_photo',
+		    url: '{:url('ImageUpload',['table' => 'news','category' => 'cover'])}',
+		    before: function(obj){
+		      //预读本地文件示例，不支持ie8
+		      obj.preview(function(index, file, result){
+		      	$('#author_icon').parent().show(); 
+		        $('#author_icon').attr('src', result); //图片链接（base64）
+		      });
+		    },
+		    done: function(res){
+		      //如果上传失败
+		      if(res.code == 0){
+		      	fileError(uploadInst);
+		        return layer.msg(res.msg);
+
+		      }
+		      $("#cover").val(res.msg);
+		      $("#demoText").html(" ");
+		      //上传成功
+		    },
+		    error: function(){
+		      //演示失败状态，并实现重传
+	  	      fileError(uploadInst);
+		    }
+		});
+	});
+
+	layui.use('form', function(){
+	  	var form = layui.form;
+
+	  	form.verify({
+			cover: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '请上传封面图片';
+				}
+			}
+			,title: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '名称不能为空';
+				}
+			}
+			,description: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '简介不能为空';
+				}
+				
+				if(value.length < 20 || value.length > 500){
+				    return '作品简介请控制在20-500字内';
+				}
+			}
+			,check: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '请选择发布状态';
+				}
+			}
+			
+		});   
+
+
+	});
+
+	function fileError(uploadInst){
+		var demoText = $('#demoText');
+      	demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      	demoText.find('.demo-reload').on('click', function(){
+        	uploadInst.upload();
+      	});
+	}
+
+</script>
+
+{/block}

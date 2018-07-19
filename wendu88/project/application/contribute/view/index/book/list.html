@@ -1,0 +1,79 @@
+{extend name="public:index" /}
+
+{block name="main"}
+<div class="ssgn">
+	<!--搜索功能-->
+	<form class="layui-form" action="{:url("HomeBookList")}" method="get">	  
+	  	<div class="layui-form-item">
+	  		<!-- <label class="layui-form-label">书名或笔名：</label> -->
+		    <div class="layui-input-block Input2">
+		      <input type="text" name="title" placeholder="书名/作者笔名" autocomplete="off" class="layui-input" value="{if condition="isset($search.title)"}{$search.title}{/if}">
+		    </div>
+		</div>
+		<div class="layui-form-item">
+		    <!-- <label class="layui-form-label">作品类型：</label> -->
+		    <div class="layui-input-block Input1">
+		      <select name="category" >
+		        <option value="">作品类型</option>
+		        {volist name="category" id="data"}
+		        <option {if condition="isset($search.category) && $search.category == $data.id"}selected{/if} value="{$data.id}">{$data.title}</option>
+		        {/volist}
+		      </select>
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+	    	<!-- <label class="layui-form-label">作品进度：</label> -->
+	    	<div class="layui-input-block Input1">
+		      <select name="status">
+		        <option value="">作品进度</option>
+		        {volist name="status" id="data" key="k"}
+		        <option {if condition="isset($search.status) && $search.status == $k"}selected{/if} value="{$k}">{$data}</option>
+		        {/volist}
+		      </select>
+		    </div>
+		</div>
+		<div class="layui-form-item">
+		    <!-- <label class="layui-form-label">制作人：</label> -->
+		    <div class="layui-input-block Input1">
+		      <select name="works">
+		        <option value="">制作人</option>
+		        {volist name="works" id="data"}
+		        <option {if condition="isset($search.works) && $search.works == $data.id"}selected{/if} value="{$data.id}">{$data.name}</option>
+		        {/volist}
+		      </select>
+		    </div>
+		</div>
+		<div class="layui-form-item">
+		    <div class="layui-input-block">
+		      <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+		      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+		    </div>
+		  </div>
+	</form>
+	<div class="cont cont1">
+		<div class="zsnr">
+			{volist name="book" id="data"}
+			<a href="{:url("HomeBookShow",['id'=>$data->id])}" class="zslb">
+				<div class="pic"><img src="{:imagePath(['table'=>'book','category'=>'cover'],$data->cover)}"></div>
+				<div class="zsbt">{$data->title}</div>
+				<div class="zsxbt">{$data->user->pen_name}</div>
+			</a>
+			{/volist}
+		</div>
+		
+	</div>
+	<div class="zpfy">
+		<nav aria-label="Page navigation">
+			{$book->render()}
+		</nav>
+	</div>
+</div>
+{/block}
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+
+{/block}
