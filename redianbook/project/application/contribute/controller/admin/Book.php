@@ -274,7 +274,7 @@ class Book extends Common
 		$sectionAll = $section->all(['book_id'=>$id]);
 
 		$ids = implode(",",array_column($sectionAll, 'id'));
-		$section->deletes($ids,$id);
+		$section->destroy($ids);
 
 		//删除书籍
 		$book->destroy($id);
