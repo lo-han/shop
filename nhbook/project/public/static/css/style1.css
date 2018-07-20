@@ -64,7 +64,7 @@ hr {
     line-height: 70px;
     height: 70px;
     border-bottom: 1px solid #d3d3d3;
-    background-color: #e83451;
+    background-color: #e50541;
 }
 
 .heading .container {
@@ -580,7 +580,7 @@ footer {
     width: 100%;
     z-index: 1000;
     margin-top: 30px;
-    background-color: #e83451;
+    background-color: #cecece;
     padding-top: 40px;
     height: 190px;
 }
