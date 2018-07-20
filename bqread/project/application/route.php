@@ -107,11 +107,23 @@ Route::group('admin',function (){
 	//书本审核
 	Route::rule(['AdminBookEdit','book/edit/:id'],'contribute/admin.book/edit','post|get',[],['id'=>'[0-9]+']);
 
+	//书本章节导入
+	Route::rule(['AdminBookLead','book/lead/:id'],'contribute/admin.book/lead','post|get',[],['id'=>'[0-9]+']);
+
 	//章节列表
 	Route::rule(['AdminSection','section/[:book_id]'],'contribute/admin.section/index','post|get',[],['book_id'=>'[0-9]+']);
 
 	//章节审核
 	Route::rule(['AdminSectionEdit','section/edit/:book_id/:id'],'contribute/admin.section/edit','post|get',[],['book_id'=>'[0-9]+','id'=>'[0-9]+']);
+
+	//章节删除
+	Route::rule(['AdminSectionDelete','section/delete/:book_id/:id'],'contribute/admin.section/delete','post|get',[],['book_id'=>'[0-9]+','id'=>'[0-9]+']);
+
+	//全部章节删除
+	Route::rule(['AdminSectionClearBook','section/clear/:book_id'],'contribute/admin.section/clearBook','post|get',[],['book_id'=>'[0-9]+']);
+
+	//全部章节导出
+	Route::rule(['AdminSectionExportBook','section/export/:book_id'],'contribute/admin.section/exportBook','post|get',[],['book_id'=>'[0-9]+']);
 
 	//分类列表
 	Route::get(['AdminCategory','category'],'contribute/admin.category/index');

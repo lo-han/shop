@@ -21,7 +21,7 @@ class BookSection extends Model
 		 * @param $char	需要对书本的总数字进行统计，所以需要统计出更新的字和原本的差值
 		 */
 		
-		if($request->has('id')){
+		if($request->has('id','post')){
 			$bookSection = $this->get($request->post('id'));
 			$char = charNumber($request->post('content'))-$bookSection->getAttr('char');	
 		}else{
@@ -56,6 +56,22 @@ class BookSection extends Model
 
 		return $bookSection->toArray();
 
+	}
+
+
+	public function deletes($ids,$book_id)
+	{
+		$char = 0;
+		$all = $this->all($ids);
+
+		foreach($all as $val)
+		{
+			$char += charNumber($val->content);
+		}
+
+		$this->destroy($ids);
+
+		db('Book')->where(['id' => $book_id])->setDec('char_number',$char); //找到相应的书籍进行字数统计
 	}
 
 	/**
