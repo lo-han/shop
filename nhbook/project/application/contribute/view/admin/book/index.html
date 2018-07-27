@@ -87,7 +87,15 @@
 			      <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
 			      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
 			    </div>
-			  </div>
+			</div>
+
+			<div style="float:right;">
+		  		<div class="layui-input-block">
+			      <button class="layui-btn" id="hongshuhui-gather">书本采集</button>
+			      <button class="layui-btn" id="hongshuhui-lead">书本导入</button>
+			    </div>
+		  	</div>
+
 		  </div>
 		</form>
 		<!--当前作品数-->
@@ -174,5 +182,38 @@
 		    return false;
 		  });
 		});
+
+		$("#hongshuhui-gather").click(function (){
+			$.ajax({
+				url:"{:url('AdminGetBookPut')}",
+				type: 'GET',
+				dataType: 'json',
+				async: false,
+				error: function (){
+					alert('还未采集完全，请再次抓取');
+				},
+				success: function (data){
+					if(data.code == 200){
+						alert('采集成功');
+					}
+				}
+			});
+		});
+
+		$("#hongshuhui-lead").click(function (){
+			$.ajax({
+				url:"{:url('AdminGetBookBookImport')}",
+				type: 'GET',
+				dataType: 'json',
+				async: false,
+				error: function (){
+					alert('还未导入完全，请再次导入');
+				},
+				success: function (data){
+					alert('导入成功');
+				}
+			});
+		});
+
 	</script>
 {/block}

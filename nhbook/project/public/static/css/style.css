@@ -1384,7 +1384,7 @@ ul.footer-info li.footer-item{display: inline-block;margin-left: 20px;height: 40
 
 
 /*新的头部 start*/
-.heading {position: relative;line-height: 70px;height: 70px;border-bottom: 1px solid none;background-color: #e83451;}
+.heading {position: relative;line-height: 70px;height: 70px;border-bottom: 1px solid none;background-color: #e50541;}
 .heading .container{position: relative;width: 1180px;margin: 0 auto;padding: 0 10px;overflow: hidden;margin-top:-8px;}
 .heading .container .H-left{float: left;}
 .heading .container .H-left .bt{overflow: hidden;position: relative;}
