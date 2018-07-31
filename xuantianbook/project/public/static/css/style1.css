@@ -1487,7 +1487,7 @@ a:hover {
 .header {
   width: 100%;
   height: 160px;
-  background: #000000;
+  background: #37a6dc;
   padding-top: 28px;
 }
 
@@ -1518,10 +1518,11 @@ a:hover {
   cursor: pointer;
   display: block;
   color: #fff;
+  text-indent: 0;
 }
 
 .header .search .btn {
-  background: #d62901;
+  background: #fbac3c;
   color: #fff;
   display: inline-block;
   height: 40px;
@@ -1556,7 +1557,7 @@ a:hover {
   width: 78px;
   height: 35px;
   display: inline-block;
-  background: #d62901;
+  background: #fbac3c;
   text-align: center;
   line-height: 35px;
   border-radius: 4px;
@@ -1630,7 +1631,7 @@ a:hover {
   /* position: absolute; */
   bottom: 0px;
   left: 0px;
-  background: #000000;
+  background: #37a6dc;
   color: #fff;
   font-size: 14px;
   padding-top: 28px;
@@ -1650,7 +1651,7 @@ a:hover {
   position: relative;
   width: 100%;
   height: 44px;
-  background: #000000;
+  background: #37a6dc;
   line-height: 44px;
   color: #fff;
   padding-left: 30px;
@@ -1663,7 +1664,7 @@ a:hover {
   top: 50%;
   margin-top: -9px;
   height: 18px;
-  background: #d42901;
+  background: #fff;
 }
 
 .top-box .top-list {
@@ -1802,7 +1803,7 @@ a:hover {
   position: absolute;
   width: 47px;
   height: 100%;
-  background: #000000;
+  background: #37a6dc;
   left: -22px;
   text-align: center;
   color: #fff;
@@ -1894,7 +1895,7 @@ a:hover {
   position: absolute;
   width: 4px;
   height: 18px;
-  background: #d42901;
+  background: #fbac3c;
   margin: 8px 0 auto -11px;
 }
 

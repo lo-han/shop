@@ -8,6 +8,7 @@ body{
 	width: 100%;
 	height: 100%;
 }
+
 p{padding:0;margin:0;}
 .nav-bar{
 	width: 100%;
@@ -292,16 +293,17 @@ input#username{background: #0000;}
 
 }
 .left-nav{
-	width: 150px;
+	width: 170px;
 	height: 1400px;
-	margin-right: 20px;
+	/*margin-right: 20px;*/
 	background-color: white;
 	float: left;position: relative;
 }
-.left-nav ul{list-style: none;padding-bottom: 40px;background: #666;}
-.left-nav ul li{line-height: 45px;text-align: left;background: #666;padding-left:20px;cursor: pointer;}
-.left-nav ul li a{color:#fff;text-decoration: none;font-size: 14px;display: block;}
-.left-nav ul li.active{background: #cc374f;}
+.left-nav ul{list-style: none;background: #f1f1f1;}
+.left-nav ul li{line-height: 45px;text-align: left;padding-left:20px;cursor: pointer;}
+.left-nav ul li a{color:#696767;text-decoration: none;font-size: 14px;display: block;}
+.left-nav ul li.active{background: #fbac3c;}
+.left-nav ul li.active>a{color: #fff;}
 .left-nav .nav1{width:100%;height:auto;padding-left:0px;}
 .left-nav .nav1 span{padding-left:0px;display: block;}
 .left-nav .nav1 .nbul{padding-bottom: 0px;}
@@ -317,12 +319,12 @@ input#username{background: #0000;}
 /*书籍管理*/
 .right-content .content{width:1000px;height: 40px;line-height: 40px;margin:15px;overflow: inherit;}
 .right-content .content .cndh{float: left;font-weight: bold;color:#434343;}
-.right-content .content .tjsb{float: right;display: block;padding:0 20px;text-decoration: none;text-align: center;color:#fff;background: #f00;border-radius:5px;font-size: 14px;}
+.right-content .content .tjsb{float: right;display: block;padding:0 20px;text-decoration: none;text-align: center;color:#fff;background: #fbac3c;border-radius:5px;font-size: 14px;}
 .right-content .tjsbnr{width: 1000px;border-top:0px solid #e6e6e6;height: auto;overflow: hidden;margin:0 auto;padding-bottom: 20px;}
 .right-content .fyxs{width: 1000px;margin:0 auto;}
 .right-content .fyxs #test1{float: right; margin:20px 0;}
 .right-content .tjsbnr .tables{width: 100%;}
-.right-content .tjsbnr .tables .nrbt{font-weight: normal;text-align: center;height: 40px;line-height: 40px;background: #434343;color: #fff;}
+.right-content .tjsbnr .tables .nrbt{font-weight: normal;text-align: center;height: 40px;line-height: 40px;background: #f1f1f1;color: #696767;}
 .right-content .tjsbnr .tables .nr{width: 100%;height: auto;overflow: hidden;}
 .right-content .tjsbnr .tables .nr .yh{width: 100%;height: auto;overflow: hidden;background: #f2f2f2;}
 .right-content .tjsbnr .tables .p1{width: 230px;float: left;border-bottom:0px solid #e6e6e6;border-right:0px solid #e6e6e6;border-left:0px solid #e6e6e6;}
@@ -376,7 +378,7 @@ input#username{background: #0000;}
 .right-content .cont .workstep .demo1{position: relative;line-height: 40px;margin:8px 0;}
 .right-content .cont .workstep .demo1 .demonr{overflow: hidden;height: 40px;line-height: 40px;}
 .right-content .cont .workstep .demo1 .demonr .label{float: left;color:#333;font-size:13px;padding-left: 47px;padding-top: 9px;font-weight:normal;}
-.right-content .cont .workstep .demo1 .demonr .btn{float: left;margin-left: 17px;background: #e83451;color:#fff;outline: none;}
+.right-content .cont .workstep .demo1 .demonr .btn{float: left;margin-left: 17px;background: #fbac3c;color:#fff;outline: none;}
 .right-content .cont .workstep .byts{color: #f00;font-weight: normal;margin-left: 11px;}
 .right-content .cont .workstep .byts1{margin-top:6px;}
 .right-content .layui-form-item .shzt{margin-left:106px;}
@@ -888,6 +890,13 @@ font-size: 12px;border: none;border-radius: 5px;cursor: pointer;}
 	font-size: 12px;
 	border-radius: 5px;
 	margin-left: 110px;
+}
+.create-content #change_photo{
+	background-color: #fbac3c;
+}
+
+.create-content .layui-btn{
+	background-color: #fbac3c;
 }
 
 #verticalPic{
@@ -1423,7 +1432,7 @@ ul.footer-info li.footer-item{display: inline-block;margin-left: 20px;height: 40
 .signIn_head{width: 100%; clear: both;}
 .signIn_head li{float: left;width: 50%;height: 56px;line-height: 56px;text-align: center;}
 .signIn_head ul li{list-style: none;}
-.signIn_head li a{color: #fff!important; background: #e83451;display: block;opacity: 0.5;filter: alpha(opacity=50);text-decoration: none;cursor: pointer;}
+.signIn_head li a{color: #fff!important; background: #fbac3c;display: block;opacity: 0.5;filter: alpha(opacity=50);text-decoration: none;cursor: pointer;}
 .signIn_head li.active a{color: #333!important;background: #FFF;opacity: 1; filter: alpha(opacity=100);}
 .signIn_main{width: 100%;height: 400px;background: #FFF;clear: both;}
 .signIn_main .signIn_tab{width: 100%;display: none;}
