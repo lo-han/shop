@@ -169,6 +169,11 @@ a:hover{text-decoration:none;}
 .default-tag a.selected{opacity:0.6;filter:alpha(opacity=60);}
 .default-tag a.selected:hover{background-position:100% 0;cursor:default;}
 .default-tag a.selected:hover span{background-position:0 -60px;}
+
+/*用户后台标签添加 start*/
+.user-body .plus-tag a{background:#fbac3c;}
+/*用户后台标签添加 end*/
+
 /* plus-tag */
 .plus-tag{padding:0 0 10px 0;}
 .plus-tag a{/* background-position:100% -26px; */background:#e83451; padding: 0 5px;color: #fff;font-size: 14px;border-radius: 5px;}

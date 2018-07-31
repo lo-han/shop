@@ -49,7 +49,7 @@ return [
 	],
 
 
-	'hostImg'	=> "http://img.ddxsbook.yk", //图片域名
-	'hostWWW'	=> "http://www.ddxsbook.yk" //主站域名
+	'hostImg'	=> "http://img.xuantianbook.com", //图片域名
+	'hostWWW'	=> "http://www.xuantianbook.com" //主站域名
 
 ];

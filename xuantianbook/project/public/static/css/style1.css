@@ -415,7 +415,7 @@ hr {
   color: #444;
 }
 .zsnr .zslb .zsbt:hover {
-  color: #e83451;
+  color: #fbac3c;
 }
 .zsnr .zslb .zsxbt {
   color: #a9a9a9;
@@ -571,6 +571,7 @@ footer .logo-grey {
   line-height: 35px;
   padding: 0 20px;
   font-size: 12px;
+  background-color: #fbac3c;
 }
 .ssgn .cont1 {
   padding-top: 0px;
@@ -1727,7 +1728,7 @@ a:hover {
   margin-bottom: 10px;
 }
 .top-box .top-list li.first .desc .name a{
-  color: #814d03;
+  color: #333333;
 }
 
 /*pages*/
@@ -1762,8 +1763,8 @@ a:hover {
 }
 .index-page .p1-p-2 .tb {
   padding: 28px 0 36px 0;
-  color: #814d03;
-  border-bottom: #814d03 1px dashed;
+  color: #333333;
+  border-bottom: #333333 1px dashed;
 }
 
 .index-page .p1-p-2 ul {
@@ -1775,17 +1776,17 @@ a:hover {
   font-size: 14px;
 }
 .index-page .p1-p-2 ul li a {
-  color: #814d03;
+  color: #333333;
 }
 .index-page .p1-p-2 ul li a:hover {
-  color: #d62901;
+  color: #fbac3c;
 }
 
 .index-page .p1-p-2 .title {
   font-size: 16px;
 }
 .index-page .p1-p-2 .title a{
-  color: #814d03;
+  color: #333333;
 }
 
 .index-page .p1-p-3 {
@@ -1815,7 +1816,7 @@ a:hover {
   letter-spacing: 2px;
 }
 .index-page .p1-p-3 .title {
-  color: #814d03;
+  color: #333333;
   margin-bottom: 10px;
 }
 
@@ -1826,7 +1827,7 @@ a:hover {
 }
 
 .index-page .carousel-caption h3 {
-  color: #814d03;
+  color: #333333;
   font-size: 16px;
   text-align: center;
 }
@@ -1860,7 +1861,7 @@ a:hover {
   margin-top: 5px;
 }
 .index-page .P2 .desc h3 {
-  color: #814d03;
+  color: #333333;
   font-size: 16px;
   margin-bottom: 0;
 }
@@ -1921,7 +1922,7 @@ a:hover {
 }
 
 .P3 .P3-p1 .col-md-6 .desc h3{
-  color: #814d03;
+  color: #333333;
   font-size: 16px;
 }
 
@@ -1956,13 +1957,13 @@ a:hover {
 }
 
 .P4-p1 table{
-  color: #814d03;
+  color: #333333;
   margin-top: 12px;
   font-size: 14px;
   text-align: center;
 }
 .P4-p1 table a{
-  color: #814d03;  
+  color: #333333;  
 }
 .P4-p1 table a:hover{
   text-decoration: underline;
@@ -1983,11 +1984,11 @@ a:hover {
   min-height: 400px;
 }
 .wrapper a{
-  color: #000;
+  color: #333333;
 }
 
 .wrapper a:hover {
-  color: #e83451;
+  color: #fbac3c;
 }
 
 .header a{
@@ -1995,7 +1996,7 @@ a:hover {
 }
 
 .header a:hover {
-  color: #e83451;
+  color: #fbac3c;
 }
 
 .news-penl{
