@@ -56,6 +56,9 @@ class Image extends Common
 		    	$uploadPath = 'uploads' . DS . $Request->route('table') . DS . $Request->route('category');
 		        $info = $file->validate(['size'=>1048576,'ext'=>'jpg,jpeg,png'])->move(ROOT_PATH . $uploadPath);
 		        if($info){
+		        	$filePath = ROOT_PATH . $uploadPath . DS . $info->getSaveName();
+
+		        	$this->imageCompress($filePath);	//图片压缩处理
 		            // 成功上传后 获取上传信息
 		            // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
 		            return $this->jsonSuccess(['code' => 1,'msg' => $info->getSaveName()]);
@@ -93,6 +96,30 @@ class Image extends Common
 		    }
 
 	    }
+
+	}
+
+
+	//图片压缩
+	protected function imageCompress($filePath)
+	{
+		list($width,$height,$suffix) = getimagesize($filePath);
+
+		$image_p = imagecreatetruecolor($width, $height);
+
+		switch($suffix){
+			case 1: $image = imagecreatefromgif($filePath); break;
+			case 2: $image = imagecreatefromjpeg($filePath);break;
+			case 3: $image = imagecreatefrompng($filePath); break;
+		}
+		
+		imagecopyresized($image_p, $image, 0, 0, 0, 0, $width, $height, $width, $height);
+
+		switch($suffix){
+			case 1: imagegif($image_p,$filePath); break;
+			case 2: imagejpeg($image_p,$filePath,50);break;
+			case 3: imagepng($image_p,$filePath); break;
+		}
 
 	}
 	
