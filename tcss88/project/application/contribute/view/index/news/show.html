@@ -1,0 +1,27 @@
+{extend name="public:index" /}
+
+{block name="title"}红书汇-{$news->title}{/block}
+
+
+{block name="main"}
+<div class="container" style="width: 992px">
+    <div class="news-penl">
+        <h2>{$news->title}</h2>
+        <p class="desc">
+            <span>时间：{:date('Y-m-d H:i',$news->update_time)}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>作者：{$news->admin->name}</span>
+        </p>
+        <div class="center" style="margin:0 50px;">
+            {$news->content}
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+
+{/block}

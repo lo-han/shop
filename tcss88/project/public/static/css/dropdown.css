@@ -1,0 +1,71 @@
+
+.treebox{
+	width: 250px; 
+	margin: 0 auto; 
+	background-color:white; 
+	}
+.menu{ 
+	overflow: hidden; 
+	border: none;	
+ }
+/*第一层*/
+.menu li.level1>a{ 
+	display:block;
+	height: 45px;
+	width: 220px;
+	line-height: 45px;
+	color: black;
+	background-color: #f3f3f3;
+	/*font-size: 16px;*/
+	margin: 0 auto;
+	margin-top: 25px;
+	text-align: center;
+	border-radius: 110px;
+ }
+ .menu li.level1>a:hover{
+ 	 text-decoration: none;
+ 	 background-color:#e83451;
+ 	 color: white;  
+ }
+ .menu li.level1>a.current{
+ 	text-decoration: none;
+ 	 background-color:#e83451;
+ 	 color: white; 
+ }
+
+/*============修饰图标*/
+ .ico1,.ico2,.ico3,.ico4,.ico5{
+ 	width: 20px; 
+ 	height: 20px;
+ 	margin-right: 10px;   
+ }
+.arrow1,.arrow2,.arrow3,.arrow4{
+	width: 15px;
+	height: 15px;
+	margin-left: 40px;
+}
+
+ /*第二层*/
+ .menu li ul{ 
+ 	overflow: hidden; 
+}
+ .menu li ul.level2{ 
+ 	display: none; 
+}
+ .menu li ul.level2 li a{
+ 	display: block;
+	height: 40px;
+	width: 220px;
+	margin: 0 auto;
+	margin-top: 10px;
+	line-height: 40px;
+	color: black;
+	font-size: 15px;
+	border-radius: 20px;
+ }
+ .addIco{
+ 	width: 15px;
+ 	height: 15px;
+ 	margin-left: 50px;
+ 	margin-right: 10px;
+ }

@@ -1,0 +1,149 @@
+﻿{extend name="public:index" /}
+
+{block name="title"}红书汇-都市情感小说基地-免费小说-{$book->title}{/block}
+
+{block name="wrapper"}class="wrapper" style="padding-bottom:100px;"{/block}
+
+{block name="main"}
+<!--作品页内容-->
+<div class="comic-detail-page-wrp">
+	<div class="container comic-detail-page-container">
+		<div class="two-column-r-layout clear">
+			<div class="left-r-column">
+				<div class="comic-detail-page-cover"><img src="{:imagePath(['table'=>'book','category'=>'cover'],$book->cover)}"></div>
+				<div class="authors">
+					<div class="author-info">
+						<div class="author-info-avatar"><img src="{:imagePath(['table'=>'user','category'=>'image'],$user->image)}"></div>
+						<div class="author-info-title">{$user->pen_name}</div>
+						<div class="author-info-desc">
+							{$user->description}
+						</div>
+					</div>
+				</div>
+				<div class="recent-comic-list-wrp">
+					<h3>相关更新作品</h3>
+					<ul class="recent-comic-list clear">
+						{volist name="moreBook" id="data" }
+						<li>
+							<a href="{:url("HomeBookShow",['id'=>$data->id])}" class="recent-comic-item">
+								<div class="recent-comic-cover"><img src="{:imagePath(['table'=>'book','category'=>'cover'],$data->cover)}" alt="{$data->title}"></div>
+								<span class="recent-comic-title">{$data->title}</span>
+								<span class="recent-comic-about">{$data->description}</span>
+							</a>
+						</li>
+						{/volist}
+					</ul>
+				</div>
+			</div>
+			<div class="right-r-column clearfix">
+				<div class="comic-detail-page clear">
+					<h2 class="comic-detail-page-title">
+						<span>《{$book->title}》</span>
+						<span class="comic-detail-page-date">最近更新: {:date("Y-m-d",$book->update_time)}</span>
+					</h2>
+					<div class="comic-author">
+						<span class="author">作者:{$book->user->pen_name}</span>
+						<span class="author">制作人 :{if condition="!empty($book->admin)"}{$book->admin->name}{/if}</span>
+						<span class="author">类型 :{$book->category->title}</span>
+						<span class="author">进度 :{:config("book.status")[$book->status]}</span>
+						<span class="author">字数 :{:numberUnit($book->char_number)}</span>
+						<span class="author">版权 :{:config("book.copyright")[$book->copyright]}</span>
+					</div>
+					<div class="comic-detail-page-desc">
+						<span class="label">关于：</span>
+						<span class="comic-desc">{$book->description}</span>
+					</div>
+				</div>
+				<div class="zjlb">
+					<h2>章节列表：</h2>
+					<div class="lbnr">
+						<div class="lbnrc">
+							<!-- <a href="" class="nr active">第1章</a>
+							<a href="" class="nr">第2章</a>
+							<a href="" class="nr">第3章</a>
+							<a href="" class="nr">第4章</a>
+							<a href="" class="nr">第5章</a>
+							<a href="" class="nr">第6章</a>
+							<a href="" class="nr">第7章</a>
+							<a href="" class="nr">第8章</a>
+							<a href="" class="nr">第9章</a>
+							<a href="" class="nr">第10章</a>
+							<a href="" class="nr">第11章</a>
+							<a href="" class="nr">第12章</a>
+							<a href="" class="nr">第13章</a>
+							<a href="" class="nr">第14章</a>
+							<a href="" class="nr">第15章</a>
+							<a href="" class="nr">第16章</a>
+							<a href="" class="nr">第17章</a>
+							<a href="" class="nr">第18章</a>
+							<a href="" class="nr">第19章</a>
+							<a href="" class="nr">第20章</a> -->
+						</div>
+						<a class="gd"><span>更多&nbsp;<i class="layui-icon" id="xia">&#xe61a;</i><i class="layui-icon" id="shang" style="display:none;">&#xe619;</i></span></a>
+					</div>
+					
+				</div>
+				<div class="zjlb">
+					<h2 style="margin-top: 50px;">已授权渠道：</h2>
+					<p class="sqqd">除下列展示的渠道之外，其它站的内容均为盗版。</p>
+					<div class="qqnr">
+						{volist name="place" id="data"}
+						<a href="{$data->url}" class="nrct">
+							<p><img src="{:imagePath(['table'=>'place','category'=>'image'],$data->image)}"></p>
+							<span>{$data->name}</span>
+						</a>
+						{/volist}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+	<script>
+		var degree = 1;	//全局的加载次数
+		/*作品页更多显示效果-start*/
+		$(document).ready(function(){
+		  	getSection(0);
+		  	$(".gd").click(function(){
+		    	getSection(degree);
+		    	degree++;
+		  	});
+		});
+		/*作品页更多显示效果-end*/
+
+		function getSection(degree){
+
+			$.post('{:url("AjaxGetSection",['book_id'=>$book->id])}',{degree:degree},function (jsonnr){
+
+				if(jsonnr.code == 1){
+			    	var i, x="";
+			    	for (i in jsonnr.data) {
+
+			    		if(jsonnr.data[i].attr == 1){
+			    			x += "<a class='nr' href='" + jsonnr.data[i].url + "'>" + jsonnr.data[i].title + "</a>"; 
+			    		}else{
+			    			x += "<a class='nr' href='" + jsonnr.data[i].url + "'>" + jsonnr.data[i].title + "</a>"; 
+			    			//x += "<a class='nr' href='javascript:alert(\"请通过下方渠道观看收费章节\");'>" + jsonnr.data[i].title + "</a>"; 
+			    		}
+					    
+					}
+
+					if(jsonnr.data.length < 20){
+						$(".lbnr .gd").remove();
+					}
+			    	$(".lbnrc").append(x);
+			    }else if(jsonnr.code == 0){
+			    	$(".lbnr .gd").remove();
+			    }
+			});
+
+		}
+	</script>
+{/block}

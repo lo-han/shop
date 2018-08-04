@@ -1,0 +1,42 @@
+{extend name="public:index" /}
+
+{block name="main"}
+	<!-- html 主要内容 -->
+	<div class="Dtcon">
+		<div class="cons">
+			<div class="dh">
+				<a href="{:url('Home')}">红书汇首页&nbsp;></a>
+				<a href="{:url('HomeBookShow',['id'=>$section->book->id])}">{$section->book->title}&nbsp;</a>
+			</div>
+			<div class="chapter">
+				<h1>{$section->title}</h1>
+				<div class="info">
+					作者：{$section->user->pen_name}
+					<span class="divide">|</span>
+					发布时间：{:date('Y-m-d H:i',$section->create_time)}
+					<span class="divide">|</span>
+					字数：{:numberUnit($section->char)} 
+				</div>
+				<div class="page-body">
+					<div class="page-content">
+						{$section->content}
+					</div>
+					<div class="article-page2">
+						<a {if condition="$prev"}href="{:url('HomeSectionShow',['id'=>$prev->id])}"{/if} class="pre">上一章</a>
+						<a href="{:url('HomeBookShow',['id'=>$section->book->id])}" class="back">返回目录</a>
+						<a {if condition="$next"}href="{:url('HomeSectionShow',['id'=>$next->id])}"{/if} class="next">下一章</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+
+{/block}

@@ -1,0 +1,171 @@
+{extend name="public:user" /}
+
+{block name="main"}
+<!--内容部分-->
+<div class="right-content">
+	<div class="content">
+		<div class="cndh"><i class="layui-icon">&#xe705;</i>&nbsp;作家投稿平台&nbsp;>&nbsp;信息编辑</div>
+	</div>
+	<div class="cont">
+
+		<div class="workstep">
+			<form class="layui-form" method="post" action="{:url('AdminUserEdit',['id'=>$data.id])}"> 
+
+				<input type="hidden" id="id" name="id" value="{$data.id}" />
+				<input type="hidden" id="image" name="image" value="{if condition="!empty($data.image)"}{$data.image}{/if}" />
+			  <!-- <div class="layui-form-item">
+			    <label class="layui-form-label">用户名：</label>
+			    <div class="layui-input-block">
+			      <input type="text" name="name" lay-verify="required" placeholder="请输入书名" autocomplete="off" class="layui-input">
+			    </div>
+			    <label class="tsyy">用户名不能为空！！</label>
+			  </div>
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">密码：</label>
+			    <div class="layui-input-block">
+			      <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+			    </div>
+			    <label class="tsyy">密码不能为空！！</label>
+			  </div>
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">笔名：</label>
+			    <div class="layui-input-block">
+			      <input type="text" name="pen_name" lay-verify="required" placeholder="请输入书名" autocomplete="off" class="layui-input">
+			    </div>
+			    <label class="tsyy">笔名不能为空！！</label>
+			  </div>-->
+			  <div class="info_content_01_right">
+			  	<label class="layui-form-label ">作者头像：</label>
+				<div class="layui-upload">
+					<div class="layui-upload-list">
+					    <img class="layui-upload-img" id="author_icon" {if condition="isset($data.id) && !empty($data.image)"}src="{:imagePath(['table'=>'user','category'=>'image'],$data.image)}"{/if} style="height:108px; {if condition="empty($data.image)"}display:none;{/if}">
+					    <p id="demoText"></p>
+					 </div>
+				  <button type="button" class="layui-btn" id="change_photo">上传图片</button>						  
+				</div>
+			  </div> 
+
+			  <div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">作者简介：</label>
+			    <div class="layui-input-block">
+			      <textarea name="description" lay-verify="description" placeholder="请输入内容，20-100字" class="layui-textarea">{if condition="!empty($data.description)"}{$data.description}{/if}</textarea>
+			    </div>
+			    {if condition="isset($error.description)"}
+			    <label class="tsyy" style="margin-left:110px;">{$error.description}</label>
+			    {/if}
+			  </div> 
+				
+			<!-- 提供管理员使用 -->
+			{if condition="session('admin.role') == 1"}
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="padding-left:0;">制作人：</label>
+			    <div class="layui-input-block">
+			      <select name="admin_id">
+			        <option value=""></option>
+			        {volist name="admins" id="admin"}
+			        <option {if condition="isset($data.admin_id) AND $admin->id == $data.admin_id"}selected{/if} value="{$admin->id}">{$admin->name}</option>
+			        {/volist}
+			      </select>
+			    </div>
+			</div>
+			{/if}
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" lay-submit lay-filter="*">保存</button>
+			      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+			    </div>
+			</div>
+			  
+			</form>
+		</div>
+	</div>
+</div>
+{/block}
+
+<!-- 管理员后台不需要左侧导航 -->
+{block name="left"}{/block}
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+	<script type="text/javascript" src="{:asset('/static/js/tab.js')}"></script>
+	<script>
+		layui.use('layer', function(){
+		  var layer = layui.layer;
+		  $('#addTag').on('click', function(){
+		    layer.open({
+		      type: 1,
+		      title :false,
+		      area: ['300px', '324px'],
+		      shade: [0.7, '#000'],
+		      closeBtn:1,
+		      shadeClose: true, //点击遮罩关闭
+		      content: $('#tcAdd')
+		    });
+		  });
+		});   
+		layui.use('upload', function(){
+			  var $ = layui.jquery,
+			  upload = layui.upload; 
+			  //普通图片上传
+			  var uploadInst = upload.render({
+			    elem: '#change_photo',
+			    url: '{:url('ImageUpload',['table' => 'user','category' => 'image'])}',
+			    before: function(obj){
+			      //预读本地文件示例，不支持ie8
+			      obj.preview(function(index, file, result){
+			      	$('#author_icon').show(); 
+			        $('#author_icon').attr('src', result); //图片链接（base64）
+			      });
+			    },
+			    done: function(res){
+			      //如果上传失败
+			      if(res.code == 0){
+			      	fileError(uploadInst);
+			        return layer.msg(res.msg);
+			      }
+			      $("#image").val(res.msg);
+			      $("#demoText").html(" ");
+			      //上传成功
+			    },
+			    error: function(){
+			      //演示失败状态，并实现重传
+			      fileError(uploadInst);
+			    }
+			  });
+			});
+		//
+		layui.use('element', function(){
+		  var element = layui.element;
+		  
+		  //…
+		});
+
+		layui.use('form', function(){
+		  var form = layui.form;
+
+		  form.verify({
+				description: function(value, item){ //value：表单的值、item：表单的DOM对象
+					if( value.length != 0 && (value.length < 20 || value.length > 100) ){
+					    return '简介必须在20-100字内';
+					}
+				}
+			});  
+
+
+		});
+
+		function fileError(uploadInst){
+			var demoText = $('#demoText');
+	      	demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+	      	demoText.find('.demo-reload').on('click', function(){
+	        	uploadInst.upload();
+	      	});
+		}
+
+	</script>
+{/block}
+	
+</html>
