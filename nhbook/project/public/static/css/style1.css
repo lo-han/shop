@@ -1711,6 +1711,7 @@ footer .logo-grey {
 }
 
 .book-list .introduce .author {
+    height:25px;
     color: #a9a9a9;
     font-size: 14px;
     line-height: 25px;
