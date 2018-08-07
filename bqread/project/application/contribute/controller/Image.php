@@ -107,8 +107,13 @@ class Image extends Common
 		list($width,$height,$suffix) = getimagesize($filePath);
 
 		$image_p = imagecreatetruecolor($width, $height);
-		$image = imagecreatefromjpeg($filePath);
 
+		switch($suffix){
+			case 1: $image = imagecreatefromgif($filePath); break;
+			case 2: $image = imagecreatefromjpeg($filePath);break;
+			case 3: $image = imagecreatefrompng($filePath); break;
+		}
+		
 		imagecopyresized($image_p, $image, 0, 0, 0, 0, $width, $height, $width, $height);
 
 		switch($suffix){
