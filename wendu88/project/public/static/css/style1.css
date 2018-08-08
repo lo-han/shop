@@ -291,7 +291,7 @@ display: block;margin: 40px auto 0;background: url(../img/nhlogo2.png) 50% no-re
 .Dtcon .cons .chapter .divide{margin: 0 5px; color: #afafaf;}
 .Dtcon .cons .chapter .page-body{min-height: 800px; overflow: hidden;}
 .Dtcon .cons .chapter .page-content{padding: 20px 15px 0; margin: 20px 8% 30px;user-select: none;}
-.Dtcon .cons .chapter .page-content p{line-height: 28px; padding-bottom: 24px;font-size: 16px;color: #333; word-break: break-all; word-wrap: break-word;}
+.Dtcon .cons .chapter .page-content p{line-height: 28px; padding-bottom: 24px;font-size: 16px;color: #333; word-break: break-all; word-wrap: break-word;text-indent: 2em;}
 .Dtcon .cons .chapter .article-page2{text-align: center;overflow: hidden; margin: 10px auto 50px;}
 .Dtcon .cons .chapter .article-page2 a{display: inline-block; height: 37px; padding: 6px 0;font-size: 16px; font-family: Microsoft YaHei;background: url(../img/readbar.png) no-repeat;text-decoration: none;}
 .Dtcon .cons .chapter .article-page2 a:hover{color: #e84c64;}

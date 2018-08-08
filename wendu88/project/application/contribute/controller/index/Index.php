@@ -19,11 +19,13 @@ class Index extends Common
 {
 
 	//首页
-	public function index(){
+	public function index(Book $book){
 
 		$advert = (new Advert)->homeMark();
 		$mark = (new Mark)->homeMark();
+		$newBook = $book->bookGet(['check'=>1],10);
 
+		$this->assign('newBook',$newBook);
 		$this->assign('advert',$advert);
 		$this->assign('mark',$mark);
 		return $this->fetch();

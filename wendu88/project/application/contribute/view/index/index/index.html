@@ -219,7 +219,7 @@
       <div class="boxbk hotbook">
         <div class="tit-1">
           <h3>
-            <i class="icon icon-hotbook"></i>短篇专区</h3>
+            <i class="icon icon-hotbook"></i>大神专栏</h3>
         </div>
         <div class="box-content h-48">
 
@@ -305,8 +305,6 @@
   </div>
   <!--pt-3 end-->
 
-
-
   <div class="boxbk mt-3 clearfix">
     <div class="tit-1">
       <h3>
@@ -323,7 +321,7 @@
         </dt>
 
 
-        {foreach $mark.home_book_newest->bookGet(10) as $key=>$book}
+        {foreach $newBook as $key=>$book}
 
         <dd class="clearfix">
           <span class="col-xs-2">{$book->category->title}</span>
@@ -346,6 +344,7 @@
     </div>
     <!--box-content end-->
   </div>
+
   <!--boxbk end-->
   <div class="boxbk mt-3 clearfix">
     <div class="tit-1">

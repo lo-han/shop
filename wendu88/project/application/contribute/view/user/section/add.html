@@ -94,12 +94,11 @@
 		layui.use('form', function(){
 		  var form = layui.form;
 
-		  form.verify({
+		  	form.verify({
 				title: function(value, item){ //value：表单的值、item：表单的DOM对象
 					if(value == ''){
 					    return '章节标题不能为空';
 					}
-					
 				}
 				,attr: function(value, item){ //value：表单的值、item：表单的DOM对象
 					if(value == ''){
@@ -107,7 +106,12 @@
 					}
 				}
 			});   
-		  
+
+			form.on('submit(*)', function(data){
+				var content = UE.getEditor('editor').getPlainTxt();
+				content ='<p>'+ content.replace(/\n*$/g,'').replace(/\n/g,'</p> <p>')+'</ p>';
+				$(data.form).find("[name='content']").val(content);
+			});
 		});
 		function cal_words(){
 		  var length = document.getElementById("test").value.length;
