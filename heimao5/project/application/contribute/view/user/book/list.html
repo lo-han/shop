@@ -1,0 +1,102 @@
+{extend name="public:user" /}
+
+{block name="main"}
+	<!--内容部分-->
+	<div class="right-content">
+		<div class="content">
+			<div class="cndh"><i class="layui-icon">&#xe705;</i>&nbsp;作家投稿平台&nbsp;>&nbsp;书籍管理</div>
+			<a class="tjsb" href="{:url('UserBookAdd')}" target="_blank">
+				<i class="layui-icon">&#xe654;</i>添加作品
+			</a>
+		</div>
+		
+		<div class="tjsbnr">
+			<div class="tables" style="overflow:hidden;">
+				<div class="nrbt">
+					<div class="p1" style="text-align:left;padding-left:15px;">书名</div>
+					<div class="p2">最新章节</div>
+					<div class="p3">状态</div>
+					<div class="Shen">审核状态</div>
+					<div class="p4">版权</div>
+					<div class="p5">操作</div>
+				</div>
+				<div class="nr">
+					{volist name="list" id="vo" mod="2" }
+					<div class="yh" {eq name="mod" value="1"}style="background:none;"{/eq} >
+						<div class="p1">
+							<div class="book">
+								<p>
+									<img src="{:imagePath(['table'=>'book','category'=>'cover'],$vo->cover)}">
+									<!-- <img src="{:url('Image',['table'=>'book','category'=>'cover','id'=>$vo->id])}"> -->
+								</p>
+								<span title="{$vo.title}"><a href="{:url('HomeBookShow',['id'=>$vo->id])}" target="_blank">{$vo->title}</a></span>
+							</div>
+						</div>
+						<div class="p2">
+							<div class="zxzj">
+								{if condition="!empty(bookSectionNewest($vo->id)->title)"}
+								<span title="{:bookSectionNewest($vo->id)->title}">{:bookSectionNewest($vo->id)->title}</span>
+								<span>{:date('Y-m-d H:i',bookSectionNewest($vo->id)->create_time)}</span>
+								{else /}
+								<span style="color:red;margin-top:12px;">您还没有编写章节</span>
+								{/if}
+							</div>
+						</div>
+						<div class="p3">
+							<div class="lz">
+								{:config('book.status')[$vo->status]}
+							</div>
+						</div>
+						<div class="Shen">
+							<div class="sh">{:config('check.' . $vo->check)}</div>
+						</div>
+						<div class="p4">
+							<div class="bq">
+								{:config('book.copyright')[$vo->copyright]}
+							</div>
+						</div>
+						<div class="p5">
+							<div class="cz">
+								{if condition="$vo->check === 0"}
+								<a href="{:url('UserBookEdit',['id'=>$vo.id])}" >编辑作品</a>
+								{/if}
+								<a href="{:url('UserSectionAdd',['book_id'=>$vo.id])}" >添加章节</a>
+								<a href="{:url('UserSctionList',['book_id'=>$vo.id])}">章节目录</a>
+				
+							</div>
+						</div>
+					</div>
+					{/volist}
+				</div>
+			</div>
+			
+		</div>
+		<div class="fyxs">
+			<div id="test1">{$list->render()}</div>
+		</div>
+	</div>
+{/block}
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+	<!-- <script type="text/javascript" src="{:asset('/static/js/main.js')}"></script> -->
+	<script>
+		/*删除*/
+		var cns=document.getElementsByClassName('del');
+		for(var i=0;i<cns.length;i++){
+			cns[i].onclick=function(){
+				//this.parentNode.parentNode.parentNode.parentNode.removeChild(this);
+				var obj=this.parentNode.parentNode.parentNode;
+				obj.parentNode.removeChild(obj);
+			}
+		}
+		
+
+		
+
+	</script>
+{/block}
+

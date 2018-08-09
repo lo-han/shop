@@ -1,0 +1,255 @@
+{extend name="public:admin" /}
+
+{block name="main"}
+<!--内容部分-->
+<div class="right-content">
+	<div class="content">
+		<div class="cndh"><i class="layui-icon">&#xe705;</i>&nbsp;作家投稿平台&nbsp;>&nbsp;信息编辑</div>
+	</div>
+	<div class="cont">
+
+		<div class="workstep zzrym">
+			<form class="layui-form" method="post" action="{:url('AdminMakerAdd')}"> 
+				{if condition="isset($data.id)"}
+				<input type="hidden" id="id" name="id" value="{$data.id}" />
+				{/if}
+				<input type="hidden" id="image" name="image" value="{if condition="!empty($data.image)"}{$data.image}{/if}" />
+				<input type="hidden" id="wechar_qrcode" name="wechar_qrcode" value="{if condition="!empty($data.wechar_qrcode)"}{$data.wechar_qrcode}{/if}" />
+			   <div class="layui-form-item">
+			    <label class="layui-form-label">用户名：</label>
+			    <div class="layui-input-block">
+			      <input type="text" name="name" lay-verify="name" placeholder="请输入用户名" autocomplete="off" class="layui-input" value="{if condition="!empty($data.name)"}{$data.name}{/if}">
+			    </div>
+			    {if condition="isset($error.name)"}
+			    <label class="tsyy">{$error.name}</label>
+			    {/if}
+			  </div>
+			   <div class="layui-form-item">
+			    <label class="layui-form-label">账号：</label>
+			    <div class="layui-input-block">
+			      <input type="text" name="account" lay-verify="account" placeholder="请输入用户名" autocomplete="off" class="layui-input" value="{if condition="!empty($data.account)"}{$data.account}{/if}">
+			    </div>
+			    {if condition="isset($error.account)"}
+			    <label class="tsyy">{$error.account}</label>
+			    {/if}
+			  </div>
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">密码：</label>
+			    <div class="layui-input-block">
+			      <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">QQ：</label>
+			    <div class="layui-input-block">
+			      <input type="text" name="qq" lay-verify="qq" placeholder="请输入qq" autocomplete="off" class="layui-input" value="{if condition="!empty($data.qq)"}{$data.qq}{/if}">
+			    </div>
+			  </div>
+
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">邮箱：</label>
+			    <div class="layui-input-block">
+			      <input type="text" name="email" lay-verify="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input" value="{if condition="!empty($data.email)"}{$data.email}{/if}">
+			    </div>
+			    {if condition="isset($error.email)"}
+			    <label class="tsyy">{$error.email}</label>
+			    {/if}
+			  </div>
+
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">方向：</label>
+			    <div class="layui-input-block">
+			      <input type="text" name="direction" lay-verify="direction" placeholder="内涵,男频 (逗号请用英文格式)" autocomplete="off" class="layui-input" value="{if condition="!empty($data.direction)"}{$data.direction}{/if}">
+			    </div>
+			  </div>
+
+			  <div class="info_content_01_right">
+			  	<label class="layui-form-label ">头像：</label>
+				<div class="layui-upload">
+					<div class="layui-upload-list sctpnr">
+					    <img class="layui-upload-img" id="image-up" {if condition="isset($data.id) && !empty($data.image)"}src="{:imagePath(['table'=>'admin','category'=>'image'],$data.image)}"{/if} style="height:108px; {if condition="empty($data.image)"}display:none;{/if}">
+					    <p id="image-demoText"></p>
+					 </div>
+				  <button type="button" class="layui-btn scbtn" id="image-change">上传图片</button>						  
+				</div>
+			  </div> 
+
+			  <div class="info_content_01_right">
+			  	<label class="layui-form-label ">二维码图片：</label>
+				<div class="layui-upload">
+					<div class="layui-upload-list sctpnr">
+					    <img class="layui-upload-img" id="wechar-up" {if condition="isset($data.id) && !empty($data.wechar_qrcode)"}src="{:imagePath(['table'=>'admin','category'=>'wechar_qrcode'],$data.wechar_qrcode)}"{/if} style="height:108px; {if condition="empty($data.wechar_qrcode)"}display:none;{/if}">
+					    <p id="wechar-demoText"></p>
+					 </div>
+				  <button type="button" class="layui-btn scbtn" id="wechar-change">上传图片</button>						  
+				</div>
+			  </div>  
+
+			  <div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">制作人简介：</label>
+			    <div class="layui-input-block">
+			      <textarea name="description" lay-verify="description" placeholder="请输入内容，20-100字" class="layui-textarea">{if condition="!empty($data.description)"}{$data.description}{/if}</textarea>
+			    </div>
+			    {if condition="isset($error.description)"}
+			    <label class="tsyy" style="margin-left:110px;">{$error.description}</label>
+			    {/if}
+			  </div> 
+
+			  <!-- 提供管理员使用 -->
+			{if condition="session('admin.role') == 1 && ( isset($data.id) && $data.id !== 1)"}
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="padding-left:0;">类型：</label>
+			    <div class="layui-input-block">
+			      <select name="role">
+			        {volist name="role" id="r"}
+			        <option {if condition="isset($data.role) AND $key == $data.role"}selected{/if} value="{$key}">{$r}</option>
+			        {/volist}
+			      </select>
+			    </div>
+			</div>
+
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="padding-left:0;">状态：</label>
+			    <div class="layui-input-block">
+			      <select name="status">
+			        <option {if condition="isset($data.status) && $data.status == 0"}selected{/if} value="0">未审核</option>
+			        <option {if condition="isset($data.status) && $data.status == 1"}selected{/if} value="1">已审核</option>
+			      </select>
+			    </div>
+			</div>
+			{/if}
+				
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" lay-submit lay-filter="*">保存</button>
+			      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+			    </div>
+			</div>
+			  
+			</form>
+		</div>
+	</div>
+</div>
+{/block}
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+	<script>
+		layui.use('upload', function(){
+			var $ = layui.jquery,
+			upload = layui.upload; 
+			//普通图片上传
+			var uploadInst = upload.render({
+			    elem: '#image-change',
+			    url: '{:url('ImageUpload',['table' => 'admin','category' => 'image'])}',
+			    before: function(obj){
+			      //预读本地文件示例，不支持ie8
+			      obj.preview(function(index, file, result){
+			      	$('#image-up').show(); 
+			        $('#image-up').attr('src', result); //图片链接（base64）
+			      });
+			    },
+			    done: function(res){
+			      //如果上传失败
+			      if(res.code == 0){
+			      	fileError(uploadInst,$("#image-demoText"));
+			        return layer.msg(res.msg);
+			      }
+			      $("#image").val(res.msg);
+			      $("#image-demoText").html(" ");
+			      //上传成功
+			    },
+			    error: function(){
+			      //演示失败状态，并实现重传
+			      fileError(uploadInst,$("#image-demoText"));
+			    }
+			});
+
+			//普通图片上传
+			var uploadInst = upload.render({
+			    elem: '#wechar-change',
+			    url: '{:url('ImageUpload',['table' => 'admin','category' => 'wechar_qrcode'])}',
+			    before: function(obj){
+			      //预读本地文件示例，不支持ie8
+			      obj.preview(function(index, file, result){
+			      	$('#wechar-up').show(); 
+			        $('#wechar-up').attr('src', result); //图片链接（base64）
+			      });
+			    },
+			    done: function(res){
+			      //如果上传失败
+			      if(res.code == 0){
+			      	fileError(uploadInst,$("#wechar-demoText"));
+			        return layer.msg(res.msg);
+			      }
+			      $("#wechar_qrcode").val(res.msg);
+			      $("#wechar-demoText").html(" ");
+			      //上传成功
+			    },
+			    error: function(){
+			      //演示失败状态，并实现重传
+			      fileError(uploadInst,$("#wechar-demoText"));
+			    }
+			});
+
+		});
+		//
+		layui.use('element', function(){
+		  var element = layui.element;
+		  
+		  //…
+		});
+
+		layui.use('form', function(){
+		  var form = layui.form;
+
+		  form.verify({
+		  		name: function(value, item){ //value：表单的值、item：表单的DOM对象
+		  			if( value == '' ){
+					    return '名称不能为空';
+					}
+					if( value.length > 10 ){
+					    return '名称不能大于10个字符';
+					}
+				}
+		  		,account: function(value, item){ //value：表单的值、item：表单的DOM对象
+					if( value == '' ){
+					    return '账户不能为空';
+					}
+					if( value.length > 20 ){
+					    return '账户不能大于20个字符';
+					}
+				}
+		  		,email: function(value, item){ //value：表单的值、item：表单的DOM对象
+					if( value.length != '' && ! /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(value) ){
+					    return '邮箱格式不正确';
+					}
+				}
+				,description: function(value, item){ //value：表单的值、item：表单的DOM对象
+					if( value.length != 0 && (value.length < 20 || value.length > 100) ){
+					    return '简介必须在20-100字内';
+					}
+				}
+				,role: function(value, item){ //value：表单的值、item：表单的DOM对象
+					if( value != 1 && value != 2 ){
+					    return '类型选择不正确';
+					}
+				}
+			});  
+
+		});
+
+		function fileError(uploadInst,demoText){
+	      	demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+	      	demoText.find('.demo-reload').on('click', function(){
+	        	uploadInst.upload();
+	      	});
+		}
+
+	</script>
+{/block}
+	
+</html>

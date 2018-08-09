@@ -1,0 +1,103 @@
+{extend name="public:admin" /}
+
+
+{block name="main"}
+<!--内容部分-->
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<form class="layui-form" action="{:url('AdminSection',['book_id' => $book_id])}" method="post">
+		  <div class="line1">
+		  	<div class="layui-form-item">
+			    <!-- <label class="layui-form-label">标题：</label> -->
+			    <div class="layui-input-block">
+			      <input type="text" name="title" required  placeholder="请输入章节标题" autocomplete="off" class="layui-input" value="{if condition="isset($search.title)"}{$search.title}{/if}" >
+			    </div>
+			</div>
+			<!-- <div class="layui-form-item">
+			    <label class="layui-form-label">书名：</label>
+			    <div class="layui-input-block">
+			      <input type="text" name="bookName" required  placeholder="请输入书名" autocomplete="off" class="layui-input" value="{if condition="isset($search.bookName)"}{$search.bookName}{/if}" >
+			    </div>
+			</div> -->
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+			      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+			    </div>
+			</div>
+			{if condition="isset($book_id) && session('admin.role') == 1"}
+			<div class="tjfl"><a class="delete-prompt" data-href="{:url('AdminSectionClearBook',['book_id' => $book_id])}" href="#">清空章节</a></div>
+			<div class="tjfl" style="margin-right:10px;">
+				<a href="{:url('AdminSectionExportBook',['book_id' => $book_id])}" target="_blank">章节导出</a>
+			</div>
+			{/if}
+		  </div>
+		</form>
+		<!--当前作品数-->
+		<div class="lbbg lbbg1">
+			<table style="margin-top:0;">
+				<tr>
+					<th width="5%">ID</th>
+					<th width="5%">序号</th>
+					<th class="lwxs">章节名称</th>
+					<th>书名</th>
+					<th>字数</th>
+					<th>是否收费</th>
+					<th>是否审核</th>
+					<th width="15%">更新时间</th>
+					<th>操作</th>
+				</tr>
+
+				{volist name="sections" id="section" mod="2" }
+				<tr {eq name="mod" value="0"}class="first"{/eq}>
+					<td>{$section->id}</td>
+					<td>{$section->sort}</td>
+					<td class="lwxs"><a target="_blank" href="{:url('HomeSectionShow',['id'=>$section->id])}">{$section->title}</td>
+					<td>{$section->book->title}</td>
+					<td>{:numberUnit($section->char)}</td>
+					<td>{:config("bookSection.attr")[$section->attr]}</td>
+					<td>{:config("check")[$section->check]}</td>
+					<td>{:date('Y-m-d H:i:s',$section->update_time)}</td>
+					<td>
+						{if condition="session('admin.role') == 1"}
+						<a class="delete-prompt" data-href="{:url('AdminSectionDelete',['book_id' => $section->book_id ,'id' => $section->id ])}" href="#">删除</a>
+						{/if}
+						<a href="{:url('AdminSectionEdit',['book_id' => $section->book_id ,'id' => $section->id ])}">修改</a>
+					</td>
+				</tr>
+				{/volist}
+			</table>
+			<div class="fyxs fyxs1">
+				<div id="test1">
+					<nav aria-label="Page navigation">
+					 	{$sections->render()}
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+	<script>
+		layui.use('element', function(){
+		  var form = layui.form;
+		  //监听提交
+		});
+		layui.use('form', function(){
+		  var form = layui.form;
+		  //监听提交
+		  form.on('submit(formDemo)', function(data){
+		   	$(".layui-form").submit();
+		    return false;
+		  });
+		});
+
+	</script>
+{/block}
