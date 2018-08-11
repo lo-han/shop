@@ -207,7 +207,14 @@ class Book extends Common
 			$user_id 	= BookModel::get($book_id)->user_id;	//用户ID
 			
 			$attrStart 	= $Request->post('attrStart');
-			$details = array_filter(explode("###",$Request->post('section')));
+
+			$section = $Request->post('section');
+			$pattern = "/##(\W+)##/Ui";
+			$replacement = '###$1';
+			$section = preg_replace($pattern, $replacement, $section);
+			
+			$details = array_filter(explode("###",$section));
+
 			$Request->request();
 			$i=1;
 			foreach($details as $key=>$val)

@@ -10,9 +10,9 @@ final class json{
 		return file_put_contents($path, json_encode($arr));
 	}
 
-	public function get()
+	public function get($path)
 	{
-
+		return json_decode(file_get_contents($path) , true);
 	}
 
 
