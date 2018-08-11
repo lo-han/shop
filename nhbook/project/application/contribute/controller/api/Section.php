@@ -39,8 +39,13 @@ class Section extends Common
 
 		$section->content = str_replace('</p>', "\n</p>", $section->content);	//格式完善 每一段添加\n
 		$section->content = strip_tags($section->content);	//清除html标签
-		$section->content = explode("\n",str_replace('&nbsp;','',$section->content));
-        $section->content = implode("\n",array_filter($section->content));
+		$section->content = explode("\n",str_replace(array('&nbsp;',"&#13;"),'',$section->content));
+        $section->content = implode(
+                "\n",
+                array_filter($section->content,function ($v,$k){
+                        return false !== (bool)trim($v,"　");
+                },ARRAY_FILTER_USE_BOTH)
+        );
 
 		$section->setAttr('attr',config('bookSection.attr')[$section->attr]);
 

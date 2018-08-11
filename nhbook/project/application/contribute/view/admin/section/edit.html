@@ -116,6 +116,12 @@
 					}
 				}
 			}); 
+
+		  	form.on('submit(*)', function(data){
+				var content = UE.getEditor('editor').getPlainTxt();
+				content ='<p>'+ content.replace(/\n*$/g,'').replace(/\n/g,'</p> <p>')+'</ p>';
+				$(data.form).find("[name='content']").val(content);
+			});
 		  
 		});
 		function cal_words(){
