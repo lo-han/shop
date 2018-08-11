@@ -190,6 +190,70 @@
 			  	</div>
 
 			  	<div class="layui-form-item right-body-margin">
+			  		<label class="layui-form-label"></label>
+				    <div class="input-block-left">
+				      	<input type="text" name="post[home_super_car_5][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_super_car_5)"}{$data.home_super_car_5.url}{/if}">
+				    </div>
+
+				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
+
+					<div class="input-block-left">
+				    	轮播大图：
+				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_5][big_image]" value="{if condition="isset($data.home_super_car_5)"}{$data.home_super_car_5.big_image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_5.big_image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_5.big_image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					{if condition="isset($data.home_super_car_5)"}
+			      	<input type="hidden" name="post[home_super_car_5][id]" value="{$data.home_super_car_5.id}" />
+			      	{/if}
+
+			  	</div>
+
+
+			  	<div class="layui-form-item right-body-margin">
+			  		<label class="layui-form-label"></label>
+				    <div class="input-block-left">
+				      	<input type="text" name="post[home_super_car_6][url]" lay-verify="title" placeholder="广告链接" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_super_car_6)"}{$data.home_super_car_6.url}{/if}">
+				    </div>
+
+				    <div class="input-block-left">&nbsp; —— &nbsp;</div>
+
+					<div class="input-block-left">
+				    	轮播大图：
+				    	<button type="button" class="advert-upload upload-action-big-image" >选择图片</button>
+					</div>
+
+					<div class="input-block-left">
+						<input type="hidden" name="post[home_super_car_6][big_image]" value="{if condition="isset($data.home_super_car_6)"}{$data.home_super_car_6.big_image}{/if}" />
+						<span class="layui-form-label" style="display: inline-table;" >
+							{if condition="!empty($data.home_super_car_6.big_image)"}
+							<a target="_blank" href='{:imagePath(['table'=>'advert','category'=>'big_image'],$data.home_super_car_6.big_image)}'>预览图片</a>
+							{/if}
+						</span>
+					</div>
+
+					{if condition="isset($data.home_super_car_6)"}
+			      	<input type="hidden" name="post[home_super_car_6][id]" value="{$data.home_super_car_6.id}" />
+			      	{/if}
+
+			  	</div>
+
+
+			  	<div class="layui-form-item right-body-margin">
 			  		<label class="layui-form-label">付费二维码</label>
 
 					<div class="input-block-left">
