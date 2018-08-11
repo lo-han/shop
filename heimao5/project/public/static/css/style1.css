@@ -110,7 +110,7 @@ display: block;margin: 40px auto 0;background: url(../img/nhlogo2.png) 50% no-re
 .ssgn .Input1{width: 100px;}
 .ssgn .Input2{width: 200px;}
 .ssgn .layui-input{height: 35px;line-height: normal;}
-.ssgn .layui-btn{height: 35px;line-height: 35px;padding: 0 20px;font-size: 12px;}
+.ssgn .layui-btn{height: 35px;line-height: 35px;padding: 0 20px;font-size: 12px;background-color:#ff6600 ;}
 .ssgn .cont1{padding-top:0px;}
 .ssgn .zpfy{width: 100%;text-align: center;}
 /* .ssgn .zpfy .qwwz{float: left;white-space: nowrap;color: #6a4849;}
