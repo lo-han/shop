@@ -1675,7 +1675,7 @@ a:hover {
 .top-box .top-list li {
   position: relative;
   min-height: 40px;
-  border-bottom: 1px #814d03 dashed;
+  border-bottom: 1px #c3c3c3 dashed;
   padding-left: 40px;
 }
 
@@ -1764,7 +1764,7 @@ a:hover {
 .index-page .p1-p-2 .tb {
   padding: 28px 0 36px 0;
   color: #333333;
-  border-bottom: #333333 1px dashed;
+  border-bottom: #c3c3c3 1px dashed;
 }
 
 .index-page .p1-p-2 ul {
@@ -1866,6 +1866,7 @@ a:hover {
   margin-bottom: 0;
 }
 .index-page .P2 .desc p {
+  margin-top: 5px;
   color: #b1b0af;
   font-size: 14px;
   width: 100%;
@@ -1972,13 +1973,13 @@ a:hover {
 .P4-p1 table th{
   font-size: 16px;
   line-height: 40px;
-  background: #e1e0e0;
+  background: #f1f1f1;
 }
 
 .P4-p1 table tbody tr{
   line-height: 30px;
-  background: #f6f6f6;
-  border-bottom: 2px #fff solid;
+  background: #fff;
+  border-bottom: 1px #f1f1f1 solid;
 }
 .index-page .container {
   min-height: 400px;

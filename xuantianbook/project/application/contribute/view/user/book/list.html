@@ -13,7 +13,8 @@
 		<div class="tjsbnr">
 			<div class="tables" style="overflow:hidden;">
 				<div class="nrbt">
-					<div class="p1" style="text-align:left;padding-left:15px;">书名</div>
+					<div class="p1" style="text-align:left;padding-left:15px;">封面</div>
+					<div class="title">书名</div>
 					<div class="p2">最新章节</div>
 					<div class="p3">状态</div>
 					<div class="Shen">审核状态</div>
@@ -27,18 +28,21 @@
 							<div class="book">
 								<p>
 									<img src="{:imagePath(['table'=>'book','category'=>'cover'],$vo->cover)}">
-									<!-- <img src="{:url('Image',['table'=>'book','category'=>'cover','id'=>$vo->id])}"> -->
 								</p>
-								<span title="{$vo.title}"><a href="{:url('HomeBookShow',['id'=>$vo->id])}" target="_blank">{$vo->title}</a></span>
+							</div>
+						</div>
+						<div class="title">
+							<div class="lz">
+								<a href="{:url('HomeBookShow',['id'=>$vo->id])}" target="_blank">{$vo->title}</a>
 							</div>
 						</div>
 						<div class="p2">
-							<div class="zxzj">
+							<div class="lz">
 								{if condition="!empty(bookSectionNewest($vo->id)->title)"}
 								<span title="{:bookSectionNewest($vo->id)->title}">{:bookSectionNewest($vo->id)->title}</span>
 								<span>{:date('Y-m-d H:i',bookSectionNewest($vo->id)->create_time)}</span>
 								{else /}
-								<span style="color:red;margin-top:12px;">您还没有编写章节</span>
+								<span style="margin-top:12px;">您还没有编写章节</span>
 								{/if}
 							</div>
 						</div>
