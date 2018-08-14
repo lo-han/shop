@@ -13,6 +13,8 @@ use \app\contribute\model\Tag;
 use \app\contribute\model\TagRelation;
 use \app\contribute\model\PlaceRelation;
 use \app\contribute\model\Place;
+use PHPExcel_IOFactory;
+use PHPExcel;
 
 use \think\Request;
 use \think\Db;
@@ -166,12 +168,6 @@ class Book extends Common
 				}
 			}
 
-			if(!isset($error['cover'])){
-				
-				$error['cover'] = "请重新上传图片";	
-
-			}	//只要验证没通过就必须重新上传图片
-
 			$this->assign('error',$error);
 			$this->assign('data',$Request->request());
 
@@ -195,6 +191,58 @@ class Book extends Common
 		return $this->fetch();
 	}
 
+	//书本添加
+	public function add(Request $Request,BookModel $book,Tag $tag,TagRelation $tagRelation,PlaceRelation $PlaceRelation){
+
+		$category 	= Category::getAll();
+		$admin 		= Admin::getAll();
+		$place 		= Place::getAll();
+		$user 		= User::getAll();
+
+		//通过是否有post 传输来进行添加数据
+		if($Request->ispost()){
+			
+			//书本的 （添加&验证）
+			if(true === $error = $this->Validate($Request->request(),$this->validateRule,$this->message,true)  ){
+				$error = [];	//错误变量 转换为数组
+
+				/**
+				 *	先对tag标签进行(验证&添加)
+				 */
+				$tags = $tag->tagPut(tag_explode( $Request->post('tags') ));	//添加tag标签并且验证
+				if( is_array($tags) ){
+						
+					if( $bookData = $book->upOrCreate($Request, $Request->post('user_id') ) ){
+
+						$tagRelation->createRelation(array_column($tags, 'id'),$bookData['id']);		//创建书籍和标签的关联
+
+						$PlaceRelation->createRelation( array_filter(explode(',',$Request->post('place'))) ,$bookData['id']);		//创建书籍和分销商的关联
+						$this->redirect(url('AdminBook'));	//书本添加成功返回列表页面
+
+					}else{
+						$error['error'] = '系统错误请重新尝试';
+					}
+
+				}else{
+					$error['tag'] = $tags;					
+				}
+			}
+
+			$this->assign('error',$error);
+			$this->assign('data',$Request->request());
+
+		}
+
+		$this->assign('formUrl',url('AdminBookAdd'));
+		$this->assign('category',$category);
+		$this->assign('admins',$admin);
+		$this->assign('places',$place);
+		$this->assign('users',$user);
+
+		return $this->fetch();
+	}
+
+
 
 	//书籍章节导入
 	public function lead(Request $Request,BookSection $section)
@@ -206,51 +254,49 @@ class Book extends Common
 			$book_id 	= $Request->route('id');	//书本ID
 			$user_id 	= BookModel::get($book_id)->user_id;	//用户ID
 			
-			$attrStart 	= $Request->post('attrStart');
-			$details = array_filter(explode("###",$Request->post('section')));
-			$Request->request();
-			$i=1;
-			foreach($details as $key=>$val)
+			$section = file_get_contents($Request->file('section')->getInfo('tmp_name'));
+			$section = iconv(mb_detect_encoding($section),'UTF-8',$section);
+			$size = $Request->post('size');
+
+			if( $Request->post('category') == 2 )
 			{
+				$details = $this->formattingSection($section,$size);
+			}else{
+				$details = array_filter(explode("###",$section));
+			}
 
-				$ct = [];
-				
-				foreach(explode("\n",$val) as $k=>$v )
+			//收费开始章节
+			$attrStart 	= $Request->post('attrStart');
+			
+			if( $Request->file('section')->checkExt('txt') )
+			{
+				$i=1;
+				foreach($details as $key=>$val)
 				{
-					if( $k == 0)
+					list($title,$content) = $this->chapterSplit($val);
+
+					$Request->attrSave('title',$title);
+					$Request->attrSave('content',$content);
+					
+					if($i > $attrStart)
 					{
-						$title = $v;
+						$Request->attrSave('attr',2);
+					}else{
+						$Request->attrSave('attr',1);
 					}
-					else
+
+					$i++;
+					
+					if( !$sectionData = (new BookSection)->upOrCreate($Request, $book_id , $user_id ) )
 					{
-						$ct[] = '<p>' . $v . '</p>';
+						$error['error'] = '<p>失败章节：' . $title . '</p>';
+						break;
 					}
-				}
-				
-				$content = implode("",$ct);
-
-				$Request->attrSave('title',$title);
-				$Request->attrSave('content',$content);
-				
-				if($i > $attrStart){
-					$Request->attrSave('attr',2);
-				}else{
-					$Request->attrSave('attr',1);
+		
 				}
 
-				/*if($i == 2){
-					$Request->attrSave('section',"1");
-					var_dump($Request->request(),$book_id , $user_id );exit;
-				}*/
-
-				$i++;
-				
-				if( !$sectionData = (new BookSection)->upOrCreate($Request, $book_id , $user_id ) )
-				{
-					$error['error'] .= '<p>失败章节：' . $title . '</p>';
-					break;
-				}
-	
+			}else{
+				$error['error'] = '<p>文件格式不正确</p>';
 			}
 
 			if( !isset($error) )
@@ -263,6 +309,51 @@ class Book extends Common
 		$this->assign('formUrl',url('AdminBookLead',['id'=>$Request->route('id')]));
 		return $this->fetch();
 
+	}
+
+	public function exportExcel()
+	{
+		$PHPExcel = new PHPExcel(); //实例化PHPExcel类，类似于在桌面上新建一个Excel表格
+		$PHPSheet = $PHPExcel->getActiveSheet(); //获得当前活动sheet的操作对象
+		$PHPSheet->setTitle('书单'); //给当前活动sheet设置名称
+		$PHPSheet->setCellValue('A1','ID')
+				->setCellValue('B1','书名')
+				->setCellValue('C1','书本简介')
+				->setCellValue('D1','作品类别')
+				->setCellValue('E1','授权类型')
+				->setCellValue('F1','是否连载')
+				->setCellValue('G1','总字数')
+				->setCellValue('H1','作者笔名');
+		//给当前活动sheet填充数据，数据填充是按顺序一行一行填充的，假如想给A1留空，可以直接setCellValue(‘A1’,’’);
+
+		$books = BookModel::checkBook()->select();
+		
+		foreach($books as $key=>$val)
+		{
+			$line = $key+2;
+			$PHPSheet->setCellValue('A'.$line,$val->id)
+					->setCellValue('B'.$line,$val->title)
+					->setCellValue('C'.$line,$val->description)
+					->setCellValue('D'.$line,$val->category->title)
+					->setCellValue(
+						'E'.$line,
+						config('book.copyright')[$val->copyright]
+					)
+					->setCellValue(
+						'F'.$line,
+						config('book.status')[$val->status]
+					)
+					->setCellValue('G'.$line,$val->char_number)
+					->setCellValue('H'.$line,$val->user->pen_name);
+		}
+		
+		$PHPWriter = PHPExcel_IOFactory::createWriter($PHPExcel,'Excel2007');//按照指定格式生成Excel文件，‘Excel2007’表示生成2007版本的xlsx，‘Excel5’表示生成2003版本Excel文件
+
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');//告诉浏览器输出07Excel文件
+		//header('Content-Type:application/vnd.ms-excel');//告诉浏览器将要输出Excel03版本文件
+        header('Content-Disposition: attachment;filename="bookinfo.xlsx"');//告诉浏览器输出浏览器名称
+        header('Cache-Control: max-age=0');//禁止缓存
+        $PHPWriter->save("php://output");
 	}
 
 
@@ -280,6 +371,67 @@ class Book extends Common
 		$book->destroy($id);
 
 		$this->redirect( $Request->server('HTTP_REFERER',url('AdminBook')) );
+	}
+
+	//章节标题内容分割
+	protected function chapterSplit($content)
+	{
+		$ct = [];
+		$chapterArr = array_filter(explode("\n",str_replace("\r", "", $content)));
+				
+		foreach($chapterArr as $k=>$v )
+		{
+			if( $k == 0)
+			{
+				$title = $v;
+			}
+			else
+			{
+				$ct[] = '<p>' . $v . '</p>';
+			}
+		}
+		
+		$content = implode("",$ct);
+
+		return [$title,$content];
+
+	}
+
+	//按字数格式化章节
+	protected function formattingSection($content,$size)
+	{
+		$chapterArr = array_filter(explode("\n",$content));
+		$chapterArrSet = [];
+
+		$data = []; 		//最总章节
+		$chapter = [];		//章节字符串储存
+		$statSize = 0;		//章节大小状态
+		foreach($chapterArr as $key=>$val)
+		{
+			if($statSize > $size)
+			{
+				$chapterArrSet[] = implode("\n",$chapter);
+
+				unset($chapter);
+				$chapter[] = $val;
+				$statSize = charNumber($val);
+			}else{
+				$chapter[] = $val;
+				$statSize += charNumber($val);
+
+				if($key == key(array_slice($chapterArr,-1,1,true)) )
+				{
+					$chapterArrSet[] = implode("\n",$chapter);					
+				}
+			}
+		}
+
+		foreach($chapterArrSet as $key=>$val)
+		{
+			$data[] = sprintf(config('section.default_title'),$key+1) . "\n" . $val ; //章节标题的预描述
+		}
+
+		return $data;
 	}
 
 

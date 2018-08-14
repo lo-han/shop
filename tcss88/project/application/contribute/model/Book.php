@@ -93,6 +93,17 @@ class Book extends Model
 
 	}
 
+	/**
+	 *	通过搜索获取书籍
+	 *	@param where (array) 搜索条件
+	 *	@param limit (int)   搜索条数
+	 *	@return  app\contribute\model\Book 书籍模型
+	 */
+
+	public static function checkBook(){
+		return self::where(['check'=>1]);
+	}
+
 
 	/**
 	 *	模型单项关联 TagRelation 表

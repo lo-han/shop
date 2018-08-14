@@ -89,7 +89,13 @@
 			    </div>
 			</div>
 			<div style="float:right;">
+				{if condition="session('admin.role') == 1"}
 		  		<div class="layui-input-block">
+			      <a class="layui-btn" href="{:url('AdminBookAdd')}">添加书籍</a>
+			      <a class="layui-btn" href="{:url('AdminBookExportExcel')}" target="_blank">书单导出</a>
+			    </div>
+			    {/if}
+			    <div class="layui-input-block">
 			      <button class="layui-btn" id="hongshuhui-gather">书本采集</button>
 			      <button class="layui-btn" id="hongshuhui-lead">书本导入</button>
 			    </div>

@@ -451,6 +451,9 @@ input#username{background: #0000;}
 .right-content1 .content .zxlbnr .layui-input-block{width: 300px;} 
 .right-content1 .content .zxlbnr .zxlbjs{width: 50%;} 
 .right-content1 .content .zxlbnr .layui-input-block .layui-btn{padding: 0 30px;}
+.right-content1 .content .zxlbnr input[type="file"]{text-indent:0;padding-left:10px;} 
+.right-content1 .content .zxlbnr .chapter-size{position:absolute;left:120px;top:0;display:none;} 
+
 .xzlx .annu7{float: left;width: 80px;height: 30px;background: url(../img/fabu1.png) -12px -77px;cursor: pointer;display: block;}
 .xzlx .annu8{float: left;width: 95px;height: 30px;background: url(../img/fabu1.png) -105px -77px;cursor: pointer;display: block;margin-left: 14px;}
 .xzlx .fbsqau7{background: url(../img/fabu2.png) -12px -77px;cursor: pointer;}

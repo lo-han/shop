@@ -40,7 +40,7 @@ return [
 	],
 
 	'section'	=> [
-		'default_title'	=> '第%d章：',	//章节的默认标题 采用sprintf 函数来输出
+		'default_title'	=> '第%d章',	//章节的默认标题 采用sprintf 函数来输出
 	],
 
 	'role'		=> [	//后台用户权限

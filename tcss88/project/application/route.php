@@ -114,6 +114,12 @@ Route::group('admin',function (){
 	//书本删除
 	Route::rule(['AdminBookDelete','book/delete/:id'],'contribute/admin.book/delete','post|get',[],['id'=>'[0-9]+']);
 
+	//书单导出
+	Route::rule(['AdminBookExportExcel','book/export/excel'],'contribute/admin.book/exportExcel','post|get');
+
+	//书单导出
+	Route::rule(['AdminBookAdd','book/add'],'contribute/admin.book/add','post|get');
+
 	//章节列表
 	Route::rule(['AdminSection','section/[:book_id]'],'contribute/admin.section/index','post|get',[],['book_id'=>'[0-9]+']);
 

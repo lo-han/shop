@@ -55,6 +55,10 @@ class User extends Model
 
 	}
 
+	public static function getAll(){
+		return self::order('id DESC')->cache(60)->select();
+	}
+
 	/**
 	 *	通过搜索获取书籍
 	 *	@param where (array) 搜索条件
