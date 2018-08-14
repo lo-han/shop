@@ -35,7 +35,7 @@ class Book extends Common
 		'category_id' 		=> 'require',
 		'title' 			=> 'require|max:50',
 		'cover' 			=> 'require',
-		'description' 		=> 'require|length:20,100',
+		'description' 		=> 'require|max:400',
 		'copyright' 		=> 'require|in:1,2',
 		'status' 			=> 'require|in:1,2',
 
@@ -48,7 +48,7 @@ class Book extends Common
 		'title.max' 		=> '您的书名超过了50字',
 		'cover' 			=> '必须上传封面图片',
 		'description.require' 		=> '必须填写简介',
-		'description.length'=> '简介必须在20-100字内',
+		'description.max' 	=> '您的简介超过了400字',
 		'copyright.require'	=> '授权类型未勾选！！',
 		'copyright.in' 		=> '您选择的类型有误',
 		'status.require' 	=> '状态未勾选！！',
@@ -209,7 +209,7 @@ class Book extends Common
 			$attrStart 	= $Request->post('attrStart');
 
 			$section = $Request->post('section');
-			$pattern = "/##(\W+)##/Ui";
+			$pattern = "/##(.*)##/Ui";
 			$replacement = '###$1';
 			$section = preg_replace($pattern, $replacement, $section);
 			

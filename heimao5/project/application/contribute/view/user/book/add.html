@@ -256,16 +256,8 @@
 					if(value == ''){
 					    return '请填写作品简介';
 					}
-					if(value.length < 20 || value.length > 100){
-					    return '作品简介请控制在20-100字内';
-					}
-				}
-				,description: function(value, item){ //value：表单的值、item：表单的DOM对象
-					if(value == ''){
-					    return '请填写作品简介';
-					}
-					if(value.length < 20 || value.length > 100){
-					    return '作品简介请控制在20-100字内';
+					if(value.length > 400){
+					    return '作品简介请控制在400字内';
 					}
 				}
 				,copyright: function(value, item){ //value：表单的值、item：表单的DOM对象
