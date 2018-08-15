@@ -1,5 +1,5 @@
 .idea
 composer.lock
 *.log
- ddxsbook/application/database.php
- ddxsbook/uploads
+application/database.php
+uploads/*

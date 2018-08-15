@@ -28,7 +28,7 @@ class Book extends Common
 
 		'category_id' 		=> 'require',
 		'title' 			=> 'require|max:50',
-		'cover' 			=> 'require',
+		//'cover' 			=> 'require',
 		'description' 		=> 'require|min:20|max:100',
 		'copyright' 		=> 'require|in:1,2',
 		'status' 			=> 'require|in:1,2',
@@ -40,7 +40,7 @@ class Book extends Common
 		'category_id' 		=> '必须选择类型',
 		'title.require' 	=> '必须填写书名',
 		'title.max' 		=> '您的书名超过了50字',
-		'cover' 			=> '必须上传封面图片',
+		//'cover' 			=> '必须上传封面图片',
 		'description.require' 		=> '必须填写简介',
 		'description.min' 	=> '简介不能少于20字',
 		'description.max' 	=> '您的简介超过了100字',
