@@ -26,9 +26,17 @@
 			    </div>
 			</div>
 			{if condition="isset($book_id) && session('admin.role') == 1"}
-			<div class="tjfl"><a class="delete-prompt" data-href="{:url('AdminSectionClearBook',['book_id' => $book_id])}" href="#">清空章节</a></div>
+			<div class="tjfl">
+				<a class="delete-prompt" data-href="{:url('AdminSectionClearBook',['book_id' => $book_id])}" href="#">清空章节</a>
+			</div>
 			<div class="tjfl" style="margin-right:10px;">
 				<a href="{:url('AdminSectionExportBook',['book_id' => $book_id])}" target="_blank">章节导出</a>
+			</div>
+			{/if}
+
+			{if condition="!isset($book_id)"}
+			<div class="tjfl">
+				<a id="chapter-check" data-href="{:url('AjaxCheckSection')}" data-check-class="check-all" href="#">审核</a>
 			</div>
 			{/if}
 		  </div>
@@ -37,6 +45,9 @@
 		<div class="lbbg lbbg1">
 			<table style="margin-top:0;">
 				<tr>
+					<th width="40px">
+						<input type="checkbox" id="check-all" data-check-class="check-all" />
+					</th>
 					<th width="5%">ID</th>
 					<th width="5%">序号</th>
 					<th class="lwxs">章节名称</th>
@@ -50,6 +61,9 @@
 
 				{volist name="sections" id="section" mod="2" }
 				<tr {eq name="mod" value="0"}class="first"{/eq}>
+					<td>
+						<input type="checkbox" class="check-all" value="{$section->id}" />
+					</td>
 					<td>{$section->id}</td>
 					<td>{$section->sort}</td>
 					<td class="lwxs"><a target="_blank" href="{:url('HomeSectionShow',['id'=>$section->id])}">{$section->title}</td>
@@ -97,6 +111,16 @@
 		   	$(".layui-form").submit();
 		    return false;
 		  });
+		});
+
+		$("#chapter-check").click(function (){
+			var check = Array();
+			$("."+$(this).data('check-class')+":checked").each(function () {
+	            check.push($(this).val())
+	        });
+			$.post($(this).data('href'),{id:check.join(",")},function(result){
+				window.location.reload();
+			});
 		});
 
 	</script>

@@ -178,6 +178,9 @@ Route::group('ajax',function (){
 
 	Route::post(['AjaxGetSection','get/section/:book_id'],'contribute/ajax/getSection',[],['book_id'=>'[0-9]+']);
 
+	//对应章节审核
+	Route::post(['AjaxCheckSection','check/section'],'contribute/ajax/checkSection');
+
 });
 
 

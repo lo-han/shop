@@ -49,5 +49,11 @@ class Ajax extends Common
 		
 	}
 
+	public function checkSection(Request $Request)
+	{
+		$update = BookSection::where('id','in',$Request->post('id'))->update(['check'=>1]);
+		return $this->jsonSuccess($update);
+	}
+
 
 }

@@ -79,5 +79,11 @@ $(function (){
           window.location.href = $(this).data("href");
         } 
     });
+
+    //复选框批量选择
+    $("#check-all").click(function (){
+      var checkClass = $(this).data('check-class');
+      $("."+checkClass).prop('checked',$(this).prop('checked'));
+    });
     
 });

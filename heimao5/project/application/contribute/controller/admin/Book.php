@@ -34,7 +34,7 @@ class Book extends Common
 
 		'category_id' 		=> 'require',
 		'title' 			=> 'require|max:50',
-		'cover' 			=> 'require',
+		//'cover' 			=> 'require',
 		'description' 		=> 'require|max:400',
 		'copyright' 		=> 'require|in:1,2',
 		'status' 			=> 'require|in:1,2',
