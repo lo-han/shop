@@ -1,0 +1,206 @@
+{extend name="public:user" /}
+
+
+{block name="main"}
+<!--登录-->
+<div class="login">
+	<div class="register-space"></div>
+	<!-- <div class="login-form">
+		<div class="login-form-header">
+			登录管理中心
+		</div>
+		<form class="layui-form" action="{:url('UserLogin')}" method="post">
+			<div class="login-account-div">
+				<label for="name">账户:</label>
+				&nbsp;&nbsp;<input type="text" id="name" name="name" lay-verify="name" placeholder="请输入账号" autofocus value="{if condition="isset($data.name)"}{$data.name}{/if}"/>
+				{if condition="isset($error.name)"}
+				<label for="name" class="tsy">{$error.name}</label>
+				{/if}
+				{if condition="isset($error.login)"}
+				<label for="name" class="tsy">{$error.login}</label>
+				{/if}
+			</div>
+			<div class="login-password-div">
+				<label for="password">密码:</label>
+				&nbsp;&nbsp;<input type="password" name="password" lay-verify="password" id="password" placeholder="请输入密码"/>
+				{if condition="isset($error.password)"}
+				<label for="password" class="tsy">{$error.password}</label>
+				{/if}
+			</div>
+			<div class="login-code-div">
+				<label for="login-code" class="yzcode">验证码:</label>
+				&nbsp;&nbsp;<input type="text" id="login-code" placeholder="请输入验证码"/>
+				<input type = "button" id="code" onclick="createCode()" />
+				<div class="imgDiv">
+					<input type="text" id="login-code" name="captcha" lay-verify="captcha" placeholder="请输入验证码" style="float:left;"/>
+					<a class="yzm" type="button" id="yzbtn"><img id="yzbth-img" src="{:captcha_src()}"></a>
+				</div>
+				{if condition="isset($error.captcha)"}
+				<label for="login-code" class="tsy">{$error.captcha}</label>
+				{/if}
+			</div>
+			<div class="login-submit-div">
+				<button type="button" id="login-submit" class="layui-btn" lay-submit  lay-filter="formDemo">登录</button>
+				<div class="book-marked" ><a class="words" href="{:url('UserRegister')}">没有账号？点击这里注册</a></div>
+				<button type="button" id="go_register" onclick="toRegister()">去注册</button>
+			</div>					
+		</form>		
+		<p>温馨提示：忘记密码请联系13888886666</p>		
+	</div> -->
+	<div class="logtoreg">
+		<div class="signIn_box">
+
+			<div class="signIn_head">
+				<ul>
+					<li {if condition="$judge == 'login'"}class="active"{/if}><a>登陆</a></li>
+					<li {if condition="$judge == 'register'"}class="active"{/if}><a>注册</a></li>
+				</ul>
+				<div class="signIn_main">
+					<div class="signIn_tab" {if condition="$judge == 'login'"}style="display:block;"{/if} >
+						<div class="signIn_tab_box">
+							<form class="layui-form" action="{:url('UserLoginUp')}" method="post">
+								<div class="login-account-div">
+									<!-- <label for="login-account lgn">账户:</label> -->
+									<input type="text" id="login-account" name="name" lay-verify="name" placeholder="请输入账号" autofocus value="{if condition="isset($login.data.name)"}{$login.data.name}{/if}"/>
+
+									{if condition="isset($login.error.name)"}
+									<label class="tsy">{$login.error.name}</label> 
+									{/if}
+									{if condition="isset($login.error.login)"}
+									<label class="tsy">{$login.error.login}</label> 
+									{/if}
+								</div>
+								<div class="login-password-div">
+									<input type="password" id="login-password" name="password" lay-verify="password" placeholder="请输入密码"/>
+									{if condition="isset($login.error.password)"}
+									<label class="tsy">{$login.error.password}</label> 
+									{/if}
+								</div>
+								<!-- <div class="login-code-div">
+									<input type="text" id="login-code" placeholder="请输入验证码" style="float:left;"/>
+									<a class="yzm" type="button" id="yzbtn" >
+										<img id="yzbth-img" src="{:captcha_src()}">
+									</a>
+								</div> -->
+								<div class="login-submit-div">
+									<button class="layui-btn" lay-submit lay-filter="*">登录</button>
+								</div>	
+							</form>		
+							<p>温馨提示：忘记密码请联系15576233705</p>
+						</div>
+					</div>
+					<div class="signIn_tab" {if condition="$judge == 'register'"}style="display:block;"{/if} >
+						<div class="signIn_tab_box">
+
+							<form class="layui-form" action="{:url('UserRegister')}" method="post">
+								<div class="login-account-div">
+									<input type="text" id="register-account" name="name" lay-verify="name" placeholder="请输入账号" autofocus value="{if condition="isset($register.data.name)"}{$register.data.name}{/if}" />
+
+									{if condition="isset($register.error.name)"}
+									<label class="tsy">{$register.error.name}</label> 
+									{/if}
+								</div>
+								<div class="login-password-div">
+									<input type="text" id="register-pen_name" name="pen_name" lay-verify="pen_name" placeholder="请输入笔名" value="{if condition="isset($register.data.pen_name)"}{$register.data.pen_name}{/if}" />
+
+									{if condition="isset($register.error.pen_name)"}
+									<label class="tsy">{$register.error.pen_name}</label> 
+									{/if}
+								</div>
+								<div class="login-password-div">
+									<input type="password" id="register-password" name="password" lay-verify="password" placeholder="请输入密码"/>
+									{if condition="isset($register.error.password)"}
+									<label class="tsy">{$register.error.password}</label> 
+									{/if}
+								</div>
+								<div class="login-password-div">
+									<input type="password" id="register-password_affirm" name="password_affirm" lay-verify="password_affirm" placeholder="确认密码"/>
+									{if condition="isset($register.error.password_affirm)"}
+									<label class="tsy">{$register.error.password_affirm}</label> 
+									{/if}
+								</div>
+								
+								<div class="login-submit-div">
+									<button class="layui-btn" lay-submit lay-filter="*">注册</button>
+								</div>	
+							</form>		
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+<!-- 登陆，注册的left需要为空 -->
+{block name="left"}{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+	<script type="text/javascript" src="{:asset('/static/js/vCode.js')}" ></script>
+	<script>
+		$(".signIn_head ul li").click(function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			index=$(this).index();
+			//alert(index);
+			$('.signIn_main .signIn_tab').eq(index).css("display","block").siblings().css("display","none");
+		});
+		$('#yanzhengma').bind('input propertychange', function() {
+			validate();
+		});
+		function toRegister() {
+	        window.location.href = "register.html"
+	    }
+	    
+		layui.use('form', function(){
+		  	var form = layui.form;
+		  
+		  	form.verify({
+				  name: function(value, item){ //value：表单的值、item：表单的DOM对象
+
+				    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+				      return '用户名不能为空，不能有特殊字符';
+				    }
+				    if(/(^\_)|(\__)|(\_+$)/.test(value)){
+				      return '用户名首尾不能出现下划线\'_\'';
+				    }
+				    if(/^\d+$/.test(value)){
+				      return '用户名不能全为数字';
+				    }
+				  }
+				  ,pen_name: function(value, item){ //value：表单的值、item：表单的DOM对象
+
+				    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+				      return '笔名不能为空，不能有特殊字符';
+				    }
+
+				  }
+				  
+				  //我们既支持上述函数式的方式，也支持下述数组的形式
+				  //数组的两个值分别代表：[正则匹配、匹配不符时的提示  文字]
+				  ,password: [
+				    /^[\S]{6,12}$/
+				    ,'密码必须6到12位，且不能出现空格'
+				  ] 
+				  ,password_affirm: function(value, item){ //value：表单的值、item：表单的DOM对象
+						if(value != $("#register-password").val() ){
+							return "密码不一致";
+						}  
+				  }
+				  ,captcha: [
+				    /^[\S]{4}$/
+				    ,'验证码格式不正确'
+				  ] 
+			}); 
+
+
+		});
+		   
+	</script>
+{/block}

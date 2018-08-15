@@ -1,0 +1,117 @@
+{extend name="public:user" /}
+
+
+{block name="main"}
+<!--注册-->
+<div class="register-space"></div>
+<div class="register-form">
+	<p class="register-title">
+		注册
+	</p>
+	<div class="tpxs">
+		<img src="{:asset('/static/img/tianxie.png')}" />
+		<div class="txreg">填写注册信息</div>
+	</div>
+	<form class="layui-form" action="{:url('UserRegister')}" method="post">
+		<div>
+			<label for="name">账户:</label>
+			<input type="text" lay-verify="name" id="name" name="name" placeholder="请输入账号名" autofocus value="{if condition="isset($data.name)"}{$data.name}{/if}" />
+			{if condition="isset($error.name)"}
+			<span>*{$error.name}</span>
+			{/if}
+		</div>
+		<div>
+			<label for="pen_name">笔名:</label>
+			<input type="text" lay-verify="pen_name" id="pen_name" name="pen_name" placeholder="请输入笔名" value="{if condition="isset($data.pen_name)"}{$data.pen_name}{/if}" />
+			{if condition="isset($error.pen_name)"}
+			<span>*{$error.pen_name}</span>
+			{/if}
+		</div>
+		<div>
+			<label for="password">密码:</label>
+			<input type="password" lay-verify="password" name="password" id="password" placeholder="请输入密码"/>
+			{if condition="isset($error.password)"}
+			<span>*{$error.password}</span>
+			{/if}
+		</div>
+		<div>
+			<label for="password_affirm">确认密码:</label>
+			<input type="password" lay-verify="password_affirm" id="password_affirm" name="password_affirm" placeholder="请输入确认密码"/>
+			{if condition="isset($error.password_affirm)"}
+			<span>*{$error.password_affirm}</span>
+			{/if}
+		</div>
+		<div>
+			<button type="button" id="login-submit" class="layui-btn" lay-submit  lay-filter="formDemo">创建账号</button>
+		</div>					
+	</form>				
+</div>
+<!--注册-->	
+{/block}
+
+
+<!-- 登陆，注册的left需要为空 -->
+{block name="left"}{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+	<script type="text/javascript" src="{:asset('/static/js/vCode.js')}" ></script>
+	<script>
+
+		$('#yanzhengma').bind('input propertychange', function() {
+			validate();
+		});
+		function toRegister() {
+	        window.location.href = "register.html"
+	    }
+	    
+		layui.use('form', function(){
+		  	var form = layui.form;
+		  
+		  	form.verify({
+				  name: function(value, item){ //value：表单的值、item：表单的DOM对象
+
+				    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+				      return '用户名不能为空，不能有特殊字符';
+				    }
+				    if(/(^\_)|(\__)|(\_+$)/.test(value)){
+				      return '用户名首尾不能出现下划线\'_\'';
+				    }
+				    if(/^\d+$/.test(value)){
+				      return '用户名不能全为数字';
+				    }
+				  }
+				  ,pen_name: function(value, item){ //value：表单的值、item：表单的DOM对象
+
+				    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+				      return '笔名不能为空，不能有特殊字符';
+				    }
+
+				  }
+				  
+				  //我们既支持上述函数式的方式，也支持下述数组的形式
+				  //数组的两个值分别代表：[正则匹配、匹配不符时的提示  文字]
+				  ,password: [
+				    /^[\S]{6,12}$/
+				    ,'密码必须6到12位，且不能出现空格'
+				  ] 
+				  ,password_affirm: function(value, item){ //value：表单的值、item：表单的DOM对象
+						if(value != $("#password").val() ){
+							return "密码不一致";
+						}  
+				  }
+			}); 
+
+
+			form.on('submit(formDemo)', function(data){  
+				$(".layui-form").submit();
+				return false;
+			});
+
+		});
+		   
+	</script>
+{/block}
