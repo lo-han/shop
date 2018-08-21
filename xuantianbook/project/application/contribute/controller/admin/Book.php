@@ -264,4 +264,20 @@ class Book extends Common
 
 	}
 
+	public function delete(Request $Request,BookSection $section,BookModel $book)
+	{
+		$id = $Request->route('id');
+
+		//删除章节
+		$sectionAll = $section->all(['book_id'=>$id]);
+
+		$ids = implode(",",array_column($sectionAll, 'id'));
+		$section->destroy($ids);
+
+		//删除书籍
+		$book->destroy($id);
+
+		$this->redirect( $Request->server('HTTP_REFERER',url('AdminBook')) );
+	}
+
 }

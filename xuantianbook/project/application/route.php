@@ -169,6 +169,12 @@ Route::group('admin',function (){
 	//制作人修改
 	Route::get(['AdminMakerEdit','maker/edit/:id'],'contribute/admin.admin/edit',[],['id'=>'[0-9]+']);
 
+	//优越api
+	Route::get(['AdminGetBookPut','api/put'],'contribute/admin.getBook/bookPut');
+
+	//优越api书籍导入实际数据库
+	Route::get(['AdminGetBookBookImport','api/bookImport'],'contribute/admin.getBook/bookImport');
+
 });
 
 //管理员后台组
