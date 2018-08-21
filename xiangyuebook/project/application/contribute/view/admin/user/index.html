@@ -1,0 +1,99 @@
+{extend name="public:admin" /}
+
+{block name="main"}
+<!--内容部分-->
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<!-- <div class="cndh"><i class="layui-icon">&#xe705;</i>&nbsp;作家投稿平台&nbsp;>&nbsp;添加章节</div> -->
+		<form class="layui-form" action="{:url('AdminUser')}" method="post">
+		  <div class="line1">
+		  	<div class="layui-form-item">
+			    <!-- <label class="layui-form-label">用户名：</label> -->
+			    <div class="layui-input-block">
+			      <input type="text" name="name" required placeholder="请输入用户名" autocomplete="off" class="layui-input" value="{if condition="isset($search.name)"}{$search.name}{/if}" >
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <!-- <label class="layui-form-label">笔名：</label> -->
+			    <div class="layui-input-block">
+			      <input type="text" name="pen_name" required placeholder="请输入笔名" autocomplete="off" class="layui-input" value="{if condition="isset($search.pen_name)"}{$search.pen_name}{/if}" >
+			    </div>
+			</div>
+			<!-- 提供管理员使用 -->
+			{if condition="session('admin.role') == 1"}
+		  	<div class="layui-form-item">
+			    <!-- <label class="layui-form-label">制作人：</label> -->
+			    <div class="layui-input-block">
+			      <input type="text" name="adminName" required placeholder="请输入制作人" autocomplete="off" class="layui-input" value="{if condition="isset($search.adminName)"}{$search.adminName}{/if}" >
+			    </div>
+			</div>
+			{/if}
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+			      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+			    </div>
+			  </div>
+		  </div>
+		</form>
+		<!--当前作品数-->
+		<div class="lbbg lbbg1">
+			<table style="margin-top:0;">
+				<tr>
+					<th width="5%">ID</th>
+					<th>用户名</th>
+					<th>笔名</th>
+					<th>制作人</th>
+					<th>创建时间</th>
+					<th>头像</th>
+					<th width="15%">更新时间</th>
+					<th>操作</th>
+				</tr>
+				{volist name="users" id="user" mod="2" }
+				<tr {eq name="mod" value="0"}class="first"{/eq}>
+					<td>{$user->id}</td>
+					<td>{$user->name}</td>
+					<td>{$user->pen_name}</td>
+					<td>{if condition="$user->admin_id"}{$user->admin->name}{/if}</td>
+					<td>{:date('Y-m-d',$user->create_time)}</td>
+					<td>
+						<div class="tssz">
+							<img src="{:imagePath(['table'=>'user','category'=>'image'],$user->image)}">	  
+						</div>
+					</td>
+					<td>{:date('Y-m-d H:i',$user->update_time)}</td>
+					<td>
+						<a href="{:url('AdminUserEdit',['id'=>$user->id])}">修改</a>
+					</td>
+				</tr>
+				{/volist}
+			</table>
+			<div class="fyxs fyxs1">
+				<div id="test1">
+					<nav aria-label="Page navigation">
+					  {$users->render()}
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+<script>
+	layui.use('form', function(){
+	  var form = layui.form;
+	  //监听提交
+	  form.on('submit(formDemo)', function(data){
+	   	$(".layui-form").submit();
+	    return false;
+	  });
+	});
+</script>
+{/block}
