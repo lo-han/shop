@@ -115,7 +115,10 @@
             var arr = $(dom).html().split(",");
             arr.push(val);
             arr = arr.filter(s => $.trim(s).length > 0);
-            $(dom).html(arr.join(","));
+            
+            if($.inArray(val,$(dom).html().split(",")) == -1){
+                $(dom).html(arr.join(","));    
+            }
         }
 
         function delectChecked(val,dom)
