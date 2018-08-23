@@ -1,0 +1,21 @@
+{foreach $list as $key=>$vo}
+<tr>
+    <td >
+        <input value='{$vo.id}' class="list-check-box"
+        {if condition="array_check($check,'book_id',$vo.id)"}checked{/if} type='checkbox'/>
+    </td>
+    <td >
+        {$vo.id}
+    </td>
+    <td >
+        {$vo.title}
+    </td>
+    <td >
+        <span><a href="javascript:;" data-id="{$vo.id}" class="list-book-push-connector">单本推送<a></span>
+        {if condition="array_check($check,'book_id',$vo.id)"}
+        <span><a href="javascript:;" data-id="{$vo.id}" class="list-book-delect-connector"  >删除授权<a></span>
+        {/if}
+        
+    </td>
+</tr>
+{/foreach}

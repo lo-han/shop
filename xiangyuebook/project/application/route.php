@@ -171,9 +171,23 @@ Route::group('admin',function (){
 	//制作人修改
 	Route::get(['AdminMakerEdit','maker/edit/:id'],'contribute/admin.admin/edit',[],['id'=>'[0-9]+']);
 
-	//红书汇api书籍导入实际数据库
-	Route::get(['AdminInterface','interface/yuedu'],'contribute/admin.interface/yuedu');
+	//推送接口
+	Route::get(['AdminConnector','connector'],'contribute/admin.connector/index');
 
+	//推送书籍列表接口
+	Route::get(['AdminConnectorYueduBook','connector/yuedu/book'],'contribute/admin.connector.yuedu/book');
+
+	//推送书籍列表接口
+	Route::get(['AdminConnectorYueduList','connector/yuedu/list'],'contribute/admin.connector.yuedu/list');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduAdd','connector/yuedu/add'],'contribute/admin.connector.yuedu/add');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduDelete','connector/yuedu/delete'],'contribute/admin.connector.yuedu/delete');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduPush','connector/yuedu/push'],'contribute/admin.connector.yuedu/push');
 });
 
 //管理员后台组

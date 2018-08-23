@@ -1,0 +1,59 @@
+{extend name="public:admin" /}
+
+{block name="main"}
+
+<!--内容部分-->
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<!--当前作品数-->
+		<div class="lbbg lbbg1">
+			<table>
+				<tr>
+					<th>推送渠道名称</th>
+					<th>推送渠道书籍分配ID</th>
+					<th>操作</th>
+				</tr>
+
+				<tr class="first">
+					<td>网易云阅读</td>
+					<td>
+					{:objectFormList(
+						$connector->getConnectorBook('yuedu'),
+						'book_id'
+					)}
+					</td>
+					<td>
+						<span><a id="book-authorization" href="javascript:;" >书籍授权</a></span>
+						<span><a>添加推送</a></span>
+						<span><a>更新推送</a></span>
+					</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{/block}
+
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+	<script src="{:asset('/static/js/layer.js')}"></script>
+	<script>
+		$("#book-authorization").on("click",function (){
+			layer.open({
+			  type: 2,
+			  area: ['700px', '450px'],
+			  fixed: false, //不固定
+			  maxmin: true,
+			  page: true,
+			  content: '{:url("AdminConnectorYueduBook")}'
+			});
+		});
+		
+	</script>
+{/block}
