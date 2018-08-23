@@ -34,15 +34,18 @@
     <script type="text/javascript" src="{:asset('/static/layui/layui.js')}"></script>
     <script type="text/javascript" src="{:asset('/static/js/jquery-3.2.1.min.js')}"></script>
     <script>
-        list(1);
+        list(1,10);
         layui.use(['form','laypage'], function(){
             var form = layui.form;
             var laypage = layui.laypage;
 
             laypage.render({
                 elem: 'layui-page' //注意，这里的 test1 是 ID，不用加 # 号
-                ,limit: 1 //分页数
-                ,count: {$count} //数据总数，从服务端得到
+                ,limit: 10 //分页数
+                ,count: {$count}//数据总数，从服务端得到
+                ,jump: function(obj){
+                    list(obj.curr,10)
+                }
             });
           
             //各种基于事件的操作，下面会有进一步介绍
@@ -129,9 +132,9 @@
             $(dom).html(arr.join(","));
         }
 
-        function list(page)
+        function list(page,size)
         {
-            $.get("{:url('AdminConnectorYueduList')}",{page:page,size:1},function(result){
+            $.get("{:url('AdminConnectorYueduList')}",{page:page,size:size},function(result){
                 $("table tbody").html(result);
             },"html");
         }
