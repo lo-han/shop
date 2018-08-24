@@ -6,9 +6,13 @@ use app\contribute\controller\AdminCheck;
 
 use app\contribute\model\Connector;
 use app\contribute\model\Book;
+use app\contribute\model\BookSection;
+use app\contribute\model\TagRelation;
 
 use think\Request;
 use think\Db;
+
+use yuedu\PushBook;
 
 class Yuedu extends Common
 {
@@ -22,6 +26,13 @@ class Yuedu extends Common
 	}
 
 	const className = "yuedu";
+
+	const secretKey = "WY9eCCjtMpfPTVyO";
+	const consumerKey = "02430617";
+
+	public $return = [
+		'code' 	=> 200,
+	];
 
 
 	public function book(Connector $connector,Book $book)
@@ -72,10 +83,49 @@ class Yuedu extends Common
 	}
 
 
-	public function push(Connector $connector,Request $request)
+	public function push(Connector $connector,Book $book,BookSection $chapter,Request $request,PushBook $pushBook)
 	{
+		$ids = $request->post("id");
 
-		return true;
+		$pushBook->key( Yuedu::secretKey,Yuedu::consumerKey );
+
+		$pushBook->config([
+			'book'	=> 'http://testapi.yuedu.163.com/book/add.json',
+			'chapter'	=> 'http://testapi.yuedu.163.com/bookSection/add.json',
+		]);
+
+		$books = $book->all($ids);
+
+		foreach($books as $book)
+		{
+			$tags = (new TagRelation)->getRelationTag($book->id);
+			if($tags)
+			{
+				$book->setAttr('tags',implode(",",array_column($tags, "name")));
+			}
+			$isPush = $pushBook->book($book);
+			if($isPush['code'] !== 200 )
+			{
+				//$this->return['code'] 	= $isPush['code'];
+				//$this->return['msg'][] 	= $book->title . " error :" . $isPush['error_msg'];
+			}
+
+			//章节处理
+			$chapters = $book->bookSections;
+			foreach($chapters as $chapter )
+			{
+				$isPush = $pushBook->chapter($chapter);
+				if($isPush['code'] !== 200 )
+				{
+					//$this->return['code'] 	= $isPush['code'];
+					//$this->return['msg'][] 	= $chapter->title . " error :" . $isPush['error_msg'];
+				}
+			}
+
+
+		}
+		
+		return $this->return;
 	}
 
 

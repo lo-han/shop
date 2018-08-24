@@ -70,6 +70,7 @@
             $.post("{:url('AdminConnectorYueduDelete')}",{id:$(dom).data('id')},function(result){
                 $(dom).parents("tr").find("input:checkbox").prop("checked",false);  
                 isChecked($(dom).parents("tr").find("input:checkbox"));
+                layui.layer.msg("成功");
             });
         });
 
@@ -79,6 +80,7 @@
             $.post("{:url('AdminConnectorYueduPush')}",{id:$(dom).data('id')},function(result){
                 $(dom).parents("tr").find("input:checkbox").prop("checked",true);  
                 isChecked($(dom).parents("tr").find("input:checkbox"));
+                layui.layer.msg("成功");
             });
         });
 

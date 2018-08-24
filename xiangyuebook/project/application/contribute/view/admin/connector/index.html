@@ -24,7 +24,10 @@
 					</td>
 					<td>
 						<span><a id="book-authorization" href="javascript:;" >书籍授权</a></span>
-						<span><a>添加推送</a></span>
+						<span>
+							<a href="javascript:;" id="book-batch-push"
+							data-id="{:objectFormList($connector->getConnectorBook('yuedu'),'book_id')}" >添加推送</a>
+						</span>
 						<span><a>更新推送</a></span>
 					</td>
 				</tr>
@@ -55,5 +58,13 @@
 			});
 		});
 		
+		//单本推送
+        $(document).on("click","#book-batch-push",function (){
+            var dom = this;
+            $.post("{:url('AdminConnectorYueduPush')}",{id:$(dom).data('id')},function(result){
+                layer.msg("成功");
+            });
+        });
+
 	</script>
 {/block}
