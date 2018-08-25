@@ -114,6 +114,7 @@ class Yuedu extends Common
 			$chapters = $book->bookSections;
 			foreach($chapters as $chapter )
 			{
+				$chapter->content = strip_tags($chapter->content,"<p>");
 				$isPush = $pushBook->chapter($chapter);
 				if($isPush['code'] !== 200 )
 				{
