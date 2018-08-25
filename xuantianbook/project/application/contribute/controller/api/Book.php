@@ -32,7 +32,7 @@ class Book extends Common
 			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,c.title as ctitle,u.pen_name as author')
 			->join('category c','b.category_id = c.id','LEFT')
 			->join('user u','b.user_id = u.id','LEFT')
-			->where(['b.id'=>$Request->get('bookid'),'check'=>1]);	
+			->where(['b.id'=>$Request->get('bookid')]);	
 		});
 
 		//不存在书籍返回无资源
@@ -58,7 +58,7 @@ class Book extends Common
 	public function info(Request $Request,ModelBook $book){
 
 		$book = $book::all(function ($query){
-			$query->field('id,title')->whereIn('id',$this->place->posBook)->where(['check'=>1]);
+			$query->field('id,title')->whereIn('id',$this->place->posBook);
 		});
 		
 		

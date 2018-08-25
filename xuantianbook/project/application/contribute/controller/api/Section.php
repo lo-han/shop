@@ -27,7 +27,7 @@ class Section extends Common
 		$section = $section->get(function ($query) use ($Request){
 			$query->field('book_id,title,sort,char,attr,content')->where('id',$Request->get('chapterid'))->where('check',1);
 		});
-		$book = Book::get(['id'=>$section->book_id,'check'=>1]);
+		$book = Book::get(['id'=>$section->book_id]);
 
 		//确认章节的存在
 		if(!$section || !$book){
