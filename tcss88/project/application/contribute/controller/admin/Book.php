@@ -343,7 +343,10 @@ class Book extends Common
 						'F'.$line,
 						config('book.status')[$val->status]
 					)
-					->setCellValue('G'.$line,$val->char_number)
+					->setCellValue(
+						'G'.$line,
+						numberUnit($val->char_number)
+					)
 					->setCellValue('H'.$line,$val->user->pen_name);
 		}
 		

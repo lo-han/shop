@@ -162,6 +162,7 @@ class GetBook extends Common
 		ini_set('memory_limit', '-1');
 
 		$hongshuhui_book = Db::table($this->bookTableName)->select();
+		$hongshuhui_new_chapter = $hongshuhui_book;
 		$allBook = array_column($hongshuhui_book,'id');
 
 		$isHongshuhui = array_column($book->whereIn('lead_id',$allBook)->select(),'lead_id');
@@ -180,11 +181,11 @@ class GetBook extends Common
 
 		$book->saveAll($hongshuhui_book);
 
-		foreach($hongshuhui_book as $book_id)
+		foreach($hongshuhui_new_chapter as $book_id)
 		{
-			$realBookId = $book->where('lead_id',$book_id['lead_id'])->find()['id'];
+			$realBookId = $book->where('lead_id',$book_id['id'])->find()['id'];
 
-			$hongshuhui_chapter = Db::table($this->chapterTableName)->where('book_id',$book_id['lead_id'])->select();
+			$hongshuhui_chapter = Db::table($this->chapterTableName)->where('book_id',$book_id['id'])->select();
 			$allChapter = array_column($hongshuhui_chapter,'id');
 
 			$isChapter = array_column($bookSection->whereIn('lead_id',$allChapter)->select(),'lead_id');
