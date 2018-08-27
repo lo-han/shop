@@ -38,25 +38,13 @@
 									</div>
 								</div>
 							</div>
-							
-							<hr>
-							<div class="direction">制作的作品：</div>
-							<div class="zpnr">
-								{volist name="data->book" id="book" }
-								<a href="{:url("HomeBookShow",['id'=>$book->id])}">《{$book->title}》</a>
-								{/volist}
-							</div>
 						</div>
 					</div>
 				</div>
 				{/volist}
 				
 			</div>
-			<div class="swiper-control-container">
-				<div class="swiper-button-prev"><i class="layui-icon">&#xe603;</i> </div>
-				<div class="swiper-scrollbar"></div>
-				<div class="swiper-button-next"><i class="layui-icon">&#xe602;</i></div>
-			</div>
+			
 		</div>
 	</div>
 </div>
