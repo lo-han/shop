@@ -34,6 +34,26 @@ class Yuedu extends Common
 		'code' 	=> 200,
 	];
 
+	public $category = [
+		4	=> [1,"玄幻"],
+		5	=> [2,"科幻"],
+		6	=> [3,"军事"],
+		7	=> [4,"官场"],
+		8	=> [5,"悬疑"],
+		3	=> [7,"都市"],
+		11	=> [11,"历史"],
+		13	=> [8,"现言"],
+		14	=> [9,"穿越"],
+		15	=> [13,"仙侠"],
+		9	=> [6,"灵异"],
+		10	=> [10,"同人"],
+		12	=> [12,"短篇"],
+		16	=> [17,"种田"],
+		17	=> [18,"宫斗"],
+		18	=> [22,"校园"],
+		19	=> [24,"古言"],
+	];
+
 
 	public function book(Connector $connector,Book $book)
 	{
@@ -103,6 +123,8 @@ class Yuedu extends Common
 			{
 				$book->setAttr('tags',implode(",",array_column($tags, "name")));
 			}
+			$book->setAttr('category_id', $this->category[$book->category_id][0] );
+
 			$isPush = $pushBook->book($book);
 			if($isPush['code'] !== 200 )
 			{
