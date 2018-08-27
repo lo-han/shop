@@ -3,11 +3,11 @@
 {block name="main"}
 
 <div class="zzr">
-	<div id="zzrnr" style="float:left;position:relative;left:50%;">
-		<div class="swiper-container" id="swiper1">
-			<div class="swiper-wrapper">
+	<div id="zzrnr" >
+		<div class="s-container" id="swiper1">
+			<div class="s-wrapper">
 				{volist name="admin" id="data"}
-				<div class="swiper-slide">
+				<div class="s-slide">
 					<div class="zzrlb">
 						<div class="lb">
 							<div class="Img">
@@ -69,33 +69,33 @@
 
 {block name="js"}
 	<script>        
-	  var swiper1 = new Swiper ('#swiper1', {
-	    direction: 'horizontal',
-	    width: 362,	
-	    height: 650,
-	    slidesPerView : 'auto',	    
-	    // 如果需要分页器
-	    pagination: {
-	        el: '#pagination1',
-	        clickable: true,
-	    },
-	    scrollbar: {
-		    el: '.swiper-scrollbar',
-		    draggable: true,
-		    dragSize: 100,
-		},
-	    navigation: {
-		    nextEl: '.swiper-button-next',
-		    prevEl: '.swiper-button-prev',
-		    disabledClass: 'swiper-button-disabled',
-		},
-	  })   
-	  swiper1.scrollbar.$dragEl.css('background','#e83451');  
-	  swiper1.navigation.update();  
-	  var swiperwrapper=document.getElementsByClassName('swiper-slide');
-	  var zzrnr=document.getElementById('zzrnr');
-	  zzrnr.style.width=(swiperwrapper.length)*392+'px';
-	  zzrnr.style.marginLeft=-((swiperwrapper.length)*392)/2+'px';
+	//   var swiper1 = new Swiper ('#swiper1', {
+	//     direction: 'horizontal',
+	//     width: 362,	
+	//     height: 650,
+	//     slidesPerView : 'auto',	    
+	//     // 如果需要分页器
+	//     pagination: {
+	//         el: '#pagination1',
+	//         clickable: true,
+	//     },
+	//     scrollbar: {
+	// 	    el: '.swiper-scrollbar',
+	// 	    draggable: true,
+	// 	    dragSize: 100,
+	// 	},
+	//     navigation: {
+	// 	    nextEl: '.swiper-button-next',
+	// 	    prevEl: '.swiper-button-prev',
+	// 	    disabledClass: 'swiper-button-disabled',
+	// 	},
+	//   })   
+	//   swiper1.scrollbar.$dragEl.css('background','#e83451');  
+	//   swiper1.navigation.update();  
+	//   var swiperwrapper=document.getElementsByClassName('swiper-slide');
+	//   var zzrnr=document.getElementById('zzrnr');
+	//   zzrnr.style.width=(swiperwrapper.length)*392+'px';
+	//   zzrnr.style.marginLeft=-((swiperwrapper.length)*392)/2+'px';
     </script>
 {/block}
 
