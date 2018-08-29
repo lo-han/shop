@@ -18,6 +18,7 @@
 					
 					<input id="id" name="id" type="hidden" value="{$data.id}" >
 					<input name="user_id" type="hidden" value="{$data.user_id}" >
+					<input type="hidden" name="referer" value="{if condition="isset($_SERVER['HTTP_REFERER'])"}{$_SERVER["HTTP_REFERER"]}{else /}{:url('AdminSection')}{/if}" />
 
 					<input id="ycy" name="tags" lay-verify="tags" type="hidden" value="{if condition="isset($data.tags) && $data.tags !== false" }{:implode(',',array_column($data.tags,'name'))}{/if}" >
 					<input id="zjzd" name="place" lay-verify="place" type="hidden" value="{if condition="isset($data.place)  && $data.place !== false"}{:implode(',',array_column($data.place,'id'))}{/if}" >
