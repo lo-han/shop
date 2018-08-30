@@ -28,7 +28,10 @@
 							<a href="javascript:;" id="book-batch-push"
 							data-id="{:objectFormList($connector->getConnectorBook('yuedu'),'book_id')}" >添加推送</a>
 						</span>
-						<span><a>更新推送</a></span>
+						<span>
+							<a href="javascript:;" id="book-batch-push-add"
+							data-id="{:objectFormList($connector->getConnectorBook('yuedu'),'book_id')}">章节添加推送</a>
+						</span>
 					</td>
 				</tr>
 
@@ -58,11 +61,19 @@
 			});
 		});
 		
-		//单本推送
+		//添加推送
         $(document).on("click","#book-batch-push",function (){
             var dom = this;
             $.post("{:url('AdminConnectorYueduPush')}",{id:$(dom).data('id')},function(result){
-                layer.msg("成功");
+                alert("成功");
+            });
+        });
+
+        //增量推送
+        $(document).on("click","#book-batch-push-add",function (){
+            var dom = this;
+            $.post("{:url('AdminConnectorYueduPushAdd')}",{id:$(dom).data('id')},function(result){
+                alert("成功");
             });
         });
 

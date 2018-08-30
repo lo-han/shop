@@ -188,6 +188,12 @@ Route::group('admin',function (){
 
 	//推送书籍列表接口
 	Route::rule(['AdminConnectorYueduPush','connector/yuedu/push'],'contribute/admin.connector.yuedu/push');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduUpdate','connector/yuedu/update'],'contribute/admin.connector.yuedu/update');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduPushAdd','connector/yuedu/push-add'],'contribute/admin.connector.yuedu/pushAdd');
 });
 
 //管理员后台组

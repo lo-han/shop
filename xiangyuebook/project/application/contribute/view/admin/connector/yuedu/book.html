@@ -80,9 +80,18 @@
             $.post("{:url('AdminConnectorYueduPush')}",{id:$(dom).data('id')},function(result){
                 $(dom).parents("tr").find("input:checkbox").prop("checked",true);  
                 isChecked($(dom).parents("tr").find("input:checkbox"));
-                layui.layer.msg("成功");
+                alert("成功");
             });
         });
+
+        //单本更新推送
+        $(document).on("click",".list-book-update-connector",function (){
+            var dom = this;
+            $.post("{:url('AdminConnectorYueduUpdate')}",{id:$(dom).data('id')},function(result){
+                alert("成功");
+            });
+        });
+        
 
         $(document).on("click","#checkbox-all",function (){
             var subset = $(this).data("check-target");

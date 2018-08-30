@@ -30,9 +30,10 @@ class Yuedu extends Common
 	const secretKey = "WY9eCCjtMpfPTVyO";
 	const consumerKey = "02430617";
 
-	public $return = [
-		'code' 	=> 200,
-	];
+	const bookPushAdd = 'http://testapi.yuedu.163.com/book/add.json';
+	const chapterPushAdd = 'http://testapi.yuedu.163.com/bookSection/add.json';
+	const bookPushUpdate = 'http://testapi.yuedu.163.com/book/update.json';
+	const chapterPushUpdate = 'http://testapi.yuedu.163.com/bookSection/update.json';
 
 	public $category = [
 		4	=> [1,"玄幻"],
@@ -54,6 +55,9 @@ class Yuedu extends Common
 		19	=> [24,"古言"],
 	];
 
+	public $return = [
+		'code' 	=> 200,
+	];
 
 	public function book(Connector $connector,Book $book)
 	{
@@ -102,7 +106,7 @@ class Yuedu extends Common
 		return $connector->where(['book_id'=>$id,'source_name'=>Yuedu::className])->delete();
 	}
 
-
+	//添加推送
 	public function push(Connector $connector,Book $book,BookSection $chapter,Request $request,PushBook $pushBook)
 	{
 		$ids = $request->post("id");
@@ -110,8 +114,8 @@ class Yuedu extends Common
 		$pushBook->key( Yuedu::secretKey,Yuedu::consumerKey );
 
 		$pushBook->config([
-			'book'	=> 'http://testapi.yuedu.163.com/book/add.json',
-			'chapter'	=> 'http://testapi.yuedu.163.com/bookSection/add.json',
+			'book'	=> Yuedu::bookPushAdd,
+			'chapter'	=> Yuedu::chapterPushAdd,
 		]);
 
 		$books = $book->all($ids);
@@ -151,6 +155,98 @@ class Yuedu extends Common
 		return $this->return;
 	}
 
+	//更新推送
+	public function update(Connector $connector,Book $book,BookSection $chapter,Request $request,PushBook $pushBook)
+	{
+		$ids = $request->post("id");
+
+		$pushBook->key( Yuedu::secretKey,Yuedu::consumerKey );
+		$pushBook->config([
+			'updateBook'	=> Yuedu::bookPushUpdate,
+			'updateChapter'	=> Yuedu::chapterPushUpdate,
+		]);
+
+		$books = $book->all($ids);
+
+		foreach($books as $book)
+		{
+			$tags = (new TagRelation)->getRelationTag($book->id);
+			if($tags)
+			{
+				$book->setAttr('tags',implode(",",array_column($tags, "name")));
+			}
+			$book->setAttr('category_id', $this->category[$book->category_id][0] );
+
+			$isPush = $pushBook->updateBook($book);
+			if($isPush['code'] !== 200 )
+			{
+				$this->return['code'] 	= $isPush['code'];
+				$this->return['msg'][] 	= $book->title . " error :" . $isPush['error_msg'];
+			}
+
+			//章节处理
+			$chapters = $book->bookSections;
+			foreach($chapters as $chapter )
+			{
+				$chapter->content = strip_tags($chapter->content,"<p>");
+				$isPush = $pushBook->updateChapter($chapter);
+				if($isPush['code'] !== 200 )
+				{
+					$this->return['code'] 	= $isPush['code'];
+					$this->return['msg'][] 	= $chapter->title . " error :" . $isPush['error_msg'];
+				}
+			}
+
+
+		}
+		
+		return $this->return;
+	}
+
+
+	//添加推送
+	public function pushAdd(Connector $connector,Book $book,BookSection $chapter,Request $request,PushBook $pushBook)
+	{
+		$ids 	= explode( 
+			",",
+			objectFormList($connector->getConnectorBook(Yuedu::className),'book_id')
+		);
+
+		$pushBook->key( Yuedu::secretKey,Yuedu::consumerKey );
+		$pushBook->config([
+			'chapter'	=> Yuedu::chapterPushAdd,
+		]);
+
+		$books = $book->all($ids);
+
+		foreach($books as $book)
+		{
+			//章节处理
+			$chapters = $book->bookSections;
+			foreach ($chapters as $key => $row) {
+			    $sort[$key]  = $row['sort'];
+			}
+			if($chapters)
+			{
+				array_multisort($sort, SORT_DESC , $chapters);	
+			}
+
+			foreach($chapters as $chapter )
+			{
+				$chapter->content = strip_tags($chapter->content,"<p>");
+				$isPush = $pushBook->chapter($chapter);
+				
+				if($isPush['code'] !== 200 )
+				{
+					break;
+				}
+			}
+
+
+		}
+
+		return $this->return;
+	}
 
 
 }
