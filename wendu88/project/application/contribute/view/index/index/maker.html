@@ -3,7 +3,7 @@
 {block name="main"}
 
 <div class="zzr">
-	<div id="zzrnr" style="float:left;position:relative;left:50%;">
+	<div id="zzrnr" style="float:left;position:relative;">
 		<div class="swiper-container" id="swiper1">
 			<div class="swiper-wrapper">
 				{volist name="admin" id="data"}
@@ -94,8 +94,8 @@
 	  swiper1.navigation.update();  
 	  var swiperwrapper=document.getElementsByClassName('swiper-slide');
 	  var zzrnr=document.getElementById('zzrnr');
-	  zzrnr.style.width=(swiperwrapper.length)*392+'px';
-	  zzrnr.style.marginLeft=-((swiperwrapper.length)*392)/2+'px';
+	  /*zzrnr.style.width=(swiperwrapper.length)*392+'px';*/
+	  /*zzrnr.style.marginLeft=-((swiperwrapper.length)*392)/2+'px';*/
     </script>
 {/block}
 

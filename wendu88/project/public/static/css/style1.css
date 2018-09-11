@@ -211,10 +211,10 @@ display: block;margin: 40px auto 0;background: url(../img/nhlogo2.png) 50% no-re
 .zzr .zzrlb .lbnr .zpnr{margin-top: 4px;margin-bottom:50px;overflow: hidden;}
 .zzr .zzrlb .lbnr .zpnr a{display: block;height: 25px;line-height: 25px;text-decoration: none;float: left;margin-left: -5px;}
 .zzr .zzrlb .lbnr .zpnr a:hover{color: #e83451;} */
-.zzr{width: 82%;margin:0 auto;position: relative;overflow: hidden;margin-top: 15px;}
+.zzr{width: 90%;margin:0 auto;position: relative;overflow: hidden;margin-top: 15px;}
 .zzr #swiper1{padding-bottom: 50px;}
-.zzr #swiper1 .swiper-slide{width: 362px;margin: 0 15px;float: left;}
-.zzr #swiper1 .swiper-slide .zzrlb{width: 362px;height: auto;float: left;background: #f2f2f2;margin-top: 20px;padding-bottom: 50px;}
+.zzr #swiper1 .swiper-slide{width: 312px;margin: 0 15px;float: left;}
+.zzr #swiper1 .swiper-slide .zzrlb{width: 320px;height: auto;float: left;background: #f2f2f2;margin-top: 20px;padding-bottom: 50px;}
 
 .zzr #swiper1 .swiper-slide .zzrlb .lb{width: 100%;height:100%;background-color: #cccccc;overflow: hidden;}
 .zzr #swiper1 .swiper-slide .zzrlb .lb .Img{width: 91.75%;;margin: 4.25%;}
