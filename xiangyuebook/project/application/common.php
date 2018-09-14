@@ -64,9 +64,9 @@ if (! function_exists('defaults')) {
 
     function defaults($str = '',$default = ''){
         
-    	if(empty($str)){
+    	if(!empty($str)){
     		return $str;
-    	}elseif(empty($default)){
+    	}elseif(!empty($default)){
     		return $default;
     	}else{
     		return '';

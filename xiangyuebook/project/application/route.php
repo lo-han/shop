@@ -194,6 +194,13 @@ Route::group('admin',function (){
 
 	//推送书籍列表接口
 	Route::rule(['AdminConnectorYueduPushAdd','connector/yuedu/push-add'],'contribute/admin.connector.yuedu/pushAdd');
+
+	//网易书籍列表
+	Route::rule(['AdminConnectorYueduInfo','connector/yuedu/info'],'contribute/admin.connector.yuedu/info');
+
+	//网易章节清空
+	Route::rule(['AdminConnectorYueduChapterDelect','connector/yuedu/chapter-delect'],'contribute/admin.connector.yuedu/chapterDelect');
+
 });
 
 //管理员后台组

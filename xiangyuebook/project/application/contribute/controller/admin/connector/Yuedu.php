@@ -13,6 +13,8 @@ use think\Request;
 use think\Db;
 
 use yuedu\PushBook;
+use yuedu\SearchBook;
+use yuedu\DelectBook;
 
 class Yuedu extends Common
 {
@@ -34,6 +36,13 @@ class Yuedu extends Common
 	const chapterPushAdd = 'http://testapi.yuedu.163.com/bookSection/add.json';
 	const bookPushUpdate = 'http://testapi.yuedu.163.com/book/update.json';
 	const chapterPushUpdate = 'http://testapi.yuedu.163.com/bookSection/update.json';
+
+	const bookSearchInfo = 'http://testapi.yuedu.163.com/book/list.json';
+	const bookSearchBookInfo = 'http://testapi.yuedu.163.com/book/info.json';
+	const bookSearchSectionList = 'http://testapi.yuedu.163.com/book/sections.json';
+	const bookSearchSectionInfo = 'http://testapi.yuedu.163.com/book/content.json';
+
+	const bookDelectSection = 'http://testapi.yuedu.163.com/bookSection/delete.json';
 
 	public $category = [
 		4	=> [1,"玄幻"],
@@ -246,6 +255,43 @@ class Yuedu extends Common
 		}
 
 		return $this->return;
+	}
+
+	//查询记录
+	public function info(SearchBook $search,Request $request)
+	{
+		
+		$search->key( Yuedu::secretKey,Yuedu::consumerKey );
+
+		$bookList = $search->info( Yuedu::bookSearchInfo );
+
+		foreach($bookList['books'] as $key=>$value)
+		{
+			$chapterList = $search->sectionList( Yuedu::bookSearchSectionList , $value['bookId'] );
+			$bookList['books'][$key]['sectionName'] = array_pop($chapterList['sections'])['name'];
+		}
+		
+		return $this->fetch("info",[
+			'books' => $bookList['books'],
+		]);
+		
+	}
+
+	public function chapterDelect(SearchBook $search,DelectBook $delect,Request $request)
+	{
+		$search->key( Yuedu::secretKey,Yuedu::consumerKey );
+		$delect->key( Yuedu::secretKey,Yuedu::consumerKey );
+		$bookid = $request->get('bookid');
+
+		$chapterList = $search->sectionList( Yuedu::bookSearchSectionList , $bookid );
+
+		foreach($chapterList['sections'] as $value )
+		{	
+			$section = $delect->section( Yuedu::bookDelectSection , $bookid , $value['id'] );
+		}
+
+		$this->redirect( defaults($_SERVER['HTTP_REFERER'],url('AdminConnectorYueduInfo')) );
+
 	}
 
 
