@@ -67,7 +67,7 @@ class Section extends Common
 		$section->content = str_replace('</p>', "\n</p>", $section->content);	//格式完善 每一段添加\n
 		$section->content = strip_tags($section->content);	//清除html标签
 		
-		$section->setAttr('isvip',$book->status == 1 ? 0 : 1);
+		$section->setAttr('isvip',$section->isvip == 1 ? 0 : 1);
 
 		return $this->jsonSuccess(['code'=>200,'msg'=>json_decode(json_encode($section),true)],200);
 
