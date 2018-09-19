@@ -120,7 +120,7 @@ td,th {  padding: 0;}
 html{ height: 100%;}
 body{height:100%; color:#666; font-size:13px; font-family:"Helvetica Neue", Helvetica, Arial,\5FAE\8F6F\96C5\9ED1,'\5B8B\4F53'; background: url(http://www.pinshu.com/themes/default/images/bg.jpg) repeat left top #F7F7F7;}
 a {  color: #4A4A4A;  text-decoration: none; outline:none;}
-a:hover,a:focus {  color: #F16B5A;  text-decoration: underline;}
+a:hover,a:focus {  color: #333;  text-decoration: underline;}
 a:focus {  outline: thin dotted;  outline: 5px auto -webkit-focus-ring-color;  outline-offset: -2px;}
 a:focus,input:focus,textarea:focus{outline:0;}
 ul,li,h3,h4,dl,dt,dd,form,input{ margin: 0; padding: 0;}

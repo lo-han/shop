@@ -25,11 +25,6 @@ p{padding:0;margin:0;}
 	float: left;
 }
 
-.layui-form-item .layui-input-block .layui-btn{
-	background-color: #ffc100;
-	color:#fff;
-}
-
 /** 登陆时未注册的描述 start **/
 .book-marked{
 	display: block;
@@ -306,7 +301,7 @@ input#username{background: #0000;}
 .left-nav ul{list-style: none;padding-bottom: 40px;background: #666;}
 .left-nav ul li{line-height: 45px;text-align: left;background: #666;padding-left:20px;cursor: pointer;}
 .left-nav ul li a{color:#fff;text-decoration: none;font-size: 14px;display: block;}
-.left-nav ul li.active{background: #ffc100;}
+.left-nav ul li.active{background: #cc374f;}
 .left-nav .nav1{width:100%;height:auto;padding-left:0px;}
 .left-nav .nav1 span{padding-left:0px;display: block;}
 .left-nav .nav1 .nbul{padding-bottom: 0px;}
@@ -322,12 +317,12 @@ input#username{background: #0000;}
 /*书籍管理*/
 .right-content .content{width:1000px;height: 40px;line-height: 40px;margin:15px;overflow: inherit;}
 .right-content .content .cndh{float: left;font-weight: bold;color:#434343;}
-.right-content .content .tjsb{float: right;display: block;padding:0 20px;text-decoration: none;text-align: center;color:#fff;background: #ffc100;border-radius:5px;font-size: 14px;}
+.right-content .content .tjsb{float: right;display: block;padding:0 20px;text-decoration: none;text-align: center;color:#fff;background: #f00;border-radius:5px;font-size: 14px;}
 .right-content .tjsbnr{width: 1000px;border-top:0px solid #e6e6e6;height: auto;overflow: hidden;margin:0 auto;padding-bottom: 20px;}
 .right-content .fyxs{width: 1000px;margin:0 auto;}
 .right-content .fyxs #test1{float: right;}
 .right-content .tjsbnr .tables{width: 100%;}
-.right-content .tjsbnr .tables .nrbt{font-weight: normal;text-align: center;height: 40px;line-height: 40px;background: #c2c2c2;color: #fff;}
+.right-content .tjsbnr .tables .nrbt{font-weight: normal;text-align: center;height: 40px;line-height: 40px;background: #434343;color: #fff;}
 .right-content .tjsbnr .tables .nr{width: 100%;height: auto;overflow: hidden;}
 .right-content .tjsbnr .tables .nr .yh{width: 100%;height: auto;overflow: hidden;background: #f2f2f2;}
 .right-content .tjsbnr .tables .p1{width: 230px;float: left;border-bottom:0px solid #e6e6e6;border-right:0px solid #e6e6e6;border-left:0px solid #e6e6e6;}
@@ -381,7 +376,7 @@ input#username{background: #0000;}
 .right-content .cont .workstep .demo1{position: relative;line-height: 40px;margin:8px 0;}
 .right-content .cont .workstep .demo1 .demonr{overflow: hidden;height: 40px;line-height: 40px;}
 .right-content .cont .workstep .demo1 .demonr .label{float: left;color:#333;font-size:13px;padding-left: 47px;padding-top: 9px;font-weight:normal;}
-.right-content .cont .workstep .demo1 .demonr .btn{float: left;margin-left: 17px;background: #ffc100;color:#fff;outline: none;}
+.right-content .cont .workstep .demo1 .demonr .btn{float: left;margin-left: 17px;background: #e83451;color:#fff;outline: none;}
 .right-content .cont .workstep .byts{color: #f00;font-weight: normal;margin-left: 11px;}
 .right-content .cont .workstep .byts1{margin-top:6px;}
 .right-content .layui-form-item .shzt{margin-left:106px;}
@@ -887,7 +882,7 @@ font-size: 12px;border: none;border-radius: 5px;cursor: pointer;}
 	text-align: center;
 	/*border: 1px solid rgb(167, 167, 167);*/
 	color: white;
-	background-color: #ffc100;
+	background-color: #e83451;
 	margin:15px 0;
 	padding: 5px 20px;
 	font-size: 12px;
