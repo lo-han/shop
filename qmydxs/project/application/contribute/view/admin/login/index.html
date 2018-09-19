@@ -1,0 +1,102 @@
+{extend name="public:admin" /}
+
+
+{block name="main"}
+<!--登录-->
+<div class="login_body">
+	<div class="login">
+		<div class="register-space"></div>
+			<div class="login-form">
+				<div class="login-form-header">
+					登录管理中心
+				</div>
+				<form class="layui-form" action="{:url('AdminLogin')}" method="post">
+					<div class="login-account-div">
+						<label for="login-account lgn">账户:</label>
+						&nbsp;&nbsp;<input type="text" id="login-account" name="account" placeholder="请输入账号" autofocus value="{if condition="isset($data.account)"}{$data.account}{/if}" />
+
+						{if condition="isset($error.account)"}
+						<label for="login-account" class="tsy">{$error.account}</label>
+						{/if}
+						{if condition="isset($error.login)"}
+						<label class="tsy">{$error.login}</label>
+						{/if}
+					</div>
+					<div class="login-password-div">
+						<label for="login-password lgn">密码:</label>
+						&nbsp;&nbsp;<input type="password" id="login-password" name="password" placeholder="请输入密码"/>
+						{if condition="isset($error.password)"}
+						<label for="login-password" class="tsy">{$error.password}</label>
+						{/if}
+					</div>
+					<div class="login-code-div yzmbk">
+						<label for="login-code lgn" class="yzcode1">验证码:</label>
+						<div class="imgDiv">
+							<input type="text" id="login-code" name="captcha" placeholder="请输入验证码" style="float:left;"/>
+							<a class="yzm" type="button" id="yzbtn" ><img id="yzbth-img" src="{:captcha_src()}"></a>
+							{if condition="isset($error.captcha)"}
+							<label for="login-code" class="tsy tsy1">{$error.captcha}</label>
+							{/if}
+						</div>
+						
+					</div>
+					<div class="login-submit-div tjyz">
+						<button type="button" id="login-submit" class="layui-btn" lay-submit lay-filter="formDemo">登录</button>
+					</div>	
+				</form>		
+				<!-- <p>温馨提示：忘记密码请联系13888886666</p> -->
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+<!-- 登陆，注册的left需要为空 -->
+{block name="left"}{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+	<script>
+		function toRegister() {
+	        window.location.href = "register.html"
+	    }
+
+		layui.use('form', function(){
+		  	var form = layui.form;
+			form.verify({
+				  account: function(value, item){ //value：表单的值、item：表单的DOM对象
+
+				    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+				      return '用户名不能为空，不能有特殊字符';
+				    }
+				    if(/(^\_)|(\__)|(\_+$)/.test(value)){
+				      return '用户名首尾不能出现下划线\'_\'';
+				    }
+				    if(/^\d+$/.test(value)){
+				      return '用户名不能全为数字';
+				    }
+				  }
+				  
+				  //我们既支持上述函数式的方式，也支持下述数组的形式
+				  //数组的两个值分别代表：[正则匹配、匹配不符时的提示  文字]
+				  ,password: [
+				    /^[\S]{6,12}$/
+				    ,'密码必须6到12位，且不能出现空格'
+				  ] 
+				  ,captcha: [
+				    /^[\S]{4}$/
+				    ,'验证码格式不正确'
+				  ] 
+			});
+
+			form.on('submit(formDemo)', function(data){  
+				$(".layui-form").submit();
+				return false;
+			}); 
+		});   
+	</script>
+{/block}

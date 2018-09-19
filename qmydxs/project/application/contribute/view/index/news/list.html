@@ -1,0 +1,33 @@
+{extend name="public:index" /}
+
+{block name="main"}
+<div class="container clearfix">
+    <ul class="news-list">
+        {volist name="news" id="data"}
+        <li>
+            <a class="title" href="{:url('HomeNewsShow',['id'=>$data->id])}">{$data->title}</a>
+            <div class="conter">
+                {$data->description}
+            </div>
+            <p class="more">
+                <a href="{:url('HomeNewsShow',['id'=>$data->id])}">查看</a>
+            </p>
+        </li>
+        {/volist}
+    </ul>
+
+    <div class="zpfy">
+		<nav aria-label="Page navigation">
+            {$news->render()}
+		</nav>
+	</div>
+</div>
+{/block}
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+
+{/block}
