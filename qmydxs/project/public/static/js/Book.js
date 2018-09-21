@@ -79,5 +79,19 @@ $(function (){
           window.location.href = $(this).data("href");
         } 
     });
+
+    $(document).on("click","#checkbox-all",function (){
+        var subset = $(this).data("check-target");
+
+        if( $(this).is(':checked') ){
+            $(subset+":not(:checked)").each(function (){
+                $(this).prop("checked",true);
+            });
+        }else{
+            $(subset+":checked").each(function (){
+                $(this).prop("checked",false);
+            });
+        }
+    });
     
 });

@@ -120,6 +120,9 @@ Route::group('admin',function (){
 	//章节审核
 	Route::rule(['AdminSectionEdit','section/edit/:book_id/:id'],'contribute/admin.section/edit','post|get',[],['book_id'=>'[0-9]+','id'=>'[0-9]+']);
 
+	//章节批量审核通过
+	Route::rule(['AdminSectionCheckPass','section/check'],'contribute/admin.section/checkPass','post');
+
 	//章节删除
 	Route::rule(['AdminSectionDelete','section/delete/:book_id/:id'],'contribute/admin.section/delete','post|get',[],['book_id'=>'[0-9]+','id'=>'[0-9]+']);
 

@@ -37,6 +37,9 @@
 		<div class="lbbg lbbg1">
 			<table style="margin-top:0;">
 				<tr>
+					<th width="5%">
+						<input type="checkbox" id="checkbox-all" data-check-target=".check-target"  />
+					</th>
 					<th width="5%">ID</th>
 					<th width="5%">序号</th>
 					<th class="lwxs">章节名称</th>
@@ -50,6 +53,9 @@
 
 				{volist name="sections" id="section" mod="2" }
 				<tr {eq name="mod" value="0"}class="first"{/eq}>
+					<td width="5%">
+						<input type="checkbox" value="{$section->id}" name="id" class="check-target" />
+					</td>
 					<td>{$section->id}</td>
 					<td>{$section->sort}</td>
 					<td class="lwxs"><a target="_blank" href="{:url('HomeSectionShow',['id'=>$section->id])}">{$section->title}</td>
@@ -67,7 +73,11 @@
 				</tr>
 				{/volist}
 			</table>
+			
 			<div class="fyxs fyxs1">
+				<div style="float: left;">
+					<a id="check-push" data-check-target=".check-target" data-href="{:url('AdminSectionCheckPass')}" href="javascript:;">审核通过</a>
+				</div>
 				<div id="test1">
 					<nav aria-label="Page navigation">
 					 	{$sections->render()}
@@ -99,5 +109,19 @@
 		  });
 		});
 
+		$(document).on("click","#check-push",function (){
+			var subset = $(this).data("check-target");
+			var ids = [];
+			$(subset+":checked").each(function (){
+                ids.push($(this).val());
+            });
+            $.post($(this).data("href"),{ids:ids.join(",")},function(data){
+		    	if(data.status == true)
+		    	{
+		    		window.location.reload(); 
+		    	}
+		  	});
+	        
+	    });
 	</script>
 {/block}

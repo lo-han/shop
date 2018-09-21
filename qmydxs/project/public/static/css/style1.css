@@ -129,7 +129,7 @@ display: block;margin: 40px auto 0;background: url(../img/nhlogo2.png) 50% no-re
 .two-column-r-layout{padding-right: 0;padding-left: 340px;}
 .two-column-r-layout .left-r-column{width: 300px;left: 0;right: auto;padding: 0 20px;}
 .comic-detail-page-container .left-r-column{padding: 380px 0 20px 20px;float: left;margin-left: -340px;position: relative;}
-.comic-detail-page-cover{position: absolute;top: -70px;width: 300px;height: 450px;left: 20px;}
+.comic-detail-page-cover{position: absolute;top:0;width: 255px;height: 382px;left: 20px;}
 .comic-detail-page-cover img{display: block;width: 100%;height: 100%;}
 .authors{margin-top:10px;}
 .comic-detail-page-container .author-info{margin-top: 10px;height: 145px;padding: 25px 25px 0 140px;position: relative;display: block;}

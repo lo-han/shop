@@ -131,6 +131,16 @@ class Section extends Common
 		$this->redirect( $Request->server('HTTP_REFERER',url('AdminBook')) );
 	}
 
+	public function checkPass(Request $request,BookSection $section)
+	{
+		$ids = $request->post('ids');
+		$section->whereIn('id',$ids)->update(['check' => 1]);
+		
+		return $this->jsonSuccess([
+			'status' => true,
+		]);
+	}
+
 	public function clearBook(Request $Request,BookSection $section)
 	{
 		$book_id = $Request->route('book_id');
