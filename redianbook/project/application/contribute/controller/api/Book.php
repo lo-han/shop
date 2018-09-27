@@ -29,7 +29,7 @@ class Book extends Common
 
 		$book = $book::get(function ($query) use ($Request){
 			$query->alias('b')
-			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,c.title as ctitle,u.pen_name as author')
+			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,b.update_time,b.create_time,c.title as ctitle,u.pen_name as author')
 			->join('category c','b.category_id = c.id','LEFT')
 			->join('user u','b.user_id = u.id','LEFT')
 			->where(['b.id'=>$Request->get('bookid')]);	
@@ -45,6 +45,8 @@ class Book extends Common
 		
 		$book->setAttr('cover',imagePath(['table'=>'book','category'=>'cover'],$book->cover));
 		$book->setAttr('copyright',config('book.copyright')[$book->copyright]);
+		$book->setAttr('update_time',date("Y-m-d H:i:s",$book->update_time));
+		$book->setAttr('create_time',date("Y-m-d H:i:s",$book->create_time));
 		$book->setAttr('status',config('book.status')[$book->status]);
 		$book->setAttr('sectionid',$sectionid);
 		
@@ -76,7 +78,7 @@ class Book extends Common
 
 		$book = $book::get(function ($query) use ($Request){
 			$query->alias('b')
-			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,c.title as ctitle,u.pen_name as author')
+			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,b.update_time,b.create_time,c.title as ctitle,u.pen_name as author')
 			->join('category c','b.category_id = c.id','LEFT')
 			->join('user u','b.user_id = u.id','LEFT')
 			->where(['b.id'=>$Request->get('bookid')]);	
@@ -89,6 +91,8 @@ class Book extends Common
 		
 		$book->setAttr('cover',imagePath(['table'=>'book','category'=>'cover'],$book->cover));
 		$book->setAttr('copyright',config('book.copyright')[$book->copyright]);
+		$book->setAttr('update_time',date("Y-m-d H:i:s",$book->update_time));
+		$book->setAttr('create_time',date("Y-m-d H:i:s",$book->create_time));
 		$book->setAttr('status',$book->status == 1 ? 0 : 1);
 		
 		return $this->jsonSuccess(
