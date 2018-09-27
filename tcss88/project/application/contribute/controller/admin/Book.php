@@ -157,7 +157,7 @@ class Book extends Common
 
 						$PlaceRelation->createRelation( array_filter(explode(',',$Request->post('place'))) ,$bookData['id']);		//创建书籍和分销商的关联
 
-						$this->redirect(url('AdminBook'));	//书本添加成功返回列表页面
+						$this->redirect($Request->post('referer'));	//书本添加成功返回列表页面
 
 					}else{
 						$error['error'] = '系统错误请重新尝试';
