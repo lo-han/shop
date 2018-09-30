@@ -1,0 +1,80 @@
+{extend name="public:admin" /}
+
+
+{block name="main"}
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<div class="zxlbnr">
+			<form class="layui-form" action="{$formUrl}" method="post" >
+				<input type="hidden" name="check" value="1" />
+				<input type="hidden" name="referer" value="{if condition="isset($_SERVER['HTTP_REFERER'])"}{$_SERVER["HTTP_REFERER"]}{else /}{:url('AdminBook')}{/if}" />
+
+		  	  	<div class="layui-form-item">
+				    <label class="layui-form-label">收费开始</label>
+				    <div class="layui-input-block">
+				      <input type="text" name="attrStart" lay-verify="attrStart" placeholder="请输入开始收费的章节数" autocomplete="off" class="layui-input" value="">
+				    </div>
+			  	</div>
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">所有章节</label>
+				    <div class="layui-input-block zxlbjs">
+				      <textarea name="section" lay-verify="section" class="layui-textarea"></textarea>
+				    </div>
+			  	</div>
+			  	<div class="layui-form-item">
+				    <div class="layui-input-block">
+				      	<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				    </div>
+			  	</div>
+			  	{if condition="isset($error.error)"}
+			    <label class="tsyy">{$error.error}</label>
+		    	{/if}
+			</form>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+<script type="text/javascript">
+
+	layui.use('form', function(){
+	  	var form = layui.form;
+
+	  	form.verify({
+			cover: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '请上传封面图片';
+				}
+			}
+			,title: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '名称不能为空';
+				}
+			}
+			,description: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '简介不能为空';
+				}
+				
+				if(value.length < 20 || value.length > 500){
+				    return '作品简介请控制在20-500字内';
+				}
+			}
+			,check: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '请选择发布状态';
+				}
+			}
+			
+		});  
+	});
+
+</script>
+
+{/block}

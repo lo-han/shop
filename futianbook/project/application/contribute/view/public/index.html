@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>{block name="title"}伏天文学-都市情感小说基地-免费小说{/block}</title>
+	<link rel="stylesheet" type="text/css" href="{:asset('/static/css/swiper.min.css')}" />
+	<link rel="stylesheet" type="text/css" href="{:asset('/static/layui/css/layui.css')}" />
+	<link rel="stylesheet" type="text/css" href="{:asset('/static/css/bootstrap.min.css')}">
+	<link rel="stylesheet" type="text/css" href="{:asset('/static/css/style1.css')}">
+	<link rel="stylesheet" type="text/css" href="{:asset('/static/redian/css/common.css')}" />
+	<link rel="stylesheet" type="text/css" href="{:asset('/static/redian/css/index.css')}" />
+
+	<script type="text/javascript" src="{:asset('/static/js/jquery-3.2.1.min.js')}"></script>
+	<script type="text/javascript" src="{:asset('/static/js/bootstrap.min.js')}"></script>
+	<script type="text/javascript" src="{:asset('/static/js/swiper.min.js')}"></script>
+	<script type="text/javascript" src="{:asset('/static/layui/layui.js')}"></script> 
+	{block name="css"}{/block}
+
+</head>
+
+<body>
+	<div {block name="wrapper"}class="wrapper"{/block}>
+
+		{block name="head"}
+		<!-- 引入用户的公共头部模板 start -->
+	  	{include file="public:user_head" /}
+	  	<!-- 引入用户的公共头部模板 end -->
+		{/block} 
+
+		{block name="main"}{/block}
+
+	</div>
+
+	{block name="footer"}
+	<!--foot-->
+	<div class="footbar">
+		豫ICP备18035285号-1 futianbook.com Copyright @ 2018 河南伏天网络科技有限公司 @ 版权所有
+	</div>
+	{/block}
+
+	<script>
+		layui.use('form', function () {
+			var form = layui.form;
+
+			//各种基于事件的操作，下面会有进一步介绍
+		});
+	</script> {block name="js"}{/block}
+
+</body>
+
+</html>
