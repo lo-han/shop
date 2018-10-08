@@ -57,5 +57,26 @@ trait ApiCheck
 		
 	}
 
+	//书本的API权限验证
+	public function bookAuthJson($bookid){
+
+		if($bookid){
+
+			if(in_array($bookid,$this->place->posBook))
+			{
+				return true;
+			}
+
+		}
+
+		die(
+			$this->jsonError([
+				'code'	=> 415,
+				'msg'	=> 'Not your book'
+			],415)->send()
+		);
+		
+	}
+
 
 }

@@ -194,6 +194,16 @@ Route::group('api',function (){
 	//获取章节接口		
 	Route::get(['Api','chapter'],'contribute/api.section/get');	
 
+	/** json方式获取接口 **/
+	//渠道商的书本信息
+	Route::get(['Api','json/info'],'contribute/api.book/infoJson');
+	//获取书本接口
+	Route::get(['Api','json/book'],'contribute/api.book/getJson');
+	//获取章节接口		
+	Route::get(['Api','json/chapter'],'contribute/api.section/getJson');
+	//获取章节接口		
+	Route::get(['Api','json/chapterlist'],'contribute/api.book/listJson');
+
 });
 
 //文本内容图片上传
