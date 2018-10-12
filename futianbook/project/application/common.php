@@ -148,14 +148,57 @@ if (! function_exists('numberUnit')) {
 if (! function_exists('charNumber')) {
 
     function charNumber(string $char){
-    
-        return mb_strlen( 
-            str_replace(["&nbsp;"," ","\n","\r"], "", strip_tags( $char ) )
-        );
 
+        $str= str_replace(array("\n","\r"),'',strip_tags($char));
+        $len = strlen($str);
+        $i = 0;
+        $count = 0;
+        while($i < $len)
+        {
+            $chr = ord($str[$i]);
+            if($chr == 9 || $chr == 10 || (32 <= $chr && $chr <= 126))
+            {
+                $i +=1;
+                if(is_azAZ($chr))
+                {//如果是字母，则字数+1
+                    $count++;
+                    //i下移直到不是字母
+                    if($i < $len){
+                        $newchr = ord($str[$i]);
+                        while(is_azAZ($newchr)){
+                            $i +=1;
+                            $newchr = ord($str[$i]);
+                        }
+                    }
+                }
+            }elseif(224 <= $chr && $chr <= 239){
+                $i +=3;
+                $count++;
+            }else{
+                $i +=1;
+            }
+        }
+        return $count;
+
+    } 
+
+}
+
+if (! function_exists('is_azAZ')) {
+
+    function is_azAZ($str)
+    {
+        if(preg_match('/^[a-z]+$/', $str) || preg_match('/^[A-Z]+$/', $str))
+        {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
+
+
 
 /**
  *  实现图片资源路径返回
