@@ -128,8 +128,8 @@ class GetBook extends Common
 	       'book'		=>'http://www.tcss88.com/?s=JsonApi&a=index&api=get.book.info',
 	       'chapterInfo'=>'http://www.tcss88.com/?s=JsonApi&a=index&api=get.book.chapter',
 	       'chapter'	=>'http://www.tcss88.com/?s=JsonApi&a=index&api=get.book.content',
-	       'apikey'		=>'hongshuhui2',
-	       'spid'		=>120,
+	       'apikey'		=>'baozouneihanshucheng',
+	       'spid'		=>117,
 	    ]);
 
 	    //http://www.tcss88.com/?s=JsonApi&a=index&api=get.book.chapter&apikey=jinyuewenhua&spid=109&bookid=113
