@@ -17,6 +17,8 @@ http://www.redianbook.com/api/book?apikey=*****&bookid=*
 	title --- 书籍标题
 	cover --- 书籍封面
 	description --- 书籍简介
+	space --- 书籍长短篇
+	sex --- 书籍男女频道
 	copyright --- 是否独家 【存在：1.独家|2.非独家】
 	status --- 是否连载 【存在：1.连载|2.完结】
 	char_number --- 书本总字数

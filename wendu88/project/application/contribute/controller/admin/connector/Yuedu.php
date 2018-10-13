@@ -219,20 +219,17 @@ class Yuedu extends Common
 			//章节处理
 			$chapters = $book->bookSections;
 			foreach ($chapters as $key => $row) {
-			    $sort[$key]  = $row['sort'];
+			    $sort[$row['sort']]  = $row;
 			}
-			if($chapters)
-			{
-				array_multisort($sort, SORT_DESC , $chapters);	
-			}
-
-			foreach($chapters as $chapter )
+			krsort($sort);
+			foreach($sort as $chapter )
 			{
 				$chapter->content = strip_tags($chapter->content,"<p>");
 				$isPush = $pushBook->chapter($chapter);
 				
 				if($isPush['code'] !== 200 )
 				{
+					unset($sort);
 					break;
 				}
 			}

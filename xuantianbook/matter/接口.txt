@@ -5,13 +5,13 @@
 </root>
 
 #获取可以控制的书籍
-http://www.redianbook.com/api/info?apikey=******
+http://www.xuantianbook.com/api/info?apikey=******
 
 返回值：id --- 书籍ID
 	title --- 书籍标题
 
 #获取书籍信息
-http://www.redianbook.com/api/book?apikey=*****&bookid=*
+http://www.xuantianbook.com/api/book?apikey=*****&bookid=*
 
 返回值：id --- 书籍ID
 	title --- 书籍标题
@@ -24,7 +24,7 @@ http://www.redianbook.com/api/book?apikey=*****&bookid=*
 	sectionid --- 书籍审核通过的所有章节
 
 #获取章节信息
-http://www.redianbook.com/api/chapter?apikey=*****&chapterid=*
+http://www.xuantianbook.com/api/chapter?apikey=*****&chapterid=*
 
 返回值：book_id --- 书籍ID
 	title --- 章节标题

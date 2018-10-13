@@ -1,0 +1,35 @@
+此接口统一采用xml格式返回
+<root>
+	<code>200正常状态，415属于资源不存在</code>
+	<msg>内容信息</msg>
+</root>
+
+#获取可以控制的书籍
+http://www.ddxsbook.com/api/info?apikey=******
+
+返回值：id --- 书籍ID
+	title --- 书籍标题
+
+#获取书籍信息
+http://www.ddxsbook.com/api/book?apikey=*****&bookid=*
+
+返回值：id --- 书籍ID
+	title --- 书籍标题
+	cover --- 书籍封面
+	description --- 书籍简介
+	copyright --- 是否独家 【存在：1.独家|2.非独家】
+	status --- 是否连载 【存在：1.连载|2.完结】
+	char_number --- 书本总字数
+	ctitle --- 书籍类型
+	sectionid --- 书籍审核通过的所有章节
+
+#获取章节信息
+http://www.ddxsbook.com/api/chapter?apikey=*****&chapterid=*
+
+返回值：book_id --- 书籍ID
+	title --- 章节标题
+	sort --- 章节序号
+	char --- 章节字数
+	attr --- 是否免费 【存在：1.免费|2.付费】
+	content --- 章节内容
+

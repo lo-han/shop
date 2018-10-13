@@ -29,7 +29,7 @@ class Book extends Common
 
 		$book = $book::get(function ($query) use ($Request){
 			$query->alias('b')
-			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,b.space,b.sex,c.title as ctitle,u.pen_name as author')
+			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,b.space,b.sex,b.update_time,b.create_time,c.title as ctitle,c.id as cid,u.pen_name as author')
 			->join('category c','b.category_id = c.id','LEFT')
 			->join('user u','b.user_id = u.id','LEFT')
 			->where(['b.id'=>$Request->get('bookid')]);	
@@ -48,6 +48,8 @@ class Book extends Common
 		$book->setAttr('status',config('book.status')[$book->status]);
 		$book->setAttr('space',config('book.space')[$book->space]);
 		$book->setAttr('sex',config('book.sex')[$book->sex]);
+		$book->setAttr('update_time',date("Y-m-d H:i:s",$book->update_time));
+		$book->setAttr('create_time',date("Y-m-d H:i:s",$book->create_time));
 		$book->setAttr('sectionid',$sectionid);
 		
 		return $this->returnXml(
@@ -78,7 +80,7 @@ class Book extends Common
 
 		$book = $book::get(function ($query) use ($Request){
 			$query->alias('b')
-			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,b.space,b.sex,c.title as ctitle,u.pen_name as author')
+			->field('b.id,b.title,b.cover,b.description,b.copyright,b.status,b.char_number,b.space,b.sex,b.update_time,b.create_time,c.title as ctitle,c.id as cid,u.pen_name as author')
 			->join('category c','b.category_id = c.id','LEFT')
 			->join('user u','b.user_id = u.id','LEFT')
 			->where(['b.id'=>$Request->get('bookid')]);	
@@ -94,6 +96,8 @@ class Book extends Common
 		$book->setAttr('status',$book->status == 1 ? 0 : 1);
 		$book->setAttr('space',config('book.space')[$book->space]);
 		$book->setAttr('sex',config('book.sex')[$book->sex]);
+		$book->setAttr('update_time',date("Y-m-d H:i:s",$book->update_time));
+		$book->setAttr('create_time',date("Y-m-d H:i:s",$book->create_time));
 		
 		return $this->jsonSuccess(
 			['code'=>200,'msg'=>json_decode(json_encode($book),true)],
@@ -123,7 +127,7 @@ class Book extends Common
 		$this->bookAuthJson($Request->get('bookid'));
 
 		//获取此书所有的章节ID
-		$section = BookSection::field('id,CASE WHEN attr = 1 THEN 0 ELSE 1 END as isvip,title')->where(['book_id'=>$Request->get('bookid'),'check'=>1])->order("sort ASC")->select();
+		$section = BookSection::field('id,CASE WHEN attr = 1 THEN 0 ELSE 1 END as isvip,title')->where(['book_id'=>$Request->get('bookid'),'check'=>1])->order("sort ASC")->order("id DESC")->select();
 		
 
 		return $this->jsonSuccess(
