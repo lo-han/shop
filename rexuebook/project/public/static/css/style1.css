@@ -63,8 +63,7 @@ hr {
     position: relative;
     line-height: 70px;
     height: 70px;
-    border-bottom: 1px solid #d3d3d3;
-    background-color: #e83451;
+    border-bottom: 2px solid #f2f2f2;
 }
 
 .heading .container {
@@ -105,7 +104,7 @@ hr {
     float: left;
     margin-left: 15px;
     margin-top: 20px;
-    color: #fff;
+    color: #000;
 }
 
 .heading .container .H-right {
@@ -133,17 +132,17 @@ hr {
 
 .heading .container .H-right .lbj .nav-item a {
     text-decoration: none;
-    color: #fff;
+    color: #000;
     display: block;
     padding: 0;
     opacity: 1;
-    border-top: 5px solid #e83451;
+    border-top: 5px solid #f9f7f8;
     font-size: 16px;
 }
 
 .heading .container .H-right .lbj .nav-item a.active {
-    color: #fff;
-    border-top: 5px solid #fff;
+    color: #000;
+    border-top: 5px solid #ce0b10;
 }
 
 .heading .nav-user {
@@ -223,7 +222,7 @@ hr {
 }
 
 .heading .nav-user .dlztlater a {
-    color: #fff;
+    color: #000;
     text-decoration: none;
 }
 
@@ -580,7 +579,7 @@ footer {
     width: 100%;
     z-index: 1000;
     margin-top: 30px;
-    background-color: #e83451;
+    background-color: #f2f2f2;
     padding-top: 40px;
     height: 190px;
 }
@@ -596,7 +595,7 @@ li.footer-item {
 }
 
 li.footer-item a {
-    color: #fff;
+    color: #000;
     text-decoration: none;
 }
 
@@ -612,7 +611,7 @@ ul.footer-info {
     margin-bottom: 20px;
     text-align: center;
     font-size: 14px;
-    color: #fff;
+    color: #000;
 }
 
 ul.footer-info li.footer-item+li.footer-item {
@@ -692,6 +691,7 @@ footer .logo-grey {
     line-height: 35px;
     padding: 0 20px;
     font-size: 12px;
+    background-color: #ce0b10;
 }
 
 .ssgn .cont1 {
@@ -710,6 +710,10 @@ footer .logo-grey {
 .ssgn .zpfy .pagination>li {
     margin: 0 3px;
     float: left;
+}
+
+.ssgn .zpfy .pagination>li.active span {
+    background-color: #ce0b10; 
 }
 
 .pagination>.disabled>a,
