@@ -182,6 +182,10 @@ if (! function_exists('imagePath')) {
             return config('hostWWW') . "/static/img/defaultHd.jpg";
         }
 
+        if($isfile === false && in_array($catalogue['table'], ['book']) ){
+            return config('hostWWW') . "/static/img/defaultBookimage.png";
+        }
+
         return $path;
 
     }
