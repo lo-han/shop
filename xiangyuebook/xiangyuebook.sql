@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50553
 Source Host           : localhost:3306
-Source Database       : ddxsbook
+Source Database       : xiangyuebook
 
 Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-07-25 18:44:55
+Date: 2018-08-24 18:33:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,8 +45,6 @@ CREATE TABLE `admin` (
   KEY `table_admin_index_status` (`status`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='制作人用户表格';
 
-INSERT INTO `admin` VALUES ('1', 'admin', 'admin', '502c4783d601de5937004d7a8d6baf8b', '', '', '', '', '', '', '', '', '1', '1', '', '0', '0');
-
 -- ----------------------------
 -- Table structure for advert
 -- ----------------------------
@@ -60,7 +58,7 @@ CREATE TABLE `advert` (
   `site` varchar(60) NOT NULL DEFAULT '' COMMENT '广告位置',
   PRIMARY KEY (`id`),
   UNIQUE KEY `table_advert_site` (`site`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='广告位';
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='广告位';
 
 -- ----------------------------
 -- Table structure for book
@@ -89,7 +87,7 @@ CREATE TABLE `book` (
   KEY `table_book_index_copyright` (`copyright`),
   KEY `table_book_index_sort` (`sort`),
   FULLTEXT KEY `table_book_index_title` (`title`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='书本表格';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='书本表格';
 
 -- ----------------------------
 -- Table structure for book_section
@@ -114,7 +112,7 @@ CREATE TABLE `book_section` (
   KEY `table_book-section_index_attr` (`attr`),
   KEY `table_book-section_index_sort` (`sort`),
   FULLTEXT KEY `table_book-section_index_title` (`title`)
-) ENGINE=MyISAM AUTO_INCREMENT=182 DEFAULT CHARSET=utf8 COMMENT='书本章节表格';
+) ENGINE=MyISAM AUTO_INCREMENT=185 DEFAULT CHARSET=utf8 COMMENT='书本章节表格';
 
 -- ----------------------------
 -- Table structure for category
@@ -131,7 +129,22 @@ CREATE TABLE `category` (
   UNIQUE KEY `table_category_index_spell` (`spell`) USING BTREE,
   UNIQUE KEY `table_category_index_title` (`title`) USING BTREE,
   KEY `table_category_index_sort` (`sort`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='类型';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='类型';
+
+-- ----------------------------
+-- Table structure for connector
+-- ----------------------------
+DROP TABLE IF EXISTS `connector`;
+CREATE TABLE `connector` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `book_id` int(11) NOT NULL COMMENT '书籍ID',
+  `source_name` varchar(100) NOT NULL COMMENT '推送接口渠道名称',
+  `source_type` varchar(100) NOT NULL COMMENT '接口类型',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `table_place_unique_source-name_and_book-id` (`source_name`,`book_id`) USING BTREE,
+  KEY `table_place_index_source-name` (`source_name`) USING BTREE,
+  KEY `table_place_index_source-type` (`source_type`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='推送渠道';
 
 -- ----------------------------
 -- Table structure for mark
@@ -143,7 +156,7 @@ CREATE TABLE `mark` (
   `source_type` varchar(40) NOT NULL DEFAULT '' COMMENT '区块代号',
   PRIMARY KEY (`id`),
   UNIQUE KEY `table_book_mark_source_type` (`source_type`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='推介表格';
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='推介表格';
 
 -- ----------------------------
 -- Table structure for news
@@ -198,33 +211,6 @@ CREATE TABLE `place_relation` (
   KEY `table_place-relation_index_book-id` (`book_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='分销商索引';
 
-
--- ----------------------------
--- Table structure for place
--- ----------------------------
-DROP TABLE IF EXISTS `interface`;
-CREATE TABLE `interface` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `source_info` varchar(500) NOT NULL COMMENT '推送接口渠道信息',
-  `source_name` varchar(255) NOT NULL COMMENT '推送接口渠道名称',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `table_place_unique_source-name` (`source_name`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='推送渠道';
-
--- ----------------------------
--- Table structure for place_relation
--- ----------------------------
-DROP TABLE IF EXISTS `interface_relation`;
-CREATE TABLE `interface_relation` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `interface_id` int(10) unsigned NOT NULL COMMENT '推送渠道ID',
-  `book_id` int(10) unsigned NOT NULL COMMENT '书本ID',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `table_interface-relation_unique_book-id_interface-id` (`interface_id`,`book_id`) USING BTREE,
-  KEY `table_interface-relation_index_interface-id` (`interface_id`),
-  KEY `table_interface-relation_index_book-id` (`book_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='推送渠道索引';
-
 -- ----------------------------
 -- Table structure for tag
 -- ----------------------------
@@ -236,7 +222,7 @@ CREATE TABLE `tag` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `table_tag_unique_name` (`name`) USING BTREE,
   FULLTEXT KEY `table_tag_index_name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='标签库';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='标签库';
 
 -- ----------------------------
 -- Table structure for tag_relation
@@ -250,7 +236,7 @@ CREATE TABLE `tag_relation` (
   UNIQUE KEY `table_tag-relation_unique_book-id_tag-id` (`tag_id`,`book_id`) USING BTREE,
   KEY `table_tag-relation_index_tag-id` (`tag_id`),
   KEY `table_tag-relation_index_book-id` (`book_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='标签索引';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='标签索引';
 
 -- ----------------------------
 -- Table structure for user
@@ -277,5 +263,5 @@ CREATE TABLE `user` (
   KEY `table_user_unique_tel` (`tel`),
   KEY `table_user_index_status` (`status`),
   KEY `table_user_index_admin-id` (`admin_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户个人信息表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户个人信息表';
 SET FOREIGN_KEY_CHECKS=1;
