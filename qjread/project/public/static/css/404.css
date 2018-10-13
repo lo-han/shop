@@ -1,0 +1,60 @@
+.cf{
+	zoom: 1;
+}
+.cf:after, .cf:before{
+	display: table;
+	content: '';
+}
+.error-wrap{
+	width: 990px;
+	margin: 0 auto;
+}
+.cf:after{
+	clear: both;
+}
+.fl{
+	float: left;
+}
+.error-img{
+	width: 530px;
+	height: 232px;
+	margin: 60px 200px;
+	background: url(../img/error.png) no-repeat;
+	background-size: 100%;
+}
+
+.error-text{
+	width: 530px;
+	margin: 0 200px;
+}
+.error-text h3{
+	font: 36px/42px FZZCYSK;
+	margin-bottom: 32px;
+	color: #6b3612;
+}
+.error-text p{
+	font: 14px/32px PingFangSC-Regular, '-apple-system', Simsun;
+	color: grey;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.error-text p strong{
+	font-weight: 400;
+	color: #1a1a1a;
+}
+.error-text p em{
+	font-family: Arial;
+	margin: 0 5px;
+}
+.error-text p.mb25{
+	margin-bottom: 25px;
+}
+.error-text p a{
+	color: #3f5a93;
+	text-decoration: none;
+	outline: 0;
+}
+.error-text p i{
+	margin: 0 5px;
+	color: #3f5a93;
+}

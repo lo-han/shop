@@ -1,0 +1,79 @@
+{extend name="public:admin" /}
+
+
+{block name="main"}
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<div class="zxlbnr">
+			<form class="layui-form" action="{$formUrl}" method="post" enctype="multipart/form-data" >
+				<input type="hidden" name="check" value="1" />
+				<input type="hidden" name="referer" value="{if condition="isset($_SERVER['HTTP_REFERER'])"}{$_SERVER["HTTP_REFERER"]}{else /}{:url('AdminBook')}{/if}" />
+
+		  	  	<div class="layui-form-item">
+				    <label class="layui-form-label">收费开始</label>
+				    <div class="layui-input-block">
+				      <input type="text" name="attrStart" lay-verify="attrStart" placeholder="请输入开始收费的章节数" autocomplete="off" class="layui-input" value="">
+				    </div>
+			  	</div>
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">章节txt</label>
+					<input type="file" lay-verify="section" name="section" />	
+			  	</div>
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">导入类型</label>
+				    <div class="layui-input-block" style="width:100px;" >
+				      <select lay-filter="category" name="category">
+				      		<option value="1">###</option>
+				      		<option value="2">字符串</option>
+				      </select>
+				      <input class="layui-input chapter-size" type="text" name="size" placeholder="章节字数" >
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+				    <div class="layui-input-block">
+				      	<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				    </div>
+			  	</div>
+			  	{if condition="isset($error.error)"}
+			    <label class="tsyy">{$error.error}</label>
+		    	{/if}
+			</form>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+<script type="text/javascript">
+
+	layui.use('form', function(){
+	  	var form = layui.form;
+
+	  	form.on('select(category)', function(data){
+		  	if( data.value == 2 )
+		  	{
+		  		$(".chapter-size").show();
+		  	}else{
+		  		$(".chapter-size").hide();
+		  	}
+		});
+
+	  	form.verify({
+			section: function(value, item){ //value：表单的值、item：表单的DOM对象
+				if(value == ''){
+				    return '请上传章节文本';
+				}
+			}
+			
+		});  
+	});
+
+</script>
+
+{/block}
