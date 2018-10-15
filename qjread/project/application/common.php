@@ -183,7 +183,7 @@ if (! function_exists('imagePath')) {
         }
 
         if($isfile === false && in_array($catalogue['table'], ['book']) ){
-            return config('hostWWW') . "/static/img/defaultBookimage.png";
+            return config('hostWWW') . "/static/img/defaultBookimage.jpg";
         }
 
         return $path;

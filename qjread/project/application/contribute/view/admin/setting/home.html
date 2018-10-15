@@ -59,6 +59,32 @@
 
 			  	</div>
 
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">短篇专区</label>
+				      	<input type="text" name="post[home_book_short][source_id]" placeholder="请输入书本ID" autocomplete="off"
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_book_short)"}{$data.home_book_short.source_id}{/if}">
+				      	{if condition="isset($data.home_book_short)"}
+				      	<input type="hidden" name="post[home_book_short][id]" value="{$data.home_book_short.id}" />
+				      	{/if}
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">完本榜</label>
+					    <input type="text" name="post[home_book_list_end][source_id]" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.home_book_list_end)"}{$data.home_book_list_end.source_id}{/if}">
+
+					    {if condition="isset($data.home_book_list_end)"}
+				      	<input type="hidden" name="post[home_book_list_end][id]" value="{$data.home_book_list_end.id}" />
+				      	{/if}
+					</div>
+
+			  	</div>
+
 				<!-- <div class="layui-form-item right-body-margin">
 				    
 				    <div class="input-block-left">
