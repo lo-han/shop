@@ -255,7 +255,7 @@ class Book extends Common
 			$user_id 	= BookModel::get($book_id)->user_id;	//用户ID
 			
 			$section = file_get_contents($Request->file('section')->getInfo('tmp_name'));
-			$section = iconv(mb_detect_encoding($section),'UTF-8',$section);
+			$section = iconv(mb_detect_encoding($section,array("GBK","GB2312","UTF-8","ASCII","BIG5")),'UTF-8//IGNORE',$section);;
 			$size = $Request->post('size');
 
 			if( $Request->post('category') == 2 )
