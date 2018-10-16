@@ -1,0 +1,133 @@
+{extend name="public:user" /}
+
+{block name="main"}
+
+	<div class="right-content">
+		<div class="content">
+			<div class="cndh"><i class="layui-icon">&#xe705;</i>&nbsp;作家投稿平台&nbsp;>&nbsp;添加章节</div>
+			
+		</div>
+		<div class="cont">
+
+			<div class="workstep">
+				<form class="layui-form" action="{$formUrl}" method="post"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+					
+					<input type="hidden" name="referer" value="{if condition="isset($_SERVER['HTTP_REFERER'])"}{$_SERVER["HTTP_REFERER"]}{else /}{:url('AdminSection')}{/if}" />
+				  	<input type="hidden" name="id" value="{$data.id}" />
+				  	<input type="hidden" name="user_id" value="{$data.user_id}" />
+				  	<input type="hidden" name="check" id="check" value="{$data.check}" />
+
+				  	<div class="layui-form-item">
+				    	<label class="layui-form-label">章节标题：</label>
+				    	<div class="layui-input-block">
+				      		<input type="text" name="title" required lay-verify="title" placeholder="请输入标题" autocomplete="off" class="layui-input" value="{if condition="isset($data.title)" }{$data.title}{else /}{$titleDes}{/if}">
+				    	</div>
+				    	{if condition="isset($error.title)"}
+				   		<label class="byts">*{$error.title}</label>
+			    		{/if}
+				  	</div>
+				 	<div class="layui-form-item layui-form-text">
+				    	<label class="layui-form-label">章节内容：</label>
+				    	<div class="layui-input-block" style="height:420px;">
+				      	<script id="editor" name="content" type="text/plain" style="width:100%;height:420px">{if condition="isset($data.content)" }{$data.content}{/if}</script>
+				    	</div>
+				    	<div class="layui-input-block dqzss" style="margin-top:5px;margin-left:110px;color: red;">
+				    		{if condition="isset($error.content)"}
+					    	<label class="byts">*{$error.content}</label>
+				    		{/if}
+				    	</div>
+				  	</div>
+				  	<div class="layui-form-item">
+				  		<label class="layui-form-label">章节序号：</label>
+				  		<div class="layui-input-block">
+				      		<input type="text" name="sort" required placeholder="请输入序号" autocomplete="off" class="layui-input xh" value="{if condition="isset($data.sort)" }{$data.sort}{/if}">
+				    	</div>
+				    	<!-- <label class="byts">*序号不能为空!!</label> -->
+				  	</div>
+				  	<div class="layui-form-item">
+				    	<label class="layui-form-label">章节类型：</label>
+				    	<input type="hidden" id="zjlxxz" name="attr" lay-verify="attr" value="{if condition="isset($data.attr)" }{$data.attr}{/if}" />
+				    	<div id="zjlxchose" class="layui-input-block dqzss">
+				      		<a data-is="yes" data-val="1" class="annu3 {if condition="isset($data.attr) && $data.attr == 1"}sqau5{/if}"></a>
+				      		<a data-is="no"  data-val="2" class="annu4 {if condition="isset($data.attr) && $data.attr == 2"}sqau6{/if}"></a>
+				    	</div>
+					    {if condition="isset($error.attr)"}
+					    <label class="byts byts1">*{$error.attr}</label>
+				    	{/if}
+				    	{if condition="isset($error.error)"}
+					    <label class="byts byts1">*{$error.error}</label>
+				    	{/if}
+				  	</div>
+				  	<div class="layui-form-item">
+					    <label class="layui-form-label">审核状态：</label>
+					    <input type="hidden" id="shstatus" name="check" value="{if condition="isset($data.check)"}{$data.check}{/if}" />
+					    <div class="layui-input-block shzt">
+					     	<div id="shstatus-pare" class="layui-input-block xzlx" style="margin-left: 0px;margin-top: 5px;">
+						    	<a data-is="yes" data-val="1" class="annu5 {if condition="isset($data.check) && $data.check == 1"}shsqau5{/if}"></a>
+						    	<a data-is="no"  data-val="0" class="annu6 {if condition="isset($data.check) && $data.check == 0"}shsqau6{/if}"></a>
+					    	</div>
+					    </div>
+					</div>
+				  	<div class="layui-form-item">
+				    	<div class="layui-input-block">
+				      		<button class="layui-btn" lay-submit lay-filter="*">保存</button>
+				    	</div>
+				  	</div>
+				  <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+				</form>
+			</div>
+		</div>
+	</div>
+
+{/block}
+
+<!-- 管理员后台不需要左侧导航 -->
+{block name="left"}{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+	<script type="text/javascript" src="{:asset('/static/ueditor/ueditor.config.js')}"></script>
+	<script type="text/javascript" src="{:asset('/static/ueditor/ueditor.all.js')}"></script>
+	<script type="text/javascript" src="{:asset('/static/ueditor/lang/zh-cn/zh-cn.js')}"></script>
+	<script type="text/javascript" src="{:asset('/static/js/Book.js')}"></script>
+	<script>
+		var ue = UE.getEditor('editor',{
+			//initialFrameWidth :800,//设置编辑器宽度
+			//initialFrameHeight:250,//设置编辑器高度
+			scaleEnabled:true//设置不自动调整高度
+			//scaleEnabled {false} [默认值：false]//是否可以拉伸长高，(设置true开启时，自动长高失效)
+		});
+		layui.use('form', function(){
+		  var form = layui.form;
+
+		  form.verify({
+				title: function(value, item){ //value：表单的值、item：表单的DOM对象
+					if(value == ''){
+					    return '章节标题不能为空';
+					}
+					
+				}
+				,attr: function(value, item){ //value：表单的值、item：表单的DOM对象
+					if(value == ''){
+					    return '请选择章节类型！！';
+					}
+				}
+			}); 
+
+		  	form.on('submit(*)', function(data){
+				var content = UE.getEditor('editor').getPlainTxt();
+				content ='<p>'+ content.replace(/\n*$/g,'').replace(/\n/g,'</p> <p>')+'</ p>';
+				$(data.form).find("[name='content']").val(content);
+			});
+		  
+		});
+		function cal_words(){
+		  var length = document.getElementById("test").value.length;
+		  document.getElementById("num").innerHTML = length;
+		}
+
+	</script>
+{/block}

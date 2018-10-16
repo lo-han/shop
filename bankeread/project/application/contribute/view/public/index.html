@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>{block name="title"}半刻阅读网-最新最好看的免费原创小说阅读网{/block}</title>
+		{block name="permit_revamp_css"}
+		<link rel="stylesheet" type="text/css" href="{:asset('/static/css/swiper.min.css')}"/>
+		<link rel="stylesheet" type="text/css" href="{:asset('/static/layui/css/layui.css')}" />
+		<link rel="stylesheet" type="text/css" href="{:asset('/static/css/bootstrap.min.css')}">
+		<link rel="stylesheet" type="text/css" href="{:asset('/static/css/style1.css')}">
+		{/block}
+	
+		<script type="text/javascript" src="{:asset('/static/js/jquery-3.2.1.min.js')}"></script>		
+		<script type="text/javascript" src="{:asset('/static/js/bootstrap.min.js')}" ></script>
+		<script type="text/javascript" src="{:asset('/static/js/swiper.min.js')}"></script>
+		<script type="text/javascript" src="{:asset('/static/layui/layui.js')}" ></script>	
+
+		{block name="css"}{/block}
+
+	</head>
+	<body>
+		<div class="wrapper">
+
+			{block name="head"}
+			<div class="header">
+				<div class="top">
+					<div class="container clearfix">
+						<div class="logo-box float-left">
+							<a href="{:url('Home')}"><img src="{:asset('/static/img/logo.png')}" alt=""></a>
+						</div>
+						<ul class="nav float-left">
+							<li>
+								<a href="{:url('Home')}" {if condition="routerJudge('index')"}class="active"{/if} >首页</a>
+							</li>
+							<li>
+								<a href="{:url('HomeBookList')}" {if condition="routerJudge('book')"}class="active"{/if} >书库</a>
+							</li>
+							<li>
+								<a href="{:url('HomeAuthor')}" {if condition="routerJudge('author')"}class="active"{/if} >作者阵容</a>
+							</li>
+							<li>
+								<a href="{:url('HomeWe')}" {if condition="routerJudge('we')"}class="active"{/if} >关于我们</a>
+							</li>
+						</ul>
+						<div class="search float-right">
+							<form method="get" action="{:url('HomeBookList')}">
+								<input type="search" name="title" placeholder="请输入您想找的信息">
+								<div class="float-right btn">
+									<input type="submit" value="搜索">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="bottom clearfix">
+					<div class="container clearfix">
+						
+						<div class="float-right">
+							{if condition="controller('Common','controller')->isUserCheck()"}
+							<div class="login2 clearfix">
+							
+								<div class="user-penl">
+									<a href="{:url('UserBookList')}">
+										<img src="{:imagePath(['table'=>'user','category'=>'image'],session('user.image'))}" alt="">
+									</a>
+									<p class="username "><a href="{:url('UserBookList')}">{:session('user.pen_name')}<a></p>
+									<ul class="clearfix">
+										<li>
+											<a href="{:url('UserLoginOut')}">退出</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							{else /}
+							<div class="login" >
+								<a href="{:url('UserLogin')}" class="new">
+									登陆
+								</a>
+								<!--<span>请选择登录方式</span>
+								<ul class="login-list clearfix">
+									<a href="{:url('UserLogin')}">
+										<li class="web"></li>
+									</a>
+									 <li class="qq">
+										<a href="#"></a>
+									</li>
+									<li class="weibo">
+										<a href="#"></a>
+									</li>
+									<li class="baidu">
+										<a href="#"></a>
+									</li>
+								</ul> -->
+							</div>
+							
+							{/if}
+						</div>
+					</div>
+	
+				</div>
+			</div>
+			{/block}
+			
+			{block name="main"}{/block} 
+
+			{block name="footer"}
+			<div class="footer ">
+				<div class="container clearfix ">
+					<div class="float-left ">
+						<ul class="desc ">
+							<!-- <li class="mb-25 ">友情链接： 大圣中文网 红书会 OK阅读 执手文学网</li> -->
+							<li>关于我们</li>
+							<li>电话：18320752764</li>
+							<li>商务合作QQ：1982732916</li>
+							<li>邮箱：1982732916@qq.com</li>
+							<li class="mb-25 ">请作者发布小说作品时，严格遵守国家互联网信息管理办法规定。</li>
+							<li>Copyright © 半刻阅读网 All rights reserved. 湘ICP备18020019号-1</li>
+							<li>湖南半刻文化传播有限公司</li>
+						</ul>
+					</div>
+					<div class="float-right text-center ">
+						<img class="code-img mb-10 " src="{:imagePath(['table'=>'advert','category'=>'image'],model('Advert')->getMark('official_qrcode')->image)}" alt="未投放" width="100%" height="100%">
+						<p>关注半刻阅读网官方微信</p>
+						<a href="http://wpa.qq.com/msgrd?v=3&uin={:model('Advert')->getMark('home_qq')->url}&site=qq&menu=yes">
+							<img src="{:asset('/static/img/qq.jpg')}" alt=" ">
+						</a>
+						<!-- <a style="margin-left: 18px " href="# ">
+							<img src="{:asset('/static/img/wechat.jpg')}" alt=" ">
+						</a> -->
+					</div>
+				</div>
+			</div>
+			{/block}
+
+		</div>
+		<script>
+			layui.use('form', function(){
+			  var form = layui.form;
+			  
+			  //各种基于事件的操作，下面会有进一步介绍
+			});
+		</script>
+
+		{block name="js"}{/block}
+		
+	</body>
+</html>
