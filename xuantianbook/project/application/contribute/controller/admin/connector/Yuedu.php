@@ -58,7 +58,6 @@ class Yuedu extends Common
 		20	=> [13,"仙侠"],
 		19	=> [9,"穿越"],
 		18	=> [8,"现言"],
-		17	=> [16,"短篇"],
 		16	=> [11,"历史"],
 		14	=> [5,"悬疑"],
 		13	=> [4,"官场"],
@@ -84,7 +83,7 @@ class Yuedu extends Common
 	public function list(Connector $connector,Book $book,Request $request)
 	{
 		$check 	= $connector->getConnectorBook(Yuedu::className);
-		$book 	= $book->bookCheck([],$request->get('size'));
+		$book 	= $book->bookGet([],$request->get('size'));
 		
 		echo $this->fetch("",[
 			'check' => $check,
