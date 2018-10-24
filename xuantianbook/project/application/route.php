@@ -175,6 +175,36 @@ Route::group('admin',function (){
 	//优越api书籍导入实际数据库
 	Route::get(['AdminGetBookBookImport','api/bookImport'],'contribute/admin.getBook/bookImport');
 
+	//推送接口
+	Route::get(['AdminConnector','connector'],'contribute/admin.connector/index');
+
+	//推送书籍列表接口
+	Route::get(['AdminConnectorYueduBook','connector/yuedu/book'],'contribute/admin.connector.yuedu/book');
+
+	//推送书籍列表接口
+	Route::get(['AdminConnectorYueduList','connector/yuedu/list'],'contribute/admin.connector.yuedu/list');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduAdd','connector/yuedu/add'],'contribute/admin.connector.yuedu/add');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduDelete','connector/yuedu/delete'],'contribute/admin.connector.yuedu/delete');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduPush','connector/yuedu/push'],'contribute/admin.connector.yuedu/push');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduUpdate','connector/yuedu/update'],'contribute/admin.connector.yuedu/update');
+
+	//推送书籍列表接口
+	Route::rule(['AdminConnectorYueduPushAdd','connector/yuedu/push-add'],'contribute/admin.connector.yuedu/pushAdd');
+
+	//网易书籍列表
+	Route::rule(['AdminConnectorYueduInfo','connector/yuedu/info'],'contribute/admin.connector.yuedu/info');
+
+	//网易章节清空
+	Route::rule(['AdminConnectorYueduChapterDelect','connector/yuedu/chapter-delect'],'contribute/admin.connector.yuedu/chapterDelect');
+
 });
 
 //管理员后台组

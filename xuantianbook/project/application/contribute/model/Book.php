@@ -77,6 +77,19 @@ class Book extends Model
 		return $this->where($where)->order('id DESC')->paginate($limit,false, ['query' => request()->param()]);
 	}
 
+
+	/**
+	 *	通过搜索获取书籍
+	 *	@param where (array) 搜索条件
+	 *	@param limit (int)   搜索条数
+	 *	@return  think\paginator\driver\Bootstrap 分页模型
+	 */
+
+	public function bookCheck($where = [],$limit){
+		return $this->where($where)->where(['check'=>1])->order('id DESC')->paginate($limit,false, ['query' => request()->param()]);
+	}
+
+
 	/**
 	 *	前台用户对书籍的搜索
 	 *	@param where (array) 搜索条件

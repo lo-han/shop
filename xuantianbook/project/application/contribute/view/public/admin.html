@@ -78,6 +78,12 @@
 			            <dd {if condition="routerJudge('admin/news')"}class="layui-this"{/if} ><a href="{:url('AdminNews')}">资讯列表</a></dd>
 			          </dl>
 			        </li>
+			        <li class="layui-nav-item {if condition="routerJudge('admin/connector')"}layui-nav-itemed{/if}" style="padding-left:0px;">
+			          <a href="javascript:;">接口</a>
+			          <dl class="layui-nav-child">
+			            <dd {if condition="routerJudge('admin/connector')"}class="layui-this"{/if} ><a href="{:url('AdminConnector')}">推送书籍接口</a></dd>
+			          </dl>
+			        </li>
 			        <li class="layui-nav-item {if condition="routerJudge('admin/user') || routerJudge('admin/maker')"}layui-nav-itemed{/if}"" style="padding-left:0px;">
 			          <a href="javascript:;">用户管理</a>
 			          <dl class="layui-nav-child">
