@@ -1,0 +1,49 @@
+{extend name="public:admin" /}
+
+
+{block name="main"}
+<!--内容部分-->
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<div class="lbbg">
+			<table>
+				<tr>
+					<th width="5%">ID</th>
+					<th width="5%">KEY</th>
+					<th width="5%">封面</th>
+					<th>最新章节</th>
+					<th>书名</th>
+					<th>作者笔名</th>
+					<th width="10%">操作</th>
+				</tr>
+
+				{volist name="books" id="book" mod="2" }
+				<tr {eq name="mod" value="0"}class="first"{/eq}>
+					<td>{$book['bookId']}</td>
+					<td>{$book['bookKey']}</td>
+					<td><p><img src="{$book['cover']}"></p></td>
+					<td>{$book['sectionName']}</td>
+					<td>{$book['title']}</td>
+					<td>{$book['author']}</td>
+					<td>
+						<a class="delete-prompt" data-href="{:url('AdminConnectorYueduChapterDelect',['bookid'=>$book['bookId']])}" href="javascript:;" type="button" target="_bank">清空章节</a>
+					</td>
+				</tr>
+				{/volist}
+				
+			</table>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+	<script>
+		
+	</script>
+{/block}

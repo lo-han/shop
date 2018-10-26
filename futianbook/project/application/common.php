@@ -280,6 +280,58 @@ if (! function_exists('passGen')) {
 }
 
 /**
+ *  作用于默认的，逗号分割
+ *  @param $arr (array) 数组
+ *  @param $default 默认值
+ *  @return string
+ */
+
+if (! function_exists('objectFormList')) {
+
+    function objectFormList($arr,$default=""){
+        $arr = json_decode(json_encode($arr),true);
+        if(empty($arr))
+        {
+            return "";
+        }
+
+        return implode(
+            ",",
+            array_column($arr, $default)
+        );
+
+    }
+
+}
+
+/**
+ *  作用于验证
+ *  @param $objcet (objcet|array)
+ *  @param $check (string) 验证的字段 
+ *  @param $string (string) 验证字符串
+ *  @return bool
+ */
+
+if (! function_exists('array_check')) {
+
+    function array_check($objcet,$check,$string){
+    
+        if(empty($objcet))
+        {
+            return false;
+        }
+        
+
+        return in_array(
+            $string, 
+            array_column($objcet, $check) 
+        );
+
+    }
+
+}
+
+/**
  *  作用于session::flush (未开发)
  *  @param $key (string) 字符串
  *  @param $default 默认值
