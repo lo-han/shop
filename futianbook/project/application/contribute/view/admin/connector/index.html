@@ -23,7 +23,7 @@
 					)}
 					</td>
 					<td>
-						<span><a id="book-authorization" href="javascript:;" >书籍授权</a></span>
+						<span><a class="book-authorization" href="javascript:;" data-href="{:url('AdminConnectorYueduBook')}" >书籍授权</a></span>
 						<span>
 							<a href="javascript:;" id="book-batch-push"
 							data-id="{:objectFormList($connector->getConnectorBook('yuedu'),'book_id')}" >添加推送</a>
@@ -33,6 +33,19 @@
 							data-id="{:objectFormList($connector->getConnectorBook('yuedu'),'book_id')}">章节添加推送</a>
 						</span>
 						<span><a href="{:url('AdminConnectorYueduInfo')}" >书籍列表<a></span>
+					</td>
+				</tr>
+
+				<tr>
+					<td>看书网</td>
+					<td>
+					{:objectFormList(
+						$connector->getConnectorBook('kanshu'),
+						'book_id'
+					)}
+					</td>
+					<td>
+						<span><a class="book-authorization" data-href="{:url('AdminConnectorKanshuBook')}" href="javascript:;" >书籍授权</a></span>
 					</td>
 				</tr>
 
@@ -51,14 +64,14 @@
 {block name="js"}
 	<script src="{:asset('/static/js/layer.js')}"></script>
 	<script>
-		$("#book-authorization").on("click",function (){
+		$(".book-authorization").on("click",function (){
 			layer.open({
 			  type: 2,
 			  area: ['700px', '450px'],
 			  fixed: false, //不固定
 			  maxmin: true,
 			  page: true,
-			  content: '{:url("AdminConnectorYueduBook")}'
+			  content: $(this).data('href')
 			});
 		});
 		

@@ -1,0 +1,145 @@
+<form onsubmit="return false;" data-auto="true" method="post" style="width:95%;margin:0 auto;">
+    <table class="layui-table" lay-skin="line" lay-size="sm">
+        <thead>
+            <tr>
+                <th >
+                    <input type='checkbox' data-check-target='.list-check-box' id="checkbox-all" />
+                </th>
+                <th >ID</th>
+                <th >书名</th>
+                <th >操作</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            
+        </tbody>
+    </table>
+
+    <div id="ids"></div>
+
+    <div id="layui-page"></div>
+
+    <!-- <div class="layui-btn-group">
+        <button lay-submit lay-filter="add" class="layui-btn layui-btn-normal layui-btn-small">添加</button>
+    </div> -->
+
+    <div class="layui-btn-container" style="position: absolute;bottom: 10px;right: 15px;">
+        <button lay-submit lay-filter="yuedu" class="layui-btn layui-btn-normal layui-btn-xs">完成</button>
+        <button lay-submit lay-filter="close" class="layui-btn layui-btn-normal layui-btn-xs">关闭</button>
+    </div>
+    
+    <link rel="stylesheet" type="text/css" href="{:asset('/static/layui/css/layui.css')}" />
+    <script type="text/javascript" src="{:asset('/static/layui/layui.js')}"></script>
+    <script type="text/javascript" src="{:asset('/static/js/jquery-3.2.1.min.js')}"></script>
+    <script>
+        list(1,10);
+        layui.use(['form','laypage'], function(){
+            var form = layui.form;
+            var laypage = layui.laypage;
+
+            laypage.render({
+                elem: 'layui-page' //注意，这里的 test1 是 ID，不用加 # 号
+                ,limit: 10 //分页数
+                ,count: {$count}//数据总数，从服务端得到
+                ,jump: function(obj){
+                    list(obj.curr,10)
+                }
+            });
+          
+            //各种基于事件的操作，下面会有进一步介绍
+            //layui.
+            form.on('submit(yuedu)', function(data){
+                $.post("{:url('AdminConnectorKanshuAdd')}",{ids:$('#ids').html()},function(result){
+                    parent.window.location.reload();
+                });
+            });
+
+            form.on('submit(close)', function(data){
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(index); //再执行关闭   
+            });
+
+            
+        });
+
+        //删除授权
+        $(document).on("click",".list-book-delect-connector",function (){
+            var dom = this;
+            $.post($(dom).data('href'),{id:$(dom).data('id')},function(result){
+                $(dom).parents("tr").find("input:checkbox").prop("checked",false);  
+                isChecked($(dom).parents("tr").find("input:checkbox"));
+                layui.layer.msg("成功");
+            });
+        });
+
+        //单本推送
+        $(document).on("click",".list-book-push-connector",function (){
+            var dom = this;
+            $.post($(dom).data('href'),{id:$(dom).data('id')},function(result){
+                $(dom).parents("tr").find("input:checkbox").prop("checked",true);  
+                isChecked($(dom).parents("tr").find("input:checkbox"));
+                alert("成功");
+            });
+        });        
+
+        $(document).on("click","#checkbox-all",function (){
+            var subset = $(this).data("check-target");
+
+            if( $(this).is(':checked') ){
+                $(subset+":not(:checked)").each(function (){
+                    $(this).prop("checked",true);
+                    isChecked(this);
+                });
+                
+            }else{
+                $(subset+":checked").each(function (){
+                    $(this).prop("checked",false);
+                    isChecked(this);
+                });
+            }
+            
+        });
+
+        $(document).on("click",".list-check-box",function (){
+            isChecked(this);
+        });
+
+        function isChecked(dom)
+        {
+            if( $(dom).is(':checked') ){
+                addChecked($(dom).val(),"#ids");
+            }else{
+                delectChecked($(dom).val(),"#ids");
+            }
+        }
+
+        function addChecked(val,dom)
+        {
+            var arr = $(dom).html().split(",");
+            arr.push(val);
+            arr = arr.filter(s => $.trim(s).length > 0);
+            
+            if($.inArray(val,$(dom).html().split(",")) == -1){
+                $(dom).html(arr.join(","));    
+            }
+        }
+
+        function delectChecked(val,dom)
+        {
+            var arr = $(dom).html().split(",");
+            delete arr[$.inArray(val,arr)];
+            arr = arr.filter(s => $.trim(s).length > 0);
+            $(dom).html(arr.join(","));
+        }
+
+        function list(page,size)
+        {
+            $.get("{:url('AdminConnectorKanshuList')}",{page:page,size:size},function(result){
+                $("table tbody").html(result);
+            },"html");
+        }
+    </script>
+
+</form>
