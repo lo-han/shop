@@ -201,6 +201,19 @@ Route::group('admin',function (){
 	//网易章节清空
 	Route::rule(['AdminConnectorYueduChapterDelect','connector/yuedu/chapter-delect'],'contribute/admin.connector.yuedu/chapterDelect');
 
+	//推送书籍列表接口 看书网
+	Route::get(['AdminConnectorKanshuBook','connector/kanshu/book'],'contribute/admin.connector.kanshu/book');
+
+	//推送书籍列表接口 看书网
+	Route::get(['AdminConnectorKanshuList','connector/kanshu/list'],'contribute/admin.connector.kanshu/list');
+
+	//保存推送记录 看书网
+	Route::rule(['AdminConnectorKanshuAdd','connector/kanshu/add'],'contribute/admin.connector.kanshu/add');
+
+	//单本书籍推送 看书网
+	Route::rule(['AdminConnectorKanshuPush','connector/kanshu/push'],'contribute/admin.connector.kanshu/push');
+
+
 });
 
 //管理员后台组

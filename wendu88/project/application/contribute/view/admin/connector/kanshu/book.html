@@ -51,7 +51,7 @@
             //各种基于事件的操作，下面会有进一步介绍
             //layui.
             form.on('submit(yuedu)', function(data){
-                $.post("{:url('AdminConnectorYueduAdd')}",{ids:$('#ids').html()},function(result){
+                $.post("{:url('AdminConnectorKanshuAdd')}",{ids:$('#ids').html()},function(result){
                     parent.window.location.reload();
                 });
             });
@@ -82,16 +82,7 @@
                 isChecked($(dom).parents("tr").find("input:checkbox"));
                 alert("成功");
             });
-        });
-
-        //单本更新推送
-        $(document).on("click",".list-book-update-connector",function (){
-            var dom = this;
-            $.post($(dom).data('href'),{id:$(dom).data('id')},function(result){
-                alert("成功");
-            });
-        });
-        
+        });        
 
         $(document).on("click","#checkbox-all",function (){
             var subset = $(this).data("check-target");
@@ -145,7 +136,7 @@
 
         function list(page,size)
         {
-            $.get("{:url('AdminConnectorYueduList')}",{page:page,size:size},function(result){
+            $.get("{:url('AdminConnectorKanshuList')}",{page:page,size:size},function(result){
                 $("table tbody").html(result);
             },"html");
         }

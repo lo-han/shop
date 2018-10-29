@@ -11,10 +11,10 @@
         {$vo.title}
     </td>
     <td >
-        <span><a href="javascript:;" data-id="{$vo.id}" class="list-book-push-connector">单本推送<a></span>
+        <span><a href="javascript:;" data-id="{$vo.id}" data-href="{:url('AdminConnectorYueduPush')}" class="list-book-push-connector">单本推送<a></span>
         {if condition="array_check($check,'book_id',$vo.id)"}
-        <span><a href="javascript:;" data-id="{$vo.id}" class="list-book-update-connector">更新推送<a></span>
-        <span><a href="javascript:;" data-id="{$vo.id}" class="list-book-delect-connector">删除授权<a></span>
+        <span><a href="javascript:;" data-id="{$vo.id}" data-href="{:url('AdminConnectorYueduUpdate')}" class="list-book-update-connector">更新推送<a></span>
+        <span><a href="javascript:;" data-id="{$vo.id}" data-href="{:url('AdminConnectorYueduDelete')}" class="list-book-delect-connector">删除授权<a></span>
         {/if}
         
     </td>
