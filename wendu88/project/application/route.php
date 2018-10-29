@@ -213,6 +213,10 @@ Route::group('admin',function (){
 	//单本书籍推送 看书网
 	Route::rule(['AdminConnectorKanshuPush','connector/kanshu/push'],'contribute/admin.connector.kanshu/push');
 
+	//删除推送书籍权限 看书网
+	Route::rule(['AdminConnectorKanshuDelete','connector/kanshu/delete'],'contribute/admin.connector.kanshu/delete');
+
+
 
 });
 
