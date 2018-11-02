@@ -1,0 +1,89 @@
+{extend name="public:index" /}
+
+{block name="main"}
+
+<div class="zzr">
+	<div id="zzrnr" >
+		<div class="s-container" id="swiper1">
+			<div class="s-wrapper">
+				{volist name="admin" id="data"}
+				<div class="s-slide">
+					<div class="zzrlb">
+						<div class="lb">
+							<div class="Img">
+								<img src="{:imagePath(['table'=>'admin','category'=>'image'],$data->image)}">
+							</div>
+						</div>
+						<div class="lbnr">
+							<h1>{$data->name}</h1>
+							<div class="nrjs">{$data->description}</div>
+							<hr>
+							<div class="direction">主攻内容方向：</div>
+							<div class="directioncn">
+								{php}$direction = array_filter(explode(',',$data->direction));{/php}
+								{volist name="direction" id="vo"}
+								<a class="dirlb">{$vo}</a>
+								{/volist}
+							</div>
+							<hr>
+							<div class="lxfs">
+								<div class="lx">
+									<div class="qq">联系方式：</div>
+									<div class="qq">QQ：{$data->qq}</div>
+									<div class="Email">邮箱：{$data->email}</div>
+								</div>
+								<div class="fs">
+									<div class="weixin">
+										<div class="wxpic"><img src="{:imagePath(['table'=>'admin','category'=>'wechar_qrcode'],$data->wechar_qrcode)}"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{/volist}
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+	<script>        
+	//   var swiper1 = new Swiper ('#swiper1', {
+	//     direction: 'horizontal',
+	//     width: 362,	
+	//     height: 650,
+	//     slidesPerView : 'auto',	    
+	//     // 如果需要分页器
+	//     pagination: {
+	//         el: '#pagination1',
+	//         clickable: true,
+	//     },
+	//     scrollbar: {
+	// 	    el: '.swiper-scrollbar',
+	// 	    draggable: true,
+	// 	    dragSize: 100,
+	// 	},
+	//     navigation: {
+	// 	    nextEl: '.swiper-button-next',
+	// 	    prevEl: '.swiper-button-prev',
+	// 	    disabledClass: 'swiper-button-disabled',
+	// 	},
+	//   })   
+	//   swiper1.scrollbar.$dragEl.css('background','#e83451');  
+	//   swiper1.navigation.update();  
+	//   var swiperwrapper=document.getElementsByClassName('swiper-slide');
+	//   var zzrnr=document.getElementById('zzrnr');
+	//   zzrnr.style.width=(swiperwrapper.length)*392+'px';
+	//   zzrnr.style.marginLeft=-((swiperwrapper.length)*392)/2+'px';
+    </script>
+{/block}
+

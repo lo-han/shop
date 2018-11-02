@@ -1,0 +1,155 @@
+{extend name="public:admin" /}
+
+
+{block name="main"}
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<div class="zxlbnr">
+			<form class="layui-form" action="{:url('AdminSettingSaveBook')}" method="post" >
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">红文精选</label>
+				      	<input type="text" name="post[home_book_red][source_id]" placeholder="请输入书本ID" autocomplete="off"
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_book_red)"}{$data.home_book_red.source_id}{/if}">
+				      	{if condition="isset($data.home_book_red)"}
+				      	<input type="hidden" name="post[home_book_red][id]" value="{$data.home_book_red.id}" />
+				      	{/if}
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">畅销榜</label>
+					    <input type="text" name="post[home_book_list_boom][source_id]" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.home_book_list_boom)"}{$data.home_book_list_boom.source_id}{/if}">
+
+					    {if condition="isset($data.home_book_list_boom)"}
+				      	<input type="hidden" name="post[home_book_list_boom][id]" value="{$data.home_book_list_boom.id}" />
+				      	{/if}
+					</div>
+
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">火热连载</label>
+				      	<input type="text" name="post[home_book_fiery][source_id]" placeholder="请输入书本ID" autocomplete="off"
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_book_fiery)"}{$data.home_book_fiery.source_id}{/if}">
+				      	{if condition="isset($data.home_book_fiery)"}
+				      	<input type="hidden" name="post[home_book_fiery][id]" value="{$data.home_book_fiery.id}" />
+				      	{/if}
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">新书榜</label>
+					    <input type="text" name="post[home_book_list_new][source_id]" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.home_book_list_new)"}{$data.home_book_list_new.source_id}{/if}">
+
+					    {if condition="isset($data.home_book_list_new)"}
+				      	<input type="hidden" name="post[home_book_list_new][id]" value="{$data.home_book_list_new.id}" />
+				      	{/if}
+					</div>
+
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">短篇专区</label>
+				      	<input type="text" name="post[home_book_short][source_id]" placeholder="请输入书本ID" autocomplete="off"
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_book_short)"}{$data.home_book_short.source_id}{/if}">
+				      	{if condition="isset($data.home_book_short)"}
+				      	<input type="hidden" name="post[home_book_short][id]" value="{$data.home_book_short.id}" />
+				      	{/if}
+				    </div>
+				    <div class="input-block-left">
+					    <label class="layui-form-label">完本榜</label>
+					    <input type="text" name="post[home_book_list_end][source_id]" placeholder="请输入书本ID" autocomplete="off" 
+					    style="width:250px;"
+					    class="layui-input" 
+					    value="{if condition="isset($data.home_book_list_end)"}{$data.home_book_list_end.source_id}{/if}">
+
+					    {if condition="isset($data.home_book_list_end)"}
+				      	<input type="hidden" name="post[home_book_list_end][id]" value="{$data.home_book_list_end.id}" />
+				      	{/if}
+					</div>
+
+			  	</div>
+
+				<!-- <div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">最近更新</label>
+				      	<input type="text" name="post[home_book_newest][source_id]" placeholder="请输入书本ID" autocomplete="off" 
+				     	style="width:600px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_book_newest)"}{$data.home_book_newest.source_id}{/if}">
+				      	{if condition="isset($data.home_book_newest)"}
+				      	<input type="hidden" name="post[home_book_newest][id]" value="{$data.home_book_newest.id}" />
+				      	{/if}
+				    </div>
+			  	</div>	 -->		  	
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">合作伙伴</label>
+				      	<input type="text" name="post[home_partner][source_id]" placeholder="请输入渠道ID" autocomplete="off" 
+				     	style="width:600px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_partner)"}{$data.home_partner.source_id}{/if}">
+				      	{if condition="isset($data.home_partner)"}
+				      	<input type="hidden" name="post[home_partner][id]" value="{$data.home_partner.id}" />
+				      	{/if}
+				    </div>
+			  	</div>
+
+			  	<div class="layui-form-item right-body-margin">
+				    
+				    <div class="input-block-left">
+				    	<label class="layui-form-label">联系方式</label>
+				      	<input type="text" name="post[home_producer][source_id]" placeholder="请输入制作者ID" autocomplete="off" 
+				     	style="width:250px;"
+				      	class="layui-input" 
+				      	value="{if condition="isset($data.home_producer)"}{$data.home_producer.source_id}{/if}">
+				      	{if condition="isset($data.home_producer)"}
+				      	<input type="hidden" name="post[home_producer][id]" value="{$data.home_producer.id}" />
+				      	{/if}
+				    </div>
+			  	</div>
+
+			  	
+			  	<div class="layui-form-item">
+				    <div class="layui-input-block">
+				      	<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+				    </div>
+			  	</div>
+			</form>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+
+{/block}
+
+{block name="js"}
+<script type="text/javascript" src="{:asset('/static/ckeditor/ckeditor.js')}"></script>
+
+<script type="text/javascript">
+
+
+</script>
+
+{/block}

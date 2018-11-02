@@ -1,0 +1,432 @@
+{extend name="public:index" /}
+
+{block name="main"}
+<!--content-->
+<div class="container rel clearfix">
+  <!--announcement end-->
+  <div class="banner" id="mySwipe" style="visibility: visible;">
+    <div class="banner_wrap">
+      {php}$i=0;{/php}
+      {foreach $advert as $key=>$car}
+      {if condition="strpos($key,'home_super_car') !== false && !empty($car->big_image)"}
+      <div data-index="{$i}">
+        <a href="{$car->url}" class="center-block">
+          <img src="{:imagePath(['table'=>'advert','category'=>'big_image'],$car->big_image)}">
+        </a>
+      </div>
+      {php}$i++;{/php}
+      {/if}
+      {/foreach}
+    </div>
+    <div class="navpos">
+      <ul id="banner_pos">
+        <li class="crt"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <!--banner end-->
+
+
+  <div class="pt-3 clearfix">
+    <div class="w-76-5" style="    width: 854px;">
+      <div class="boxbk hotbook">
+        <div class="tit-1">
+          <h3>
+            <i class="icon icon-hotbook"></i>红文精选</h3>
+        </div>
+        <div class="box-content h-48">
+
+          {foreach $mark.home_book_red->bookGet('0,1') as $book}
+          <a class="pic-large" href="{:url('HomeBookShow',['id'=>$book->id])}">
+            <img class="pic" src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+            <div class="txt">
+              <div class="p-2">
+                <img class="photo" src="{:imagePath(['table'=>'user','category'=>'image'] , $book->user->image)}" />{$book->user->pen_name}
+                <p class="text-nowrap">{$book->description}</p>
+              </div>
+            </div>
+          </a>
+          {/foreach}
+
+          <ul class="list-pictxt list-m pr-0 f-mini" style="width: 58%">
+            {foreach $mark.home_book_red->bookGet('1,3') as $key=>$book}
+            <li {if condition="$key == 0 "}class="first"{elseif condition="$key==2"}class="last"{/if}>
+              <a class="pic" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}" target="_self">
+                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+              </a>
+              <h4>
+                <a class="text-nowrap" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
+              </h4>
+              <span>{$book->user->pen_name}</span>
+              <p class="txt-hide"> {$book->description}</p>
+              <a class="txt-well" href="{:url('HomeBookShow',['id'=>$book->id])}">立即阅读》</a>
+            </li>
+            {/foreach}
+          </ul>
+        </div>
+        <!--box-content end-->
+      </div>
+      <!--boxbk end-->
+    </div>
+    <!--w-76-5 end-->
+
+    <div class="w-23 f-r" style="width: 276px">
+      <div class="boxbk">
+        <div class="tit-1">
+          <h3>
+            <i class="icon icon-booknote"></i>畅销榜</h3>
+        </div>
+        <div class="box-content h-48">
+          <ul class="list-pictxt rank list-s p-2  f-mini">
+
+            {foreach $mark.home_book_list_boom->bookGet(5) as $key=>$book}
+            {if condition="$key == 0"}
+            <li class="first">
+              <div class="topone">NO.1</div>
+              <a class="pic" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">
+                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+              </a>
+              <div class="art">
+                <h4>
+                  <a class="f-s" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
+                </h4>
+                <span>{$book->user->pen_name}</span>
+              </div>
+            </li>
+            {else /}
+            <li {if condition="$key == 4"}class="last"{/if} >
+              <i>{$key+1}</i>
+              <a class="pic" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">
+                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+              </a>
+              <div class="art">
+                <h4>
+                  <a class="f-s" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
+                </h4>
+                <span>{$book->user->pen_name}</span>
+              </div>
+            </li>
+            {/if}
+            {/foreach}
+          </ul>
+          <a href="{:url('HomeBookList')}" class="more txt-well">查看更多 >></a>
+        </div>
+        <!--box-content end-->
+      </div>
+      <!--boxbk end-->
+    </div>
+    <!--w-23 end-->
+  </div>
+
+
+  <!--pt-3 end-->
+  <div class="pt-3 clearfix">
+    <div class="w-76-5" style="    width: 854px;">
+      <div class="boxbk hotbook">
+        <div class="tit-1">
+          <h3>
+            <i class="icon icon-hotbook"></i>火热连载</h3>
+        </div>
+        <div class="box-content h-48">
+
+          {foreach $mark.home_book_fiery->bookGet('0,1') as $book}
+          <a class="pic-large" href="{:url('HomeBookShow',['id'=>$book->id])}">
+            <img class="pic" src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+            <div class="txt">
+              <div class="p-2">
+                <img class="photo" src="{:imagePath(['table'=>'user','category'=>'image'] , $book->user->image)}" />{$book->user->pen_name}
+                <p class="text-nowrap">{$book->description}</p>
+              </div>
+            </div>
+          </a>
+          {/foreach}
+
+          <ul class="list-pictxt list-m pr-0 f-mini" style="width: 58%">
+            {foreach $mark.home_book_fiery->bookGet('1,3') as $key=>$book}
+            <li {if condition="$key == 0 "}class="first"{elseif condition="$key==2"}class="last"{/if}>
+              <a class="pic" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}" target="_self">
+                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+              </a>
+              <h4>
+                <a class="text-nowrap" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
+              </h4>
+              <span>{$book->user->pen_name}</span>
+              <p class="txt-hide"> {$book->description}</p>
+              <a class="txt-well" href="{:url('HomeBookShow',['id'=>$book->id])}">立即阅读》</a>
+            </li>
+            {/foreach}
+          </ul>
+        </div>
+        <!--box-content end-->
+      </div>
+      <!--boxbk end-->
+    </div>
+    <!--w-76-5 end-->
+
+    <div class="w-23 f-r" style="width: 276px">
+      <div class="boxbk">
+        <div class="tit-1">
+          <h3>
+            <i class="icon icon-booknote"></i>新书榜</h3>
+        </div>
+        <div class="box-content h-48">
+          <ul class="list-pictxt rank list-s p-2  f-mini">
+
+            {foreach $mark.home_book_list_new->bookGet(5) as $key=>$book}
+            {if condition="$key == 0"}
+            <li class="first">
+              <div class="topone">NO.1</div>
+              <a class="pic" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">
+                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+              </a>
+              <div class="art">
+                <h4>
+                  <a class="f-s" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
+                </h4>
+                <span>{$book->user->pen_name}</span>
+              </div>
+            </li>
+            {else /}
+            <li {if condition="$key == 4"}class="last"{/if} >
+              <i>{$key+1}</i>
+              <a class="pic" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">
+                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+              </a>
+              <div class="art">
+                <h4>
+                  <a class="f-s" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
+                </h4>
+                <span>{$book->user->pen_name}</span>
+              </div>
+            </li>
+            {/if}
+            {/foreach}
+          </ul>
+          <a href="{:url('HomeBookList')}" class="more txt-well">查看更多 >></a>
+        </div>
+        <!--box-content end-->
+      </div>
+      <!--boxbk end-->
+    </div>
+    <!--w-23 end-->
+  </div>
+  <!--pt-3 end-->
+  <div class="pt-3 clearfix">
+    <div class="w-76-5" style="    width: 854px;">
+      <div class="boxbk hotbook">
+        <div class="tit-1">
+          <h3>
+            <i class="icon icon-hotbook"></i>短篇专区</h3>
+        </div>
+        <div class="box-content h-48">
+
+          {foreach $mark.home_book_short->bookGet('0,1') as $book}
+          <a class="pic-large" href="{:url('HomeBookShow',['id'=>$book->id])}">
+            <img class="pic" src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+            <div class="txt">
+              <div class="p-2">
+                <img class="photo" src="{:imagePath(['table'=>'user','category'=>'image'] , $book->user->image)}" />{$book->user->pen_name}
+                <p class="text-nowrap">{$book->description}</p>
+              </div>
+            </div>
+          </a>
+          {/foreach}
+
+          <ul class="list-pictxt list-m pr-0 f-mini" style="width: 58%">
+            {foreach $mark.home_book_short->bookGet('1,3') as $key=>$book}
+            <li {if condition="$key == 0 "}class="first"{elseif condition="$key==2"}class="last"{/if}>
+              <a class="pic" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}" target="_self">
+                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+              </a>
+              <h4>
+                <a class="text-nowrap" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
+              </h4>
+              <span>{$book->user->pen_name}</span>
+              <p class="txt-hide"> {$book->description}</p>
+              <a class="txt-well" href="{:url('HomeBookShow',['id'=>$book->id])}">立即阅读》</a>
+            </li>
+            {/foreach}
+          </ul>
+        </div>
+        <!--box-content end-->
+      </div>
+      <!--boxbk end-->
+    </div>
+    <!--w-76-5 end-->
+
+    <div class="w-23 f-r" style="width: 276px">
+      <div class="boxbk">
+        <div class="tit-1">
+          <h3>
+            <i class="icon icon-booknote"></i>完本榜</h3>
+        </div>
+        <div class="box-content h-48">
+          <ul class="list-pictxt rank list-s p-2  f-mini">
+            {foreach $mark.home_book_list_end->bookGet(5) as $key=>$book}
+            {if condition="$key == 0"}
+            <li class="first">
+              <div class="topone">NO.1</div>
+              <a class="pic" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">
+                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+              </a>
+              <div class="art">
+                <h4>
+                  <a class="f-s" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
+                </h4>
+                <span>{$book->user->pen_name}</span>
+              </div>
+            </li>
+            {else /}
+            <li {if condition="$key == 4"}class="last"{/if} >
+              <i>{$key+1}</i>
+              <a class="pic" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">
+                <img src="{:imagePath(['table'=>'book','category'=>'cover'] , $book->cover)}" />
+              </a>
+              <div class="art">
+                <h4>
+                  <a class="f-s" href="{:url('HomeBookShow',['id'=>$book->id])}" title="{$book->title}">{$book->title}</a>
+                </h4>
+                <span>{$book->user->pen_name}</span>
+              </div>
+            </li>
+            {/if}
+            {/foreach}
+          </ul>
+          <a href="{:url('HomeBookList')}" class="more txt-well">查看更多 >></a>
+        </div>
+        <!--box-content end-->
+      </div>
+      <!--boxbk end-->
+    </div>
+    <!--w-23 end-->
+  </div>
+  <!--pt-3 end-->
+
+
+
+  <div class="boxbk mt-3 clearfix">
+    <div class="tit-1">
+      <h3>
+        <i class="icon icon-recent"></i>最近更新</h3>
+    </div>
+    <div class="box-content p-2">
+      <dl class="list-txt text-nowrap">
+        <dt class="clearfix">
+          <span class="col-xs-2">类别</span>
+          <span class="col-xs-3">书名</span>
+          <span class="col-xs-2">作者</span>
+          <span class="col-xs-3">最新章节</span>
+          <span class="col-xs-2">更新时间</span>
+        </dt>
+
+
+        {foreach $newBook as $key=>$book}
+
+        <dd class="clearfix">
+          <span class="col-xs-2">{$book->category->title}</span>
+          <span class="col-xs-3">
+            <a href="{:url('HomeBookShow',['id'=>$book->id])}" class="tex-f8a">
+              <i class="wordnumber">{$book->title}</i>
+              <i class="vip-art"></i>
+            </a>
+          </span>
+          <span class="col-xs-2">{$book->user->pen_name}</span>
+          <span class="col-xs-3">
+            <a href="{:url('HomeSectionShow',['id'=>bookSectionNewest($book->id)->id])}" class=" tex-f8a">{:bookSectionNewest($book->id)->title}</a>
+          </span>
+          <span class="col-xs-2">{:date('m-d H:i',bookSectionNewest($book->id)->update_time)}</span>
+        </dd>
+
+        {/foreach}
+
+      </dl>
+    </div>
+    <!--box-content end-->
+  </div>
+  <!--boxbk end-->
+  <div class="boxbk mt-3 clearfix">
+    <div class="tit-1">
+      <h3>
+        <i class="icon icon-horn"></i>联系方式</h3>
+    </div>
+    <div class="box-content p-2 work">
+
+      {foreach $mark.home_producer->makerGet(6) as $key=>$maker}
+      <div class="my-info col-xs-4">
+        <div class="head-img">
+          <img src="{:imagePath(['table'=>'admin','category'=>'image'] , $maker->image)}">
+        </div>
+        <span class="my-person-info">
+          <p>制作人：{$maker->name}</p>
+          <p>QQ：
+            {if condition="!empty($maker->qq)"}
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin={$maker->qq}&amp;site=qq&amp;menu=yes" target="_blank">{$maker->qq}</a>
+            {/if}
+          </p>
+        </span>
+      </div>
+      {/foreach}
+
+    </div>
+    <!--box-content end-->
+  </div>
+  <div class="boxbk box-border friendlink mt-3 clearfix">
+    <div class="box-content">
+      <h3>合作伙伴</h3>
+      <p>
+        {foreach $mark.home_partner->placeGet(20) as $key=>$place}
+        <a href="{$place->url}">{$place->name}</a>
+        {/foreach}
+      </p>
+    </div>
+    <!--box-content end-->
+  </div>
+  <!--boxbk end-->
+
+</div>
+<!--container end-->
+{/block}
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+<!--javascript-->
+<script src="{:asset('/static/redian/js/swipe.js')}"></script>
+<script src="{:asset('/static/redian/js/jquery.ellipsis.js')}"></script>
+<script>
+//轮播图触发事件
+var mySwipe = Swipe(document.getElementById('mySwipe'), {
+  auto: 3000,
+  callback: function (index, element) {
+    slideTab(index)
+  }
+});
+//点击跳转到相应的轮播图
+var bullets = document.getElementById('banner_pos').getElementsByTagName('li');
+for (var i = 0; i < bullets.length; i++) {
+  var elem = bullets[i];
+  elem.setAttribute('data-tab', i);
+  elem.onclick = function () {
+    mySwipe.slide(parseInt(this.getAttribute('data-tab'), 10), 500);//设置滑到的索引
+  }
+}
+//设置选中圆点的样式
+function slideTab(index) {
+  var i = bullets.length;
+  while (i--) {
+    bullets[i].className = bullets[i].className.replace('crt', ' ');
+  }
+  bullets[index].className = 'crt';
+};
+//文字溢出限定字数
+$(document).ready(function () {
+  //	$(".zxx_text_overflow_1").wordLimit();
+  $(".wordnumber").wordLimit(12);
+});
+</script>
+{/block}

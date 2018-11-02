@@ -1,0 +1,42 @@
+
+.banner { position: relative; visibility: hidden; overflow: hidden; width:100%; height: 400px; background: #f2f2f2;}
+.banner_wrap {overflow: hidden; position: relative; width:100%; height: 400px;}
+.banner_wrap > div {float: left; position: relative; width:100%;}
+.banner_wrap > div a { display:block; width:100%; text-align:center;}
+.banner_wrap > div a img{ width:100%; height:auto;}
+.navpos{ position:absolute; left:0; bottom:-2%; width:100%;}
+#banner_pos { width:100%; padding-bottom:2%; text-align: center;}
+#banner_pos li { background-color:rgba(255,255,255,.7); border-radius:12px; cursor: pointer; display: inline-block; height:12px; margin: 0 5px; width:12px;}
+#banner_pos li.crt { background-color:rgba(255,255,255,1);}
+.announcement { z-index: 3; position:absolute; right: 25px; top: 10px; width:220px; height:330px; padding: 10px 15px;
+	background-color: #fff; /* background color for IE */
+	filter: alpha(opacity=90); /* opacity filter for IE */
+	background-color: rgba(255, 255, 255, 0.90); /* for other browsers */
+	box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.39);
+}
+.announcement h3{ padding: 5px 0; font-weight:normal; font-size: 14px; color: #43BEA3;}
+.announcement h3 .icon{ font-size: 20px; margin-right:5px;}
+.announcement li{ height: 36px; line-height: 36px; border-bottom: 1px solid #D0D0D0;font-size: 12px; overflow: hidden; white-space: nowrap; word-break: normal; text-overflow: ellipsis; overflow: hidden; }
+/*.announcement li a{ font-size: 12px;}*/
+.announcement .welfare{ display: block; margin: 30px auto 0; width: 80px; padding-top: 60px; text-align: center; font-size: 16px; color:#F9A131; background: url(http://www.pinshu.com/themes/default/images/ico.gif) no-repeat 15px 0;}
+
+
+/*�����鼮*/
+.hotbook .box-content{ padding: 34px 20px 0;}
+.hotbook .list-pictxt{ padding-left: 20px;}
+.hotbook .pic-large{ position: relative; float: left;width: 330px; height:420px; text-align: center; overflow: hidden; }
+.hotbook .pic-large img.pic{ width: 330px; height:420px/*412px*/;}
+.hotbook .pic-large .txt{ position: absolute; left: 0; bottom: 0; width: 100%; height: 100px; overflow: hidden; text-align: left; color: #fff; background: rgba(0,0,0,.5);}
+.pic-large img.photo{ width: 26px; height: 26px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; margin-right: 10px;}
+.pic-large .text-nowrap{ width:98%; overflow: hidden; text-overflow: ellipsis;white-space: nowrap;}
+.hotbook .list-pictxt{float: right; /*padding-left: 30px; padding-top: 35px;*/ width:50%;}
+.rank.list-pictxt{ padding-bottom:5px;}
+
+/*Friendlink*/
+.friendlink .box-content{ padding:10px 30px 10px 130px;  position: relative;}
+.friendlink h3{ position: absolute; left: 30px; top: 40%; font-size:18px; font-weight: normal;}
+.friendlink p{ height: 100%; min-height:70px; padding:20px; border-left: 1px dotted #E0E0E0;}
+.friendlink a{ display: inline-block; padding:8px 15px; word-break:keep-all;} 
+
+
+

@@ -1,0 +1,74 @@
+{extend name="public:admin" /}
+
+{block name="main"}
+<!--内容部分-->
+<div class="right-content right-content1" id="rights">
+	<div class="content">
+		<div class="tjfl"><a href="{:url('AdminMakerAdd')}">添加角色</a></div>
+		
+		<div class="lbbg lbbg2">
+			<table>
+				<tr>
+					<th width="5%">ID</th>
+					<th>用户名</th>
+					<th>账号</th>
+					<th>QQ</th>
+					<th>邮箱</th>
+					<th>角色</th>
+					<th>状态</th>
+					<th>头像</th>
+					<th>创建时间</th>
+					<th width="15%">最后登陆时间</th>
+					<th>操作</th>
+				</tr>
+				{volist name="admin" id="user" mod="2" }
+				<tr {eq name="mod" value="0"}class="first"{/eq}>
+					<td>{$user->id}</td>
+					<td>{$user->name}</td>
+					<td>{$user->account}</td>
+					<td>{$user->qq}</td>
+					<td>{$user->email}</td>
+					<td>{:config('role.'.$user->role)}</td>
+					<td>{if condition="$user->status == 1"}已审核{else /}未审核{/if}</td>
+					<td>
+						<div class="tssz">
+							<img src="{:imagePath(['table'=>'admin','category'=>'image'],$user->image)}">	  
+						</div>
+					</td>
+					<td>{:date('Y-m-d',$user->create_time)}</td>
+					<td>{:date('Y-m-d H:i',$user->update_time)}</td>
+					<td>
+						<a href="{:url('AdminMakerEdit',['id'=>$user->id])}">修改</a>
+					</td>
+				</tr>
+				{/volist}
+			</table>
+			<div class="fyxs fyxs1">
+				<div id="test1">
+					<nav aria-label="Page navigation">
+					  {$admin->render()}
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+
+
+{block name="css"}
+	
+{/block}
+
+{block name="js"}
+<script>
+	layui.use('form', function(){
+	  var form = layui.form;
+	  //监听提交
+	  form.on('submit(formDemo)', function(data){
+	   	$(".layui-form").submit();
+	    return false;
+	  });
+	});
+</script>
+{/block}
